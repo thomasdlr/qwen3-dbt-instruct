@@ -10,6 +10,7 @@ dependencies = [
     "datasets>=2.0.0",
     "textual>=1.0.0",
     "dbt-duckdb>=1.8.0",
+    "anthropic>=0.84.0",
 ]
 
 [tool.uv]
