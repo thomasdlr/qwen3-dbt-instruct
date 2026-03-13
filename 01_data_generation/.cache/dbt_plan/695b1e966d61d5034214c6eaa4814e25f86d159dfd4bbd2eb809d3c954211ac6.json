@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.performance",
+    "raw.band"
+  ],
+  "staging_models": [
+    "stg_performance",
+    "stg_band"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_backline_bandmates",
+    "type": "report",
+    "grain": "1 row per band member"
+  },
+  "ctes": [
+    "stg_performance",
+    "stg_band"
+  ],
+  "joins": [
+    {
+      "left": "stg_performance",
+      "right": "stg_band",
+      "on": "T1.bandmate = T2.id"
+    }
+  ],
+  "tests": {
+    "lastname": [
+      "not_null"
+    ]
+  }
+}

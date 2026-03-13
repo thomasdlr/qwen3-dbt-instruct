@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.product",
+    "raw.store_product",
+    "raw.store"
+  ],
+  "staging_models": [
+    "stg_product",
+    "stg_store_product",
+    "stg_store"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_miramichi_products",
+    "type": "report",
+    "grain": "1 row per product_id"
+  },
+  "ctes": [
+    "stg_product",
+    "stg_store_product",
+    "stg_store"
+  ],
+  "joins": [
+    {
+      "left": "stg_product",
+      "right": "stg_store_product",
+      "on": "product.product_id = store_product.product_id"
+    },
+    {
+      "left": "stg_store_product",
+      "right": "stg_store",
+      "on": "store_product.store_id = store.store_id"
+    }
+  ],
+  "tests": {
+    "product": [
+      "not_null"
+    ]
+  }
+}

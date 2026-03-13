@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Addresses",
+    "raw.Stores"
+  ],
+  "staging_models": [
+    "stg_Addresses",
+    "stg_Stores"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_Store_Location",
+    "type": "dimension",
+    "grain": "1 row per Address_ID"
+  },
+  "ctes": [
+    "stg_Addresses",
+    "stg_Stores"
+  ],
+  "joins": [
+    {
+      "left": "stg_Addresses",
+      "right": "stg_Stores",
+      "on": "stg_Addresses.Address_ID = stg_Stores.Address_ID"
+    }
+  ],
+  "tests": {
+    "City_Town": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "web_client_accelerator",
+    "accelerator_compatible_browser",
+    "browser"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T2.accelerator_id = T1.id"
+    },
+    {
+      "left_table": "T2",
+      "right_table": "T3",
+      "condition": "T2.browser_id = T3.id"
+    }
+  ],
+  "filters": [
+    "T1.name = 'CACHEbox'",
+    "T1.name = 'Fasterfox'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.name",
+  "model_type": "report"
+}

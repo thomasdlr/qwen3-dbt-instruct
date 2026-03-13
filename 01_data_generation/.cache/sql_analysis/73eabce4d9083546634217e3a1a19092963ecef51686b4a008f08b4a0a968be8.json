@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "member",
+    "membership_register_branch"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT member_id IN (SELECT member_id FROM membership_register_branch)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "name",
+  "model_type": "report"
+}

@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "station_company",
+    "company",
+    "gas_station"
+  ],
+  "joins": [
+    {
+      "left_table": "station_company",
+      "right_table": "company",
+      "condition": "T1.company_id = T2.company_id"
+    },
+    {
+      "left_table": "station_company",
+      "right_table": "gas_station",
+      "condition": "T1.station_id = T3.station_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.location",
+    "T3.Representative_Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.location, T3.Representative_Name",
+  "model_type": "report"
+}

@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "genres",
+    "tracks"
+  ],
+  "joins": [
+    {
+      "left_table": "genres",
+      "right_table": "tracks",
+      "condition": "T1.id = T2.genre_id"
+    }
+  ],
+  "filters": [
+    "T1.name = \"Rock\"",
+    "T1.name = \"Jazz\""
+  ],
+  "select_columns": [
+    "T2.name"
+  ],
+  "grain": "tracks.name",
+  "model_type": "report"
+}

@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Employee",
+    "Certificate",
+    "Aircraft"
+  ],
+  "joins": [
+    {
+      "left_table": "Employee",
+      "right_table": "Certificate",
+      "condition": "T1.eid = T2.eid"
+    },
+    {
+      "left_table": "Aircraft",
+      "right_table": "Certificate",
+      "condition": "T3.aid = T2.aid"
+    }
+  ],
+  "filters": [
+    "T1.name = \"John Williams\""
+  ],
+  "select_columns": [
+    "T3.name"
+  ],
+  "grain": "Employee.eid, Certificate.aid",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "products",
+    "regular_order_products"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.product_id = t2.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.product_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "t1.product_name",
+    "t1.product_price"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.product_id",
+  "model_type": "report"
+}

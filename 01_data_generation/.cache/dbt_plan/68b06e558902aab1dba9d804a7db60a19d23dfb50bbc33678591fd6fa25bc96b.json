@@ -1,0 +1,52 @@
+{
+  "sources": [
+    "raw.employees",
+    "raw.departments",
+    "raw.locations"
+  ],
+  "staging_models": [
+    "stg_employees",
+    "stg_departments",
+    "stg_locations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employee_locations",
+    "type": "report",
+    "grain": "1 row per employee"
+  },
+  "ctes": [
+    "stg_employees",
+    "stg_departments",
+    "stg_locations"
+  ],
+  "joins": [
+    {
+      "left": "stg_employees",
+      "right": "stg_departments",
+      "on": "employee.department_id = department.department_id"
+    },
+    {
+      "left": "stg_departments",
+      "right": "stg_locations",
+      "on": "department.location_id = location.location_id"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ],
+    "department_name": [
+      "not_null"
+    ],
+    "city": [
+      "not_null"
+    ],
+    "state_province": [
+      "not_null"
+    ]
+  }
+}

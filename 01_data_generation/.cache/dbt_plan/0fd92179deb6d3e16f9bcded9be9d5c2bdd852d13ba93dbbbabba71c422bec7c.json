@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.friend",
+    "raw.highschooler",
+    "raw.likes"
+  ],
+  "staging_models": [
+    "stg_friend",
+    "stg_highschooler",
+    "stg_likes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_intersected_highschooler_names",
+    "type": "report",
+    "grain": "1 row per unique highschooler name"
+  },
+  "ctes": [
+    "stg_friend",
+    "stg_highschooler",
+    "stg_likes"
+  ],
+  "joins": [
+    {
+      "left": "stg_friend",
+      "right": "stg_highschooler",
+      "on": "friend.student_id = highschooler.id"
+    },
+    {
+      "left": "stg_likes",
+      "right": "stg_highschooler",
+      "on": "likes.liked_id = highschooler.id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

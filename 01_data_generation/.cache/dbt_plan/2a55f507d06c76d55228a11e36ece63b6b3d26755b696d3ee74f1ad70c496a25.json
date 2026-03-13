@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.results",
+    "raw.races"
+  ],
+  "staging_models": [
+    "stg_results",
+    "stg_races"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_distinct_drivers_2009",
+    "type": "report",
+    "grain": "1 row per distinct driverId"
+  },
+  "ctes": [
+    "stg_results",
+    "stg_races"
+  ],
+  "joins": [
+    {
+      "left": "stg_results",
+      "right": "stg_races",
+      "on": "results.raceId = races.raceId"
+    }
+  ],
+  "tests": {
+    "count_distinct_driver_id": [
+      "not_null"
+    ]
+  }
+}

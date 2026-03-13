@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "Owners",
+    "Dogs",
+    "Treatments"
+  ],
+  "joins": [
+    {
+      "left_table": "Owners",
+      "right_table": "Dogs",
+      "condition": "T1.owner_id = T2.owner_id"
+    },
+    {
+      "left_table": "Dogs",
+      "right_table": "Treatments",
+      "condition": "T2.dog_id = T3.dog_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.owner_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.owner_id",
+    "T1.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.owner_id",
+  "model_type": "fact"
+}

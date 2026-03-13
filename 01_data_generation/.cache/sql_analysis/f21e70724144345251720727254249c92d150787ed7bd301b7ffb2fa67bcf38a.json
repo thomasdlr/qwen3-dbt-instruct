@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "AIRPORTS",
+    "FLIGHTS"
+  ],
+  "joins": [
+    {
+      "left_table": "AIRPORTS",
+      "right_table": "FLIGHTS",
+      "condition": "T1.AirportCode = T2.DestAirport OR T1.AirportCode = T2.SourceAirport"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.AirportCode"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.AirportCode"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.AirportCode",
+  "model_type": "dimension"
+}

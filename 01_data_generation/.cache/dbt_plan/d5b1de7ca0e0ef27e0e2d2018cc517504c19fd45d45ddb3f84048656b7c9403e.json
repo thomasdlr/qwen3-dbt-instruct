@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.physician",
+    "raw.affiliated_with",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_physician",
+    "stg_affiliated_with",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_surgery_psychiatry_physicians",
+    "type": "report",
+    "grain": "1 row per physician.EmployeeID"
+  },
+  "ctes": [
+    "stg_physician",
+    "stg_affiliated_with",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_physician",
+      "right": "stg_affiliated_with",
+      "on": "EmployeeID = physician"
+    },
+    {
+      "left": "stg_affiliated_with",
+      "right": "stg_department",
+      "on": "department = DepartmentID"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

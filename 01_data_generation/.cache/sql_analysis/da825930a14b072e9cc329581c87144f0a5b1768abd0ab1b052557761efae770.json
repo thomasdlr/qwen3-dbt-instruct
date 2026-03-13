@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "student",
+    "lives_in",
+    "dorm"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "lives_in",
+      "condition": "T1.stuid = T2.stuid"
+    },
+    {
+      "left_table": "lives_in",
+      "right_table": "dorm",
+      "condition": "T3.dormid = T2.dormid"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "T1.age",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.dorm_name"
+  ],
+  "having": [],
+  "select_columns": [
+    "AVG(T1.age)",
+    "T3.dorm_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.dorm_name",
+  "model_type": "fact"
+}

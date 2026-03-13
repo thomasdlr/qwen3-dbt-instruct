@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.apartment_buildings",
+    "raw.apartments"
+  ],
+  "staging_models": [
+    "stg_apartment_buildings",
+    "stg_apartments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_columbus_square_rooms",
+    "type": "fact",
+    "grain": "1 row per building"
+  },
+  "ctes": [
+    "stg_apartment_buildings",
+    "stg_apartments"
+  ],
+  "joins": [
+    {
+      "left": "stg_apartment_buildings",
+      "right": "stg_apartments",
+      "on": "building_id = building_id"
+    }
+  ],
+  "tests": {
+    "sum_room_count": [
+      "not_null"
+    ]
+  }
+}

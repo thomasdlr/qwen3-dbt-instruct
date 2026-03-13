@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.phone_market",
+    "raw.market",
+    "raw.phone"
+  ],
+  "staging_models": [
+    "stg_phone_market",
+    "stg_market",
+    "stg_phone"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_phone_market_districts",
+    "type": "report",
+    "grain": "1 row per phone_market"
+  },
+  "ctes": [
+    "stg_phone_market",
+    "stg_market",
+    "stg_phone"
+  ],
+  "joins": [
+    {
+      "left": "stg_phone_market",
+      "right": "stg_market",
+      "on": "Market_ID = Market_ID"
+    },
+    {
+      "left": "stg_phone_market",
+      "right": "stg_phone",
+      "on": "Phone_ID = Phone_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "District": [
+      "not_null"
+    ]
+  }
+}

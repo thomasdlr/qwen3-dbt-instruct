@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Behavior_Incident",
+    "raw.Ref_Incident_Type"
+  ],
+  "staging_models": [
+    "stg_Behavior_Incident",
+    "stg_Ref_Incident_Type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_Incident_Type_Counts",
+    "type": "report",
+    "grain": "1 row per incident_type_code"
+  },
+  "ctes": [
+    "stg_Behavior_Incident",
+    "stg_Ref_Incident_Type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Behavior_Incident",
+      "right": "stg_Ref_Incident_Type",
+      "on": "stg_Behavior_Incident.incident_type_code = stg_Ref_Incident_Type.incident_type_code"
+    }
+  ],
+  "tests": {
+    "incident_type_code": [
+      "not_null"
+    ],
+    "incident_type_description": [
+      "not_null"
+    ]
+  }
+}

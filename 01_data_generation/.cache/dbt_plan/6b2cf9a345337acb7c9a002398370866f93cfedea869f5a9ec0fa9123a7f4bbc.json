@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Member",
+    "raw.party"
+  ],
+  "staging_models": [
+    "stg_Member",
+    "stg_party"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_member_party_excl_progress",
+    "type": "dimension",
+    "grain": "1 row per member_name"
+  },
+  "ctes": [
+    "stg_Member",
+    "stg_party"
+  ],
+  "joins": [
+    {
+      "left": "stg_Member",
+      "right": "stg_party",
+      "on": "stg_Member.party_id = stg_party.party_id"
+    }
+  ],
+  "tests": {
+    "member_name": [
+      "not_null"
+    ]
+  }
+}

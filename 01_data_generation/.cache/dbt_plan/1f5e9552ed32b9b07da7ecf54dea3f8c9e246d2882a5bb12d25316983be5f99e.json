@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Rating",
+    "raw.Movie"
+  ],
+  "staging_models": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_movie_with_3_or_4_stars",
+    "type": "report",
+    "grain": "1 row per T2.title"
+  },
+  "ctes": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "joins": [
+    {
+      "left": "stg_Rating",
+      "right": "stg_Movie",
+      "on": "stg_Rating.mID = stg_Movie.mID"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ]
+  }
+}

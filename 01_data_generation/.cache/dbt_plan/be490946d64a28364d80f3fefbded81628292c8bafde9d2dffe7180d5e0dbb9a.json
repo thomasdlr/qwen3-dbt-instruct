@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "raw.Owners"
+  ],
+  "staging_models": [
+    "stg_Owners"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_owners_without_dogs_count",
+    "type": "report",
+    "grain": "1 row per aggregated count"
+  },
+  "ctes": [
+    "stg_Owners"
+  ],
+  "joins": [],
+  "tests": {
+    "count_owners_without_dogs": [
+      "not_null"
+    ]
+  }
+}

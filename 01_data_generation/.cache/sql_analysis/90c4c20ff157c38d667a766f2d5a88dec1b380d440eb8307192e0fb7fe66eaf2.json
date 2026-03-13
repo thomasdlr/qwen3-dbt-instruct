@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "country",
+    "match_season"
+  ],
+  "joins": [
+    {
+      "left_table": "country",
+      "right_table": "match_season",
+      "condition": "T1.Country_id = T2.Country"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Season",
+    "T2.Player",
+    "T1.Country_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Player, T1.Country_name",
+  "model_type": "dimension"
+}

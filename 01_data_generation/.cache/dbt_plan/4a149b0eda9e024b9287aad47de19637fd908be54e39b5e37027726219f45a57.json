@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.Documents",
+    "raw.Documents_with_expenses"
+  ],
+  "staging_models": [
+    "stg_Documents",
+    "stg_Documents_with_expenses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_document_except_expenses",
+    "type": "report",
+    "grain": "1 row per document_id"
+  },
+  "ctes": [
+    "stg_Documents",
+    "stg_Documents_with_expenses"
+  ],
+  "joins": [],
+  "tests": {
+    "document_id": [
+      "not_null"
+    ]
+  }
+}

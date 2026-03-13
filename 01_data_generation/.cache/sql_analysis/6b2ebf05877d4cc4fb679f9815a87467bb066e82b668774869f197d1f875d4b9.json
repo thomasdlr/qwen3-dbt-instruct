@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "station",
+    "status"
+  ],
+  "joins": [],
+  "filters": [
+    "city = \"San Francisco\"",
+    "AVG(bikes_available) > 10"
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "bikes_available",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "station_id"
+  ],
+  "having": [
+    "AVG(bikes_available) > 10"
+  ],
+  "select_columns": [
+    "id",
+    "station_id"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "station_id",
+  "model_type": "report"
+}

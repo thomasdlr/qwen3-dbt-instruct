@@ -1,0 +1,31 @@
+{
+  "tables": [
+    "operate_company",
+    "flight"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (operate_company)",
+      "right_table": "t2 (flight)",
+      "condition": "T1.id = T2.company_id"
+    },
+    {
+      "left_table": "T1 (operate_company)",
+      "right_table": "t2 (flight)",
+      "condition": "T1.id = T2.company_id"
+    }
+  ],
+  "filters": [
+    "T1.principal_activities = 'Cargo'",
+    "T1.principal_activities = 'Catering services'"
+  ],
+  "select_columns": [
+    "T2.pilot",
+    "T2.pilot"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "grain": "T2.pilot",
+  "model_type": "report"
+}

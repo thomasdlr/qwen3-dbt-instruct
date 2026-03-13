@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.election",
+    "raw.party"
+  ],
+  "staging_models": [
+    "stg_election",
+    "stg_party"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_election_party_committee",
+    "type": "report",
+    "grain": "1 row per election.Committee"
+  },
+  "ctes": [
+    "stg_election",
+    "stg_party"
+  ],
+  "joins": [
+    {
+      "left": "stg_election",
+      "right": "stg_party",
+      "on": "election.Party = party.Party_ID"
+    },
+    {
+      "left": "stg_election",
+      "right": "stg_party",
+      "on": "election.Party = party.Party_ID"
+    }
+  ],
+  "tests": {
+    "Committee": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

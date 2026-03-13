@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.match_season",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_match_season",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_columbus_crew_colleges",
+    "type": "report",
+    "grain": "1 row per Columbus Crew"
+  },
+  "ctes": [
+    "stg_match_season",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_match_season",
+      "right": "stg_team",
+      "on": "stg_match_season.Team = stg_team.Team_id"
+    }
+  ],
+  "tests": {
+    "college_count": [
+      "not_null"
+    ]
+  }
+}

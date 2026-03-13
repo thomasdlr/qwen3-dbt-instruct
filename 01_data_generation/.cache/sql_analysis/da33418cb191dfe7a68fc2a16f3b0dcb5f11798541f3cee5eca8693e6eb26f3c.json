@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Templates",
+    "Documents"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.template_id = T2.template_id"
+    }
+  ],
+  "filters": [
+    "T2.document_name = \"Data base\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.template_type_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.template_type_code",
+  "model_type": "dimension"
+}

@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.country",
+    "raw.countrylanguage"
+  ],
+  "staging_models": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_continent_language_counts",
+    "type": "report",
+    "grain": "1 row per Continent"
+  },
+  "ctes": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "joins": [
+    {
+      "left": "stg_country",
+      "right": "stg_countrylanguage",
+      "on": "stg_country.Code = stg_countrylanguage.CountryCode"
+    }
+  ],
+  "tests": {
+    "Continent": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "Rating",
+    "Movie"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (Rating)",
+      "right_table": "T2 (Movie)",
+      "condition": "T1.mID = T2.mID"
+    }
+  ],
+  "filters": [
+    "T1.stars > (SELECT AVG(T1.stars) FROM Rating AS T1 JOIN Movie AS T2 ON T1.mID = T2.mID WHERE T2.director = \"James Cameron\")"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.title",
+    "T2.director"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "T2.title, T2.director",
+  "model_type": "report"
+}

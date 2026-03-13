@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Customers",
+    "raw.Accounts"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_accounts"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customers_without_accounts",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_accounts"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_accounts",
+      "on": "customers.customer_id = accounts.customer_id"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

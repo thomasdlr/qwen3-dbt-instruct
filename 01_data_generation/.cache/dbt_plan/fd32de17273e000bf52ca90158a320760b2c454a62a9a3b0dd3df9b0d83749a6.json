@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Has_allergy",
+    "raw.Allergy_type"
+  ],
+  "staging_models": [
+    "stg_Has_allergy",
+    "stg_Allergy_type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_allergy_counts",
+    "type": "fact",
+    "grain": "1 row per allergytype"
+  },
+  "ctes": [
+    "stg_Has_allergy",
+    "stg_Allergy_type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Has_allergy",
+      "right": "stg_Allergy_type",
+      "on": "allergy = allergy"
+    }
+  ],
+  "tests": {
+    "allergytype": [
+      "not_null",
+      "unique"
+    ],
+    "count": [
+      "not_null"
+    ]
+  }
+}

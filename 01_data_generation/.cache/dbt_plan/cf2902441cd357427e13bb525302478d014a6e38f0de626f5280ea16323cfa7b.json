@@ -1,0 +1,41 @@
+{
+  "sources": [
+    "raw.performance",
+    "raw.band",
+    "raw.songs"
+  ],
+  "staging_models": [
+    "stg_performance",
+    "stg_band",
+    "stg_songs"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_lastname_performance_count",
+    "type": "report",
+    "grain": "1 row per lastname"
+  },
+  "ctes": [
+    "stg_performance",
+    "stg_band",
+    "stg_songs"
+  ],
+  "joins": [
+    {
+      "left": "stg_performance",
+      "right": "stg_band",
+      "on": "bandmate = id"
+    },
+    {
+      "left": "stg_performance",
+      "right": "stg_songs",
+      "on": "songid = songid"
+    }
+  ],
+  "tests": {
+    "lastname": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

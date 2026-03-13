@@ -1,0 +1,42 @@
+{
+  "sources": [
+    "raw.dorm",
+    "raw.has_amenity",
+    "raw.dorm_amenity"
+  ],
+  "staging_models": [
+    "stg_dorm",
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_dorm_amenity",
+    "type": "dimension",
+    "grain": "1 row per dormid"
+  },
+  "ctes": [
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "joins": [
+    {
+      "left": "stg_dorm",
+      "right": "stg_has_amenity",
+      "on": "dormid = dormid"
+    },
+    {
+      "left": "stg_has_amenity",
+      "right": "stg_dorm_amenity",
+      "on": "amenid = amenid"
+    }
+  ],
+  "tests": {
+    "dorm_name": [
+      "not_null"
+    ],
+    "student_capacity": [
+      "not_null"
+    ]
+  }
+}

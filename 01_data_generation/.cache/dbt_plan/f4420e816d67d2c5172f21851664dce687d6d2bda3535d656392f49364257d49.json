@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.professor",
+    "raw.department",
+    "raw.employee"
+  ],
+  "staging_models": [
+    "stg_professor",
+    "stg_department",
+    "stg_employee"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_biology_employee_names",
+    "type": "report",
+    "grain": "1 row per employee.EMP_NUM"
+  },
+  "ctes": [
+    "stg_professor",
+    "stg_department",
+    "stg_employee"
+  ],
+  "joins": [
+    {
+      "left": "stg_professor",
+      "right": "stg_department",
+      "on": "stg_professor.dept_code = stg_department.dept_code"
+    },
+    {
+      "left": "stg_professor",
+      "right": "stg_employee",
+      "on": "stg_professor.EMP_NUM = stg_employee.EMP_NUM"
+    }
+  ],
+  "tests": {
+    "EMP_FNAME": [
+      "not_null"
+    ],
+    "EMP_LNAME": [
+      "not_null"
+    ]
+  }
+}

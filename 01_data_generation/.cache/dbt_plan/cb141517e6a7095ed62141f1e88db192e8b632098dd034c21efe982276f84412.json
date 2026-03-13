@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.CUSTOMER",
+    "raw.INVOICE"
+  ],
+  "staging_models": [
+    "stg_CUSTOMER",
+    "stg_INVOICE"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_CUSTOMER_ADDRESS",
+    "type": "dimension",
+    "grain": "1 row per T1.Address"
+  },
+  "ctes": [
+    "stg_CUSTOMER",
+    "stg_INVOICE"
+  ],
+  "joins": [
+    {
+      "left": "stg_CUSTOMER",
+      "right": "stg_INVOICE",
+      "on": "T1.CustomerId = T2.CustomerId"
+    }
+  ],
+  "tests": {
+    "Address": [
+      "not_null"
+    ]
+  }
+}

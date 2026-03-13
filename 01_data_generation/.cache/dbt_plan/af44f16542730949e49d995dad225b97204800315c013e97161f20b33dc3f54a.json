@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.routes",
+    "raw.airports",
+    "raw.airlines"
+  ],
+  "staging_models": [
+    "stg_routes",
+    "stg_airports",
+    "stg_airlines"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_american_airlines_routes_to_italy",
+    "type": "report",
+    "grain": "1 row per (airline, destination airport)"
+  },
+  "ctes": [
+    "stg_routes",
+    "stg_airports",
+    "stg_airlines"
+  ],
+  "joins": [
+    {
+      "left": "stg_routes",
+      "right": "stg_airports",
+      "on": "dst_apid = apid"
+    },
+    {
+      "left": "stg_routes",
+      "right": "stg_airlines",
+      "on": "alid = alid"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

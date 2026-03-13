@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Course_Authors_and_Tutors",
+    "Courses"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.author_id = T2.author_id"
+    }
+  ],
+  "filters": [
+    "T2.course_name = \"advanced database\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.login_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.login_name",
+  "model_type": "report"
+}

@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "swimmer",
+    "record"
+  ],
+  "joins": [
+    {
+      "left_table": "swimmer",
+      "right_table": "record",
+      "condition": "t1.id = t2.swimmer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.swimmer_id"
+  ],
+  "having": [
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "t1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.swimmer_id",
+  "model_type": "fact"
+}

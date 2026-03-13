@@ -1,0 +1,16 @@
+{
+  "tables": [
+    "vocals",
+    "songs"
+  ],
+  "joins": [
+    {
+      "left_table": "t1 (vocals)",
+      "right_table": "t2 (songs)",
+      "condition": "t1.songid = t2.songid"
+    }
+  ],
+  "filters": [
+    "TYPE = \"lead\""
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "tables": [
+    "Student",
+    "Plays_games",
+    "Video_games"
+  ],
+  "joins": [
+    {
+      "left_table": "Plays_games",
+      "right_table": "Video_games",
+      "condition": "T1.GameID = T2.GameID"
+    },
+    {
+      "left_table": "Plays_games",
+      "right_table": "Video_games",
+      "condition": "T1.GameID = T2.GameID"
+    }
+  ],
+  "filters": [
+    "T2.Gname = \"Call of Destiny\"",
+    "T2.Gname = \"Works of Widenius\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "lname",
+    "sex"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "Student.StuID",
+  "model_type": "report"
+}

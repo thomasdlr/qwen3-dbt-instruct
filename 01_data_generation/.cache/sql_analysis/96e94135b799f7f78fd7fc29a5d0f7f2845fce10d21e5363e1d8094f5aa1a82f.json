@@ -1,0 +1,47 @@
+{
+  "tables": [
+    "CLASS",
+    "employee",
+    "course",
+    "professor",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "CLASS",
+      "right_table": "employee",
+      "condition": "T1.prof_num = T2.emp_num"
+    },
+    {
+      "left_table": "CLASS",
+      "right_table": "course",
+      "condition": "T1.crs_code = T3.crs_code"
+    },
+    {
+      "left_table": "employee",
+      "right_table": "professor",
+      "condition": "T2.emp_num = T4.emp_num"
+    },
+    {
+      "left_table": "professor",
+      "right_table": "department",
+      "condition": "T4.dept_code = T5.dept_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.emp_fname",
+    "T4.prof_office",
+    "T3.crs_description",
+    "T5.dept_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.prof_num, T1.crs_code",
+  "model_type": "dimension"
+}

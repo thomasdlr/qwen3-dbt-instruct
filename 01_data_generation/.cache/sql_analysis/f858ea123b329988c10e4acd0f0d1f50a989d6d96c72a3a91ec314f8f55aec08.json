@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "camera_lens"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT id IN (SELECT camera_lens_id FROM photos)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

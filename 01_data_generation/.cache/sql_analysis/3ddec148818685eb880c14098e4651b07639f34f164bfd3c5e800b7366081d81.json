@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "customers",
+    "customer_addresses",
+    "addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "customers",
+      "right_table": "customer_addresses",
+      "condition": "t1.customer_id = t2.customer_id"
+    },
+    {
+      "left_table": "customer_addresses",
+      "right_table": "addresses",
+      "condition": "t2.address_id = t3.address_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t3.city"
+  ],
+  "having": [],
+  "select_columns": [
+    "t3.city"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t3.city",
+  "model_type": "report"
+}

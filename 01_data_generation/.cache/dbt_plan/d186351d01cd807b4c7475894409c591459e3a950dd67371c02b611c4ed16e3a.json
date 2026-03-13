@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.player",
+    "raw.player_college",
+    "raw.college"
+  ],
+  "staging_models": [
+    "stg_player",
+    "stg_player_college",
+    "stg_college"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_yale_player_height_avg",
+    "type": "report",
+    "grain": "1 row per college_id"
+  },
+  "ctes": [
+    "stg_player",
+    "stg_player_college",
+    "stg_college"
+  ],
+  "joins": [
+    {
+      "left": "stg_player",
+      "right": "stg_player_college",
+      "on": "player.player_id = player_college.player_id"
+    },
+    {
+      "left": "stg_player_college",
+      "right": "stg_college",
+      "on": "player_college.college_id = college.college_id"
+    }
+  ],
+  "tests": {
+    "college_id": [
+      "not_null",
+      "unique"
+    ],
+    "avg_height": [
+      "not_null"
+    ]
+  }
+}

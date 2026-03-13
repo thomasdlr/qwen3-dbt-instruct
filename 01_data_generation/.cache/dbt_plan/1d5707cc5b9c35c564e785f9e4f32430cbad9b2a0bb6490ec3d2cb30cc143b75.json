@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.invoices"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_invoices"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_customer_invoices",
+    "type": "fact",
+    "grain": "1 row per customer.id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_invoices"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_invoices",
+      "on": "stg_invoices.customer_id = stg_customers.id"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

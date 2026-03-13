@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "teacher",
+    "course_arrange"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT Teacher_id IN (SELECT Teacher_id FROM course_arrange)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "Name",
+  "model_type": "dimension"
+}

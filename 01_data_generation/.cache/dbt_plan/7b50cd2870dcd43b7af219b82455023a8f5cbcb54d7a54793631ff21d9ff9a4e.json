@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.party_events",
+    "raw.party"
+  ],
+  "staging_models": [
+    "stg_party_events",
+    "stg_party"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_party_events_agg",
+    "type": "fact",
+    "grain": "1 row per party_id"
+  },
+  "ctes": [
+    "stg_party_events",
+    "stg_party"
+  ],
+  "joins": [
+    {
+      "left": "stg_party_events",
+      "right": "stg_party",
+      "on": "stg_party_events.party_id = stg_party.party_id"
+    }
+  ],
+  "tests": {
+    "party_name": [
+      "not_null"
+    ],
+    "party_id": [
+      "not_null"
+    ]
+  }
+}

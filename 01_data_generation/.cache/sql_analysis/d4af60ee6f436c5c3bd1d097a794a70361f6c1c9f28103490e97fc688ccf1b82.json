@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "institution",
+    "protein"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT institution.institution_id IN (SELECT institution_id FROM protein)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

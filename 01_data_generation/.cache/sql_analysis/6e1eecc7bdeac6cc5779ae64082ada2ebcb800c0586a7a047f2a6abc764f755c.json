@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "player",
+    "all_star"
+  ],
+  "joins": [
+    {
+      "left_table": "player",
+      "right_table": "all_star",
+      "condition": "T1.player_id = T2.player_id"
+    }
+  ],
+  "filters": [
+    "YEAR = 1998"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "name_first",
+    "name_last"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "player.player_id",
+  "model_type": "report"
+}

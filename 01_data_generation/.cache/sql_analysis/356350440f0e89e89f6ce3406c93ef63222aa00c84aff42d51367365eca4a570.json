@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "Order_Items",
+    "Product_Suppliers"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    },
+    {
+      "function": "SUM",
+      "column": "total_amount_purchased",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "product_id",
+    "product_id"
+  ],
+  "having": [
+    "COUNT(*) > 3",
+    "SUM(total_amount_purchased) > 80000"
+  ],
+  "select_columns": [
+    "product_id",
+    "product_id"
+  ],
+  "set_operations": [
+    "UNION"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "product_id",
+  "model_type": "report"
+}

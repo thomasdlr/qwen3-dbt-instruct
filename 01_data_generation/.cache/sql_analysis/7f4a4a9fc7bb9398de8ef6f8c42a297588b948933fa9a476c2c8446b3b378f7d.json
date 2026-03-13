@@ -1,0 +1,24 @@
+{
+  "tables": [
+    "chip_model",
+    "phone"
+  ],
+  "joins": [],
+  "filters": [
+    "Accreditation_type = 'Full'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "model_name"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "model_name",
+  "model_type": "report"
+}

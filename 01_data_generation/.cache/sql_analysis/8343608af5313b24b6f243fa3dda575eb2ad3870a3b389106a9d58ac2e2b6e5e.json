@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Employees",
+    "Circulation_History"
+  ],
+  "joins": [
+    {
+      "left_table": "Circulation_History",
+      "right_table": "Employees",
+      "condition": "Circulation_History.employee_id = Employees.employee_id"
+    }
+  ],
+  "filters": [
+    "Circulation_History.document_id = 1"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "Employees.employee_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Employees.employee_name",
+  "model_type": "report"
+}

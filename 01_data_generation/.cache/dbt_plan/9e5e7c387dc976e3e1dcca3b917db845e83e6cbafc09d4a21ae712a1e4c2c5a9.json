@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Behavior_Incident",
+    "raw.Students"
+  ],
+  "staging_models": [
+    "stg_Behavior_Incident",
+    "stg_Students"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_student_incidents",
+    "type": "fact",
+    "grain": "1 row per student_id"
+  },
+  "ctes": [
+    "stg_Behavior_Incident",
+    "stg_Students"
+  ],
+  "joins": [
+    {
+      "left": "stg_Behavior_Incident",
+      "right": "stg_Students",
+      "on": "student_id = student_id"
+    }
+  ],
+  "tests": {
+    "student_id": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Addresses",
+    "Staff"
+  ],
+  "joins": [
+    {
+      "left_table": "Addresses",
+      "right_table": "Staff",
+      "condition": "T1.address_id = T2.staff_address_id"
+    }
+  ],
+  "filters": [
+    "T2.first_name = \"Janessa\"",
+    "T2.last_name = \"Sawayn\""
+  ],
+  "select_columns": [
+    "T1.city"
+  ],
+  "grain": "Staff.staff_address_id",
+  "model_type": "report"
+}

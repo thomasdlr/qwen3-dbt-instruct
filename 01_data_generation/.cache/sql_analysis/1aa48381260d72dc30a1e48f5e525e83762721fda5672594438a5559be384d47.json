@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Performance",
+    "Band",
+    "Songs"
+  ],
+  "joins": [
+    {
+      "left_table": "Performance",
+      "right_table": "Band",
+      "condition": "T1.bandmate = T2.id"
+    },
+    {
+      "left_table": "Performance",
+      "right_table": "Songs",
+      "condition": "T3.SongId = T1.SongId"
+    }
+  ],
+  "filters": [
+    "T3.Title = \"Badlands\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.firstname",
+    "T2.lastname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Band.id",
+  "model_type": "report"
+}

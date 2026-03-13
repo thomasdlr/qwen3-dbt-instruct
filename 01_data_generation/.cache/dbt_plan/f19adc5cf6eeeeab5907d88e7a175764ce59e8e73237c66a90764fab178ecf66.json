@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.party_host",
+    "raw.HOST",
+    "raw.party"
+  ],
+  "staging_models": [
+    "stg_party_host",
+    "stg_HOST",
+    "stg_party"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_hosts_with_many_parties",
+    "type": "report",
+    "grain": "1 row per party_host.Party_ID"
+  },
+  "ctes": [
+    "stg_party_host",
+    "stg_HOST",
+    "stg_party"
+  ],
+  "joins": [
+    {
+      "left": "stg_party_host",
+      "right": "stg_HOST",
+      "on": "stg_party_host.Host_ID = stg_HOST.Host_ID"
+    },
+    {
+      "left": "stg_party_host",
+      "right": "stg_party",
+      "on": "stg_party_host.Party_ID = stg_party.Party_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.albums",
+    "raw.tracks"
+  ],
+  "staging_models": [
+    "stg_albums",
+    "stg_tracks"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_balls_to_the_wall_tracks",
+    "type": "report",
+    "grain": "1 row per track name"
+  },
+  "ctes": [
+    "stg_albums",
+    "stg_tracks"
+  ],
+  "joins": [
+    {
+      "left": "stg_albums",
+      "right": "stg_tracks",
+      "on": "T1.id = T2.genre_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

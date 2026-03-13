@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "building"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT building_id IN (SELECT building_id FROM institution)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "building.name",
+  "model_type": "dimension"
+}

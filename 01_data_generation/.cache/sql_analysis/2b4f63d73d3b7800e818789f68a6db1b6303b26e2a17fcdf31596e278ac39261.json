@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "film",
+    "LANGUAGE"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.language_id = T2.language_id"
+    }
+  ],
+  "filters": [
+    "T1.title = 'AIRPORT POLLOCK'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name",
+  "model_type": "dimension"
+}

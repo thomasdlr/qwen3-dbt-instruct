@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Financial_transactions",
+    "Invoices"
+  ],
+  "joins": [
+    {
+      "left_table": "Financial_transactions",
+      "right_table": "Invoices",
+      "condition": "T1.invoice_number = T2.invoice_number"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.invoice_number"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.invoice_number",
+    "T2.invoice_date"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.invoice_number",
+  "model_type": "fact"
+}

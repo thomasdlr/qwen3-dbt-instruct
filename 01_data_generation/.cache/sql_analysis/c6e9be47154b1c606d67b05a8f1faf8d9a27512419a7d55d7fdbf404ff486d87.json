@@ -1,0 +1,45 @@
+{
+  "tables": [
+    "store",
+    "store_district",
+    "district"
+  ],
+  "joins": [
+    {
+      "left_table": "store",
+      "right_table": "store_district",
+      "condition": "t1.store_id = t2.store_id"
+    },
+    {
+      "left_table": "store_district",
+      "right_table": "district",
+      "condition": "t2.district_id = t3.district_id"
+    },
+    {
+      "left_table": "store",
+      "right_table": "store_district",
+      "condition": "t1.store_id = t2.store_id"
+    },
+    {
+      "left_table": "store_district",
+      "right_table": "district",
+      "condition": "t2.district_id = t3.district_id"
+    }
+  ],
+  "filters": [
+    "t1.Type = \"City Mall\"",
+    "t1.Type = \"Village Store\""
+  ],
+  "select_columns": [
+    "t3.District_name",
+    "t3.District_name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t3.District_name",
+  "model_type": "report"
+}

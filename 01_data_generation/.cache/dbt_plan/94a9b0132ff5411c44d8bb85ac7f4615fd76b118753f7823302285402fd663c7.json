@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.airports",
+    "raw.flights"
+  ],
+  "staging_models": [
+    "stg_airports",
+    "stg_flights"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_airport_city_flight_count",
+    "type": "report",
+    "grain": "1 row per city"
+  },
+  "ctes": [
+    "stg_airports",
+    "stg_flights"
+  ],
+  "joins": [
+    {
+      "left": "stg_airports",
+      "right": "stg_flights",
+      "on": "T1.AirportCode = T2.DestAirport"
+    }
+  ],
+  "tests": {
+    "City": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

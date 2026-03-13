@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "actor",
+    "musical"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Musical_ID = T2.Musical_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Musical_ID"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.Name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Musical_ID",
+  "model_type": "fact"
+}

@@ -1,0 +1,43 @@
+{
+  "tables": [
+    "products",
+    "ref_colors",
+    "product_characteristics"
+  ],
+  "joins": [
+    {
+      "left_table": "products",
+      "right_table": "ref_colors",
+      "condition": "t1.color_code = t2.color_code"
+    },
+    {
+      "left_table": "products",
+      "right_table": "product_characteristics",
+      "condition": "t1.product_id = t3.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.product_id"
+  ],
+  "having": [
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "t1.product_id",
+    "t2.color_description"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.product_id",
+  "model_type": "report"
+}

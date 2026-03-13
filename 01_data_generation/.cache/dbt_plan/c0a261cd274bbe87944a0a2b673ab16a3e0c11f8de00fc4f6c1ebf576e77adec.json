@@ -1,0 +1,50 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.enroll",
+    "raw.CLASS",
+    "raw.course",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_enroll",
+    "stg_CLASS",
+    "stg_course",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accounting_cis_students",
+    "type": "report",
+    "grain": "1 row per student.stu_fname"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_enroll",
+    "stg_CLASS",
+    "stg_course"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_enroll",
+      "on": "stu_num = stu_num"
+    },
+    {
+      "left": "stg_enroll",
+      "right": "stg_CLASS",
+      "on": "class_code = class_code"
+    },
+    {
+      "left": "stg_CLASS",
+      "right": "stg_course",
+      "on": "crs_code = crs_code"
+    }
+  ],
+  "tests": {
+    "stu_fname": [
+      "not_null"
+    ]
+  }
+}

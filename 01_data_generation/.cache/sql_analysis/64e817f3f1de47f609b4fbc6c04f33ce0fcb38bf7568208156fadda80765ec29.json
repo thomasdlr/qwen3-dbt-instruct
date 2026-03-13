@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "list",
+    "teachers"
+  ],
+  "joins": [
+    {
+      "left_table": "list",
+      "right_table": "teachers",
+      "condition": "T1.classroom = T2.classroom"
+    }
+  ],
+  "filters": [
+    "T1.firstname = \"EVELINA\"",
+    "T1.lastname = \"BROMLEY\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.firstname",
+    "T2.lastname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.firstname, T2.lastname",
+  "model_type": "report"
+}

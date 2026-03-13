@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "party_host",
+    "HOST",
+    "party"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Host_ID = T2.Host_ID"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T3",
+      "condition": "T1.Party_ID = T3.Party_ID"
+    }
+  ],
+  "filters": [
+    "T2.Age > 50"
+  ],
+  "select_columns": [
+    "T3.Location"
+  ],
+  "group_by": [],
+  "having": [],
+  "aggregations": [],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.Party_ID",
+  "model_type": "fact"
+}

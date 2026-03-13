@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "airports",
+    "routes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.apid = T2.dst_apid"
+    }
+  ],
+  "filters": [
+    "country = 'Canada'"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

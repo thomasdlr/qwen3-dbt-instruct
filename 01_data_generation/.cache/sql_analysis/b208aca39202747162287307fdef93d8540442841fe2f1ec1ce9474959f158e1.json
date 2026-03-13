@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "stock",
+    "shop"
+  ],
+  "joins": [
+    {
+      "left_table": "stock",
+      "right_table": "shop",
+      "condition": "T1.Shop_ID = T2.Shop_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": null
+    }
+  ],
+  "group_by": [
+    "T1.Shop_ID"
+  ],
+  "having": [
+    "COUNT(*) > 1"
+  ],
+  "select_columns": [
+    "T2.Shop_Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Shop_ID",
+  "model_type": "fact"
+}

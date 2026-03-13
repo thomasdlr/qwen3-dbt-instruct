@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Courses",
+    "raw.Subjects"
+  ],
+  "staging_models": [
+    "stg_Courses",
+    "stg_Subjects"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_courses_by_subject",
+    "type": "report",
+    "grain": "1 row per course_name"
+  },
+  "ctes": [
+    "stg_Courses",
+    "stg_Subjects"
+  ],
+  "joins": [
+    {
+      "left": "stg_Courses",
+      "right": "stg_Subjects",
+      "on": "T1.subject_id = T2.subject_id"
+    }
+  ],
+  "tests": {
+    "course_name": [
+      "not_null"
+    ],
+    "course_description": [
+      "not_null"
+    ]
+  }
+}

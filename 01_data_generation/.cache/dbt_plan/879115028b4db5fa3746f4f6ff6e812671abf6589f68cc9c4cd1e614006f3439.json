@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.stock",
+    "raw.device",
+    "raw.shop"
+  ],
+  "staging_models": [
+    "stg_stock",
+    "stg_device",
+    "stg_shop"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_shop_device_carrier",
+    "type": "report",
+    "grain": "1 row per Device_ID, Shop_ID"
+  },
+  "ctes": [
+    "stg_stock",
+    "stg_device",
+    "stg_shop"
+  ],
+  "joins": [
+    {
+      "left": "stg_stock",
+      "right": "stg_device",
+      "on": "Device_ID = Device_ID"
+    },
+    {
+      "left": "stg_stock",
+      "right": "stg_shop",
+      "on": "Shop_ID = Shop_ID"
+    }
+  ],
+  "tests": {
+    "Shop_Name": [
+      "not_null"
+    ],
+    "Carrier": [
+      "not_null"
+    ]
+  }
+}

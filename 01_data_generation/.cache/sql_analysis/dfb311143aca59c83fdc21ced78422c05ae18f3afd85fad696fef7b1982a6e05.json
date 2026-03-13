@@ -1,0 +1,50 @@
+{
+  "tables": [
+    "customers",
+    "orders",
+    "order_items",
+    "products"
+  ],
+  "joins": [
+    {
+      "left_table": "customers",
+      "right_table": "orders",
+      "condition": "T1.customer_id = T2.customer_id"
+    },
+    {
+      "left_table": "orders",
+      "right_table": "order_items",
+      "condition": "T2.order_id = T3.order_id"
+    },
+    {
+      "left_table": "order_items",
+      "right_table": "products",
+      "condition": "T3.product_id = T4.product_id"
+    }
+  ],
+  "filters": [
+    "T4.product_name = \"food\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.customer_id"
+  ],
+  "having": [
+    "COUNT(*) >= 1"
+  ],
+  "select_columns": [
+    "T1.customer_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.customer_id",
+  "model_type": "report"
+}

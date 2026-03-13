@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "film",
+    "inventory",
+    "rental"
+  ],
+  "joins": [
+    {
+      "left_table": "film",
+      "right_table": "inventory",
+      "condition": "T1.film_id = T2.film_id"
+    },
+    {
+      "left_table": "inventory",
+      "right_table": "rental",
+      "condition": "T2.inventory_id = T3.inventory_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.inventory_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.title",
+    "T2.inventory_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.inventory_id",
+  "model_type": "report"
+}

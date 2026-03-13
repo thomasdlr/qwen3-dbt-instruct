@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.station",
+    "raw.status"
+  ],
+  "staging_models": [
+    "stg_station",
+    "stg_status"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_station_status_sf",
+    "type": "report",
+    "grain": "1 row per station_id"
+  },
+  "ctes": [
+    "stg_station",
+    "stg_status"
+  ],
+  "joins": [
+    {
+      "left": "stg_station",
+      "right": "stg_status",
+      "on": "station.station_id = status.station_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "station_id": [
+      "not_null"
+    ]
+  }
+}

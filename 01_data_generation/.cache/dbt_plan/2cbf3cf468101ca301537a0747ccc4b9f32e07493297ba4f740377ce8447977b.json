@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.participates_in",
+    "raw.activity"
+  ],
+  "staging_models": [
+    "stg_participates_in",
+    "stg_activity"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_students_canoeing_and_kayaking",
+    "type": "report",
+    "grain": "1 row per student"
+  },
+  "ctes": [
+    "stg_participates_in",
+    "stg_activity"
+  ],
+  "joins": [
+    {
+      "left": "stg_participates_in",
+      "right": "stg_activity",
+      "on": "activity.actid = activity.actid"
+    }
+  ],
+  "tests": {
+    "stuid": [
+      "not_null"
+    ]
+  }
+}

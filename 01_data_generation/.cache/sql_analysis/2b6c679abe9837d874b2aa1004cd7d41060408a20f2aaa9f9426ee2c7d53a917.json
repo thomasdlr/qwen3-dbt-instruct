@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "useracct",
+    "trust"
+  ],
+  "joins": [
+    {
+      "left_table": "useracct",
+      "right_table": "trust",
+      "condition": "T1.u_id = T2.source_u_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "trust",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.source_u_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.source_u_id",
+  "model_type": "report"
+}

@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.station",
+    "raw.train_station"
+  ],
+  "staging_models": [
+    "stg_station",
+    "stg_train_station"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_stations_without_trains",
+    "type": "report",
+    "grain": "1 row per name"
+  },
+  "ctes": [
+    "stg_station",
+    "stg_train_station"
+  ],
+  "joins": [],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

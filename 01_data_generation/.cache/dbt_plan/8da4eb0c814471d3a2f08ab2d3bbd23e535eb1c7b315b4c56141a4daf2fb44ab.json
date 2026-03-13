@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.budget",
+    "raw.school"
+  ],
+  "staging_models": [
+    "stg_budget",
+    "stg_school"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_school_budget",
+    "type": "report",
+    "grain": "1 row per school_name, budgeted, invested"
+  },
+  "ctes": [
+    "stg_budget",
+    "stg_school"
+  ],
+  "joins": [
+    {
+      "left": "stg_budget",
+      "right": "stg_school",
+      "on": "stg_budget.school_id = stg_school.school_id"
+    }
+  ],
+  "tests": {
+    "school_name": [
+      "not_null"
+    ],
+    "budgeted": [
+      "not_null"
+    ],
+    "invested": [
+      "not_null"
+    ]
+  }
+}

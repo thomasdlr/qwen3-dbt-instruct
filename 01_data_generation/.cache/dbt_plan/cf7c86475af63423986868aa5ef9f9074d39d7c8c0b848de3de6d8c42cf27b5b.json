@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.member_attendance",
+    "raw.member",
+    "raw.performance"
+  ],
+  "staging_models": [
+    "stg_member_attendance",
+    "stg_member",
+    "stg_performance"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_violin_performance_dates",
+    "type": "report",
+    "grain": "1 row per performance.Date"
+  },
+  "ctes": [
+    "stg_member_attendance",
+    "stg_member",
+    "stg_performance"
+  ],
+  "joins": [
+    {
+      "left": "stg_member_attendance",
+      "right": "stg_member",
+      "on": "Member_ID = Member_ID"
+    },
+    {
+      "left": "stg_member_attendance",
+      "right": "stg_performance",
+      "on": "Performance_ID = Performance_ID"
+    }
+  ],
+  "tests": {
+    "Date": [
+      "not_null"
+    ]
+  }
+}

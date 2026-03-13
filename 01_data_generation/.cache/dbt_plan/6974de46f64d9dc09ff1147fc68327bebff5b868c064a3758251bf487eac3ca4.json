@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Has_allergy",
+    "raw.Allergy_Type"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_students_without_food_allergy",
+    "type": "report",
+    "grain": "1 row per student without food allergy"
+  },
+  "ctes": [
+    "stg_Student",
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Has_allergy",
+      "right": "stg_Allergy_Type",
+      "on": "Has_allergy.Allergy = Allergy_Type.Allergy"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "lname": [
+      "not_null"
+    ]
+  }
+}

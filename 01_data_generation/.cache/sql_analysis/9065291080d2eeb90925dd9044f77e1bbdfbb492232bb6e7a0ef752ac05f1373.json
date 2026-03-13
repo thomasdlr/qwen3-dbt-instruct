@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "station_company",
+    "company",
+    "gas_station"
+  ],
+  "joins": [
+    {
+      "left_table": "station_company",
+      "right_table": "company",
+      "condition": "T1.company_id = T2.company_id"
+    },
+    {
+      "left_table": "station_company",
+      "right_table": "gas_station",
+      "condition": "T1.station_id = T3.station_id"
+    }
+  ],
+  "filters": [
+    "T2.company = 'ExxonMobil'"
+  ],
+  "select_columns": [
+    "T3.manager_name"
+  ],
+  "grain": "station_id",
+  "model_type": "report"
+}

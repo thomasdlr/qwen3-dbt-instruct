@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.city",
+    "raw.farm_competition"
+  ],
+  "staging_models": [
+    "stg_city",
+    "stg_farm_competition"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_city_competition_counts",
+    "type": "fact",
+    "grain": "1 row per city competing"
+  },
+  "ctes": [
+    "stg_city",
+    "stg_farm_competition"
+  ],
+  "joins": [
+    {
+      "left": "stg_city",
+      "right": "stg_farm_competition",
+      "on": "city_id = host_city_id"
+    }
+  ],
+  "tests": {
+    "status": [
+      "not_null"
+    ],
+    "host_city_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

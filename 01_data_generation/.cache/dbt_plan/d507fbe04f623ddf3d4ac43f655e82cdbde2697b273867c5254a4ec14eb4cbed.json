@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.singer",
+    "raw.song"
+  ],
+  "staging_models": [
+    "stg_singer",
+    "stg_song"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_song_singer",
+    "type": "dimension",
+    "grain": "1 row per song title and singer name"
+  },
+  "ctes": [
+    "stg_song",
+    "stg_singer"
+  ],
+  "joins": [
+    {
+      "left": "stg_song",
+      "right": "stg_singer",
+      "on": "stg_song.Singer_ID = stg_singer.Singer_ID"
+    }
+  ],
+  "tests": {
+    "Title": [
+      "not_null"
+    ],
+    "Name": [
+      "not_null"
+    ]
+  }
+}

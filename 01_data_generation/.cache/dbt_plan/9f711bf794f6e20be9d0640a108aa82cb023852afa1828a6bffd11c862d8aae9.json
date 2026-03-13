@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.Parts",
+    "raw.Part_Faults",
+    "raw.Skills_Required_To_Fix"
+  ],
+  "staging_models": [
+    "stg_Parts",
+    "stg_Part_Faults",
+    "stg_Skills_Required_To_Fix"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_part_faults",
+    "type": "fact",
+    "grain": "1 row per part_id"
+  },
+  "ctes": [
+    "stg_Part_Faults",
+    "stg_Skills_Required_To_Fix"
+  ],
+  "joins": [
+    {
+      "left": "stg_Parts",
+      "right": "stg_Part_Faults",
+      "on": "stg_Parts.part_id = stg_Part_Faults.part_id"
+    },
+    {
+      "left": "stg_Part_Faults",
+      "right": "stg_Skills_Required_To_Fix",
+      "on": "stg_Part_Faults.part_fault_id = stg_Skills_Required_To_Fix.part_fault_id"
+    }
+  ],
+  "tests": {
+    "part_id": [
+      "not_null",
+      "unique"
+    ],
+    "part_name": [
+      "not_null"
+    ]
+  }
+}

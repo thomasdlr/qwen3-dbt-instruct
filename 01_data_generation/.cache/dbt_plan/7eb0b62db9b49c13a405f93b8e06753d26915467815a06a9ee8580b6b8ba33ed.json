@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.affected_region",
+    "raw.region",
+    "raw.storm"
+  ],
+  "staging_models": [
+    "stg_affected_region",
+    "stg_region",
+    "stg_storm"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_affected_regions_by_storm",
+    "type": "report",
+    "grain": "1 row per region_name"
+  },
+  "ctes": [
+    "stg_region",
+    "stg_storm"
+  ],
+  "joins": [
+    {
+      "left": "stg_affected_region",
+      "right": "stg_region",
+      "on": "region_id = region_id"
+    },
+    {
+      "left": "stg_affected_region",
+      "right": "stg_storm",
+      "on": "storm_id = storm_id"
+    }
+  ],
+  "tests": {
+    "region_name": [
+      "not_null"
+    ]
+  }
+}

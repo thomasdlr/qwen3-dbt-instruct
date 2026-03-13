@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.assignedto",
+    "raw.projects",
+    "raw.scientists"
+  ],
+  "staging_models": [
+    "stg_assignedto",
+    "stg_projects",
+    "stg_scientists"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_scientists_on_time_parallax_projects",
+    "type": "report",
+    "grain": "1 row per scientist.name"
+  },
+  "ctes": [
+    "stg_assignedto",
+    "stg_projects",
+    "stg_scientists"
+  ],
+  "joins": [
+    {
+      "left": "stg_assignedto",
+      "right": "stg_projects",
+      "on": "project = code"
+    },
+    {
+      "left": "stg_assignedto",
+      "right": "stg_scientists",
+      "on": "scientist = SSN"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

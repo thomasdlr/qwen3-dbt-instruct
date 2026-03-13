@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.people",
+    "raw.perpetrator"
+  ],
+  "staging_models": [
+    "stg_people",
+    "stg_perpetrator"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_perpetrator_dates",
+    "type": "report",
+    "grain": "1 row per Date"
+  },
+  "ctes": [
+    "stg_people",
+    "stg_perpetrator"
+  ],
+  "joins": [
+    {
+      "left": "stg_people",
+      "right": "stg_perpetrator",
+      "on": "stg_people.people_id = stg_perpetrator.people_id"
+    }
+  ],
+  "tests": {
+    "date": [
+      "not_null"
+    ]
+  }
+}

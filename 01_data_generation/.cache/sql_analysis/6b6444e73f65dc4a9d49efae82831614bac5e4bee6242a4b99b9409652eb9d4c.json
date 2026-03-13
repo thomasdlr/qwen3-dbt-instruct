@@ -1,0 +1,43 @@
+{
+  "tables": [
+    "battle",
+    "ship",
+    "death"
+  ],
+  "joins": [
+    {
+      "left_table": "battle",
+      "right_table": "ship",
+      "condition": "T1.id = T2.lost_in_battle"
+    },
+    {
+      "left_table": "ship",
+      "right_table": "death",
+      "condition": "T2.id = T3.caused_by_ship_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T3.killed",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.id"
+  ],
+  "having": [
+    "SUM(T3.killed) > 10"
+  ],
+  "select_columns": [
+    "T1.id",
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.id",
+  "model_type": "fact"
+}

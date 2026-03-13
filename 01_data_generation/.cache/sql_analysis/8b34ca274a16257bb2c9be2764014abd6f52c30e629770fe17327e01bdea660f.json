@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "vocals",
+    "band"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.bandmate = T2.id"
+    }
+  ],
+  "filters": [
+    "lastname = \"Heilo\""
+  ],
+  "aggregations": [],
+  "group_by": [
+    "TYPE"
+  ],
+  "having": [],
+  "select_columns": [
+    "TYPE"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "TYPE",
+  "model_type": "report"
+}

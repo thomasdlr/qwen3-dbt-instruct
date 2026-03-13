@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.authors",
+    "raw.authorship",
+    "raw.inst"
+  ],
+  "staging_models": [
+    "stg_authors",
+    "stg_authorship",
+    "stg_inst"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_oxford_authors",
+    "type": "report",
+    "grain": "1 row per authors.authid"
+  },
+  "ctes": [
+    "stg_authors",
+    "stg_authorship",
+    "stg_inst"
+  ],
+  "joins": [
+    {
+      "left": "stg_authors",
+      "right": "stg_authorship",
+      "on": "authid"
+    },
+    {
+      "left": "stg_authorship",
+      "right": "stg_inst",
+      "on": "instid"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "lname": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "item",
+    "review"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (item)",
+      "right_table": "T2 (review)",
+      "condition": "T1.i_id = T2.i_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "T2.rating",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.i_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.title",
+    "T1.i_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.i_id",
+  "model_type": "fact"
+}

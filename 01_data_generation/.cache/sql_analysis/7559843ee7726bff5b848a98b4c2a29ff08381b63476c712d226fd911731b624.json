@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "railway",
+    "train"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Railway_ID = T2.Railway_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Name",
+    "T1.Location"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Railway_ID",
+  "model_type": "dimension"
+}

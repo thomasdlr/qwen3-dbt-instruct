@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "employees",
+    "customers"
+  ],
+  "joins": [
+    {
+      "left_table": "customers",
+      "right_table": "employees",
+      "condition": "T2.support_rep_id = T1.id"
+    }
+  ],
+  "filters": [
+    "T1.first_name = \"Steve\"",
+    "T1.last_name = \"Johnson\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

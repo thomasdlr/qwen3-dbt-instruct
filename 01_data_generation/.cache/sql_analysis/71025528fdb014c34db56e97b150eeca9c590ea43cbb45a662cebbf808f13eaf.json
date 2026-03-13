@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "coach",
+    "player_coach",
+    "player"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (player_coach)",
+      "right_table": "T2 (coach)",
+      "condition": "T1.Coach_ID = T2.Coach_ID"
+    },
+    {
+      "left_table": "T1 (player_coach)",
+      "right_table": "T3 (player)",
+      "condition": "T1.Player_ID = T3.Player_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.Player_name",
+    "T2.coach_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Coach_ID, T1.Player_ID",
+  "model_type": "report"
+}

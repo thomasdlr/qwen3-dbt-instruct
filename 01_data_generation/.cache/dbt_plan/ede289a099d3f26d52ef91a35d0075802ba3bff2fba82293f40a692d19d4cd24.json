@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.instruments",
+    "raw.Band"
+  ],
+  "staging_models": [
+    "stg_instruments",
+    "stg_Band"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_band_instruments",
+    "type": "report",
+    "grain": "1 row per Band with lastname = 'Heilo'"
+  },
+  "ctes": [
+    "stg_instruments",
+    "stg_Band"
+  ],
+  "joins": [
+    {
+      "left": "stg_instruments",
+      "right": "stg_Band",
+      "on": "T1.bandmateid = T2.id"
+    }
+  ],
+  "tests": {
+    "COUNT(DISTINCT instrument)": [
+      "not_null"
+    ]
+  }
+}

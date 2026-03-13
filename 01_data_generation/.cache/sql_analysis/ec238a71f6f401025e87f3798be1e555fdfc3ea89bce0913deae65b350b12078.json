@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "city",
+    "temperature"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.city_id = T2.city_id"
+    }
+  ],
+  "filters": [
+    "T2.Mar < T2.Jul",
+    "T2.Mar > T2.Oct"
+  ],
+  "select_columns": [
+    "T1.city"
+  ],
+  "grain": "city.city_id",
+  "model_type": "report"
+}

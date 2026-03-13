@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "students",
+    "student_course_registrations"
+  ],
+  "joins": [
+    {
+      "left_table": "students",
+      "right_table": "student_course_registrations",
+      "condition": "T1.student_id = T2.student_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.student_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "student_details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.student_id",
+  "model_type": "fact"
+}

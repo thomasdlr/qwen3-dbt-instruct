@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.playlist_tracks",
+    "raw.playlists"
+  ],
+  "staging_models": [
+    "stg_playlist_tracks",
+    "stg_playlists"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_playlists_with_more_than_100_tracks",
+    "type": "report",
+    "grain": "1 row per playlist_id"
+  },
+  "ctes": [
+    "stg_playlist_tracks",
+    "stg_playlists"
+  ],
+  "joins": [
+    {
+      "left": "stg_playlist_tracks",
+      "right": "stg_playlists",
+      "on": "stg_playlists.id = stg_playlist_tracks.playlist_id"
+    }
+  ],
+  "tests": {
+    "playlist_name": [
+      "not_null"
+    ]
+  }
+}

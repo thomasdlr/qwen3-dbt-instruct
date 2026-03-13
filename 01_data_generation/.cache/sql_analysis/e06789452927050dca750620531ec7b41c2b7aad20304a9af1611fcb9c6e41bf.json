@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "college"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT cName IN (SELECT cName FROM tryout WHERE pPos = \"goalie\")"
+  ],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "enr",
+      "alias": null
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "SUM(enr)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": null,
+  "model_type": "report"
+}

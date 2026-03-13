@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.body_builder",
+    "raw.people"
+  ],
+  "staging_models": [
+    "stg_body_builder",
+    "stg_people"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_birth_info",
+    "type": "report",
+    "grain": "1 row per birth event"
+  },
+  "ctes": [
+    "stg_body_builder",
+    "stg_people"
+  ],
+  "joins": [
+    {
+      "left": "stg_body_builder",
+      "right": "stg_people",
+      "on": "stg_body_builder.People_ID = stg_people.People_ID"
+    }
+  ],
+  "tests": {
+    "Birth_Date": [
+      "not_null"
+    ],
+    "Birth_Place": [
+      "not_null"
+    ]
+  }
+}

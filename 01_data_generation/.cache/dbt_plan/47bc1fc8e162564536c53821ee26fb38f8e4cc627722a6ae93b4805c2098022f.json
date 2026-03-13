@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.airlines",
+    "raw.flights"
+  ],
+  "staging_models": [
+    "stg_airlines",
+    "stg_flights"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_airline_count",
+    "type": "fact",
+    "grain": "1 row per Airline"
+  },
+  "ctes": [
+    "stg_airlines",
+    "stg_flights"
+  ],
+  "joins": [
+    {
+      "left": "stg_airlines",
+      "right": "stg_flights",
+      "on": "stg_airlines.uid = stg_flights.Airline"
+    }
+  ],
+  "tests": {
+    "airline": [
+      "not_null"
+    ]
+  }
+}

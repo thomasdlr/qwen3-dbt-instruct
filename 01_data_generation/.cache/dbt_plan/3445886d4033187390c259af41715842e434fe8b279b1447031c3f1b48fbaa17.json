@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.employee",
+    "raw.evaluation"
+  ],
+  "staging_models": [
+    "stg_employee",
+    "stg_evaluation"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employee_names",
+    "type": "report",
+    "grain": "1 row per employee"
+  },
+  "ctes": [
+    "stg_employee",
+    "stg_evaluation"
+  ],
+  "joins": [
+    {
+      "left": "stg_employee",
+      "right": "stg_evaluation",
+      "on": "stg_employee.Employee_ID = stg_evaluation.Employee_ID"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

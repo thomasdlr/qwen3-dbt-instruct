@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.artists",
+    "raw.albums"
+  ],
+  "staging_models": [
+    "stg_artists",
+    "stg_albums"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_led_albums",
+    "type": "report",
+    "grain": "1 row per artist"
+  },
+  "ctes": [
+    "stg_artists",
+    "stg_albums"
+  ],
+  "joins": [
+    {
+      "left": "stg_artists",
+      "right": "stg_albums",
+      "on": "T1.id = T2.artist_id"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ]
+  }
+}

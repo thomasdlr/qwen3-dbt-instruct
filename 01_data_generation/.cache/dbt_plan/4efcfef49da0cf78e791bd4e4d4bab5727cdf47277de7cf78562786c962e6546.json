@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.loan",
+    "raw.bank",
+    "raw.customer"
+  ],
+  "staging_models": [
+    "stg_loan",
+    "stg_bank",
+    "stg_customer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_loan_sum_by_bank",
+    "type": "report",
+    "grain": "1 row per bank"
+  },
+  "ctes": [
+    "stg_loan",
+    "stg_bank",
+    "stg_customer"
+  ],
+  "joins": [
+    {
+      "left": "loan_cte",
+      "right": "bank_cte",
+      "on": "loan_cte.branch_id = bank_cte.branch_id"
+    },
+    {
+      "left": "loan_cte",
+      "right": "customer_cte",
+      "on": "loan_cte.cust_id = customer_cte.cust_id"
+    }
+  ],
+  "tests": {
+    "bname": [
+      "not_null",
+      "unique"
+    ],
+    "amount_sum": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.grants",
+    "raw.organisations"
+  ],
+  "staging_models": [
+    "stg_grants",
+    "stg_organisations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_organisation_grant_sums",
+    "type": "report",
+    "grain": "1 row per organisation_id"
+  },
+  "ctes": [
+    "stg_grants",
+    "stg_organisations"
+  ],
+  "joins": [
+    {
+      "left": "stg_grants",
+      "right": "stg_organisations",
+      "on": "stg_grants.organisation_id = stg_organisations.organisation_id"
+    }
+  ],
+  "tests": {
+    "organisation_id": [
+      "not_null",
+      "unique"
+    ],
+    "organisation_details": [
+      "not_null"
+    ]
+  }
+}

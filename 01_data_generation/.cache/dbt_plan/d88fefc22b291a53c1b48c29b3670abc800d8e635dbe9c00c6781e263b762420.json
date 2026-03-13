@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Degree_Programs",
+    "raw.Departments"
+  ],
+  "staging_models": [
+    "stg_Degree_Programs",
+    "stg_Departments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_department_program_counts",
+    "type": "fact",
+    "grain": "1 row per department_id"
+  },
+  "ctes": [
+    "stg_Degree_Programs",
+    "stg_Departments"
+  ],
+  "joins": [
+    {
+      "left": "stg_Degree_Programs",
+      "right": "stg_Departments",
+      "on": "stg_Degree_Programs.department_id = stg_Departments.department_id"
+    }
+  ],
+  "tests": {
+    "department_name": [
+      "not_null"
+    ],
+    "department_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

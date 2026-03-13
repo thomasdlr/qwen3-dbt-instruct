@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "home_game",
+    "team"
+  ],
+  "joins": [
+    {
+      "left_table": "home_game",
+      "right_table": "team",
+      "condition": "T1.team_id = T2.team_id"
+    }
+  ],
+  "filters": [
+    "T1.year = 2014"
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "T1.attendance",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.team_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.team_id",
+    "T2.rank"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.team_id",
+  "model_type": "report"
+}

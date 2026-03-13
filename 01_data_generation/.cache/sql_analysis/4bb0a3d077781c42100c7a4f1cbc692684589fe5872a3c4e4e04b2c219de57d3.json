@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "countries",
+    "car_makers"
+  ],
+  "joins": [
+    {
+      "left_table": "countries",
+      "right_table": "car_makers",
+      "condition": "t1.countryid = t2.country"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.countryid"
+  ],
+  "having": [
+    "COUNT(*) > 2"
+  ],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.countryid",
+  "model_type": "fact"
+}

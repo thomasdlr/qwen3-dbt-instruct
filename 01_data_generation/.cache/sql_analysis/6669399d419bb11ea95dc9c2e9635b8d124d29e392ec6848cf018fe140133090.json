@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "organizations",
+    "organization_contact_individuals",
+    "individuals"
+  ],
+  "joins": [
+    {
+      "left_table": "organizations",
+      "right_table": "organization_contact_individuals",
+      "condition": "t1.organization_id = t2.organization_id"
+    },
+    {
+      "left_table": "organization_contact_individuals",
+      "right_table": "individuals",
+      "condition": "t2.individual_id = t3.individual_id"
+    }
+  ],
+  "filters": [
+    "t1.organization_name = \"Labour Party\""
+  ],
+  "select_columns": [
+    "t3.individual_last_name"
+  ],
+  "grain": "t2.date_contact_to DESC",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.pilot_record",
+    "raw.pilot"
+  ],
+  "staging_models": [
+    "stg_pilot_record",
+    "stg_pilot"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_pilot_aggregates",
+    "type": "fact",
+    "grain": "1 row per Pilot_name"
+  },
+  "ctes": [
+    "stg_pilot_record",
+    "stg_pilot"
+  ],
+  "joins": [
+    {
+      "left": "stg_pilot_record",
+      "right": "stg_pilot",
+      "on": "pilot_ID = pilot_ID"
+    }
+  ],
+  "tests": {
+    "Pilot_name": [
+      "not_null"
+    ],
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

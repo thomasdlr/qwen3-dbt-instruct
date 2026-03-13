@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.orders"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customers_with_on_road_shipped_orders",
+    "type": "report",
+    "grain": "1 row per customer_name"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_orders",
+      "on": "customers.customer_id = orders.customer_id"
+    },
+    {
+      "left": "stg_customers",
+      "right": "stg_orders",
+      "on": "customers.customer_id = orders.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

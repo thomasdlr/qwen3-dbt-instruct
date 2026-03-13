@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "AIRLINES",
+    "FLIGHTS"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.uid = T2.Airline"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.uid = T2.Airline"
+    }
+  ],
+  "filters": [
+    "T2.SourceAirport = \"CVO\"",
+    "T2.SourceAirport = \"APG\""
+  ],
+  "select_columns": [
+    "T1.Airline",
+    "T1.Airline"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "T1.Airline",
+  "model_type": "report"
+}

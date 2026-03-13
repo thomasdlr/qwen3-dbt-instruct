@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "campuses",
+    "degrees"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.id = T2.campus"
+    }
+  ],
+  "filters": [
+    "T1.county = \"Orange\"",
+    "T2.year >= 2000"
+  ],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T2.degrees",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.campus"
+  ],
+  "select_columns": [
+    "T1.campus",
+    "SUM(T2.degrees)"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.campus",
+  "model_type": "fact"
+}

@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.stay",
+    "raw.patient",
+    "raw.Prescribes",
+    "raw.Medication"
+  ],
+  "staging_models": [
+    "stg_stay",
+    "stg_patient",
+    "stg_Prescribes",
+    "stg_Medication"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_medications_by_patient",
+    "type": "report",
+    "grain": "1 row per Medication.name"
+  },
+  "ctes": [
+    "stg_stay",
+    "stg_patient",
+    "stg_Prescribes",
+    "stg_Medication"
+  ],
+  "joins": [
+    {
+      "left": "stg_stay",
+      "right": "stg_patient",
+      "on": "stg_stay.Patient = stg_patient.SSN"
+    },
+    {
+      "left": "stg_Prescribes",
+      "right": "stg_patient",
+      "on": "stg_Prescribes.Patient = stg_patient.SSN"
+    },
+    {
+      "left": "stg_Medication",
+      "right": "stg_Prescribes",
+      "on": "stg_Prescribes.Medication = stg_Medication.Code"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

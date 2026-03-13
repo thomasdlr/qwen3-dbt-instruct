@@ -1,0 +1,42 @@
+{
+  "sources": [
+    "raw.stadium",
+    "raw.game",
+    "raw.injury_accident"
+  ],
+  "staging_models": [
+    "stg_stadium",
+    "stg_game",
+    "stg_injury_accident"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_stadium_game_injuries",
+    "type": "report",
+    "grain": "1 row per stadium"
+  },
+  "ctes": [
+    "stg_stadium",
+    "stg_game"
+  ],
+  "joins": [
+    {
+      "left": "stg_stadium",
+      "right": "stg_game",
+      "on": "stg_stadium.id = stg_game.stadium_id"
+    },
+    {
+      "left": "stg_game",
+      "right": "raw.injury_accident",
+      "on": "stg_game.id = injury_accident.game_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

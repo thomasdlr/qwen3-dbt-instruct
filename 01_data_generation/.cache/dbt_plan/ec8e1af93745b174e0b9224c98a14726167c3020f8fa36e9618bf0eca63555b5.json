@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.owners",
+    "raw.dogs",
+    "raw.treatments"
+  ],
+  "staging_models": [
+    "stg_owners",
+    "stg_dogs",
+    "stg_treatments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_owner_dog_treatments",
+    "type": "fact",
+    "grain": "1 row per owner"
+  },
+  "ctes": [
+    "stg_owners",
+    "stg_dogs",
+    "stg_treatments"
+  ],
+  "joins": [
+    {
+      "left": "stg_owners",
+      "right": "stg_dogs",
+      "on": "stg_owners.owner_id = stg_dogs.owner_id"
+    },
+    {
+      "left": "stg_dogs",
+      "right": "stg_treatments",
+      "on": "stg_dogs.dog_id = stg_treatments.dog_id"
+    }
+  ],
+  "tests": {
+    "owner_id": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

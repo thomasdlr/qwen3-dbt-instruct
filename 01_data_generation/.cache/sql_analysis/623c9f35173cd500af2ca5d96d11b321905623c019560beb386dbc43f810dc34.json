@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "INVESTORS",
+    "TRANSACTIONS"
+  ],
+  "joins": [
+    {
+      "left_table": "INVESTORS",
+      "right_table": "TRANSACTIONS",
+      "condition": "T1.investor_id = T2.investor_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.investor_id"
+  ],
+  "having": [
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "T2.investor_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.investor_id",
+  "model_type": "fact"
+}

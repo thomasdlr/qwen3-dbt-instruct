@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Rating",
+    "raw.Reviewer"
+  ],
+  "staging_models": [
+    "stg_Rating",
+    "stg_Reviewer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_top_reviewers",
+    "type": "report",
+    "grain": "1 row per reviewer with 3+ ratings"
+  },
+  "ctes": [
+    "stg_Rating",
+    "stg_Reviewer"
+  ],
+  "joins": [
+    {
+      "left": "stg_Rating",
+      "right": "stg_Reviewer",
+      "on": "Rating.rID = Reviewer.rID"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

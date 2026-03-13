@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "products",
+    "Manufacturers"
+  ],
+  "joins": [
+    {
+      "left_table": "products",
+      "right_table": "Manufacturers",
+      "condition": "T1.manufacturer = T2.code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "*"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "products.id, Manufacturers.code",
+  "model_type": "dimension"
+}

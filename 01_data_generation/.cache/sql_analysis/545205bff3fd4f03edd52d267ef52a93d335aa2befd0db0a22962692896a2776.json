@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "contestants"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT contestant_number IN (SELECT contestant_number FROM votes)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

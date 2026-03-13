@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "staff",
+    "complaints",
+    "products"
+  ],
+  "joins": [
+    {
+      "left_table": "staff",
+      "right_table": "complaints",
+      "condition": "t1.staff_id = t2.staff_id"
+    },
+    {
+      "left_table": "complaints",
+      "right_table": "products",
+      "condition": "t2.product_id = t3.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t1.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.last_name",
+  "model_type": "report"
+}

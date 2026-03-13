@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.Sportsinfo",
+    "raw.Student"
+  ],
+  "staging_models": [
+    "stg_Sportsinfo",
+    "stg_Student"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_David_Shieber",
+    "type": "report",
+    "grain": "1 row per Student"
+  },
+  "ctes": [
+    "stg_Sportsinfo",
+    "stg_Student"
+  ],
+  "joins": [
+    {
+      "left": "stg_Sportsinfo",
+      "right": "stg_Student",
+      "on": "T1.StuID = T2.StuID"
+    }
+  ],
+  "tests": {
+    "StuID": [
+      "not_null",
+      "unique"
+    ],
+    "Fname": [
+      "not_null"
+    ],
+    "Lname": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.drivers",
+    "raw.laptimes"
+  ],
+  "staging_models": [
+    "stg_drivers",
+    "stg_laptimes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_driver_surnames",
+    "type": "report",
+    "grain": "1 row per driver"
+  },
+  "ctes": [
+    "stg_drivers",
+    "stg_laptimes"
+  ],
+  "joins": [
+    {
+      "left": "stg_drivers",
+      "right": "stg_laptimes",
+      "on": "driverid = driverid"
+    }
+  ],
+  "tests": {
+    "driverid": [
+      "not_null",
+      "unique"
+    ],
+    "surname": [
+      "not_null"
+    ]
+  }
+}

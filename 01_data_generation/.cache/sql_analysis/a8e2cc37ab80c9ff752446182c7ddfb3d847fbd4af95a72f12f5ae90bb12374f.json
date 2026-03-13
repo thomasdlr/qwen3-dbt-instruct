@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "web_client_accelerator",
+    "accelerator_compatible_browser",
+    "browser"
+  ],
+  "joins": [
+    {
+      "left_table": "web_client_accelerator",
+      "right_table": "accelerator_compatible_browser",
+      "condition": "T2.accelerator_id = T1.id"
+    },
+    {
+      "left_table": "accelerator_compatible_browser",
+      "right_table": "browser",
+      "condition": "T2.browser_id = T3.id"
+    }
+  ],
+  "filters": [
+    "T3.market_share > 15"
+  ],
+  "select_columns": [
+    "T1.name"
+  ],
+  "has_distinct": true,
+  "grain": "web_client_accelerator.name",
+  "model_type": "report"
+}

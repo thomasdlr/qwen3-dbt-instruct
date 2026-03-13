@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "manufacturer",
+    "furniture_manufacte"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.manufacturer_id = t2.manufacturer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.manufacturer_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "t1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.manufacturer_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "race",
+    "track"
+  ],
+  "joins": [
+    {
+      "left_table": "race",
+      "right_table": "track",
+      "condition": "T1.track_id = T2.track_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.track_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.track_id",
+  "model_type": "report"
+}

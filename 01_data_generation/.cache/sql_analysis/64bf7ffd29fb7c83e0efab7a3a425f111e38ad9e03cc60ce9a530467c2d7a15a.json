@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "airports",
+    "routes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.apid = T2.src_apid"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.name"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.name",
+  "model_type": "report"
+}

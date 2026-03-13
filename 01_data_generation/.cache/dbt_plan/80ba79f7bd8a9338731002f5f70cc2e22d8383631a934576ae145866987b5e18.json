@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.drivers",
+    "raw.pitstops",
+    "raw.results"
+  ],
+  "staging_models": [
+    "stg_drivers",
+    "stg_pitstops",
+    "stg_results"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_driver_analysis",
+    "type": "report",
+    "grain": "1 row per driverid"
+  },
+  "ctes": [
+    "stg_drivers",
+    "stg_pitstops",
+    "stg_results"
+  ],
+  "joins": [
+    {
+      "left": "stg_drivers",
+      "right": "stg_pitstops",
+      "on": "driverid = driverid"
+    },
+    {
+      "left": "stg_drivers",
+      "right": "stg_results",
+      "on": "driverid = driverid"
+    }
+  ],
+  "tests": {
+    "surname": [
+      "not_null"
+    ],
+    "driverid": [
+      "not_null"
+    ]
+  }
+}

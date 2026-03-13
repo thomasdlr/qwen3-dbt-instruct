@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.course",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_course",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_department_course_info",
+    "type": "report",
+    "grain": "1 row per department name and room"
+  },
+  "ctes": [
+    "stg_course",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_course",
+      "right": "stg_department",
+      "on": "dno = dno"
+    }
+  ],
+  "tests": {
+    "dname": [
+      "not_null"
+    ],
+    "room": [
+      "not_null"
+    ]
+  }
+}

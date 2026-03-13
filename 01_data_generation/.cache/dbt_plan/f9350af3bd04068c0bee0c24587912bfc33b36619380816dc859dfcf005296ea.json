@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.country",
+    "raw.roller_coaster"
+  ],
+  "staging_models": [
+    "stg_country",
+    "stg_roller_coaster"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_country_roller_coaster_speed_avg",
+    "type": "fact",
+    "grain": "1 row per country"
+  },
+  "ctes": [
+    "stg_country",
+    "stg_roller_coaster"
+  ],
+  "joins": [
+    {
+      "left": "stg_country",
+      "right": "stg_roller_coaster",
+      "on": "stg_country.Country_ID = stg_roller_coaster.Country_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "AVG_Speed": [
+      "not_null"
+    ]
+  }
+}

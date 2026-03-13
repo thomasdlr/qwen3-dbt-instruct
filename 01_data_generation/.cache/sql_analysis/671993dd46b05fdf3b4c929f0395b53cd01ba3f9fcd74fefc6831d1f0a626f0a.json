@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Customers",
+    "Customer_Payments"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT customer_id IN (SELECT customer_id FROM Customer_Payments)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.player",
+    "raw.tryout"
+  ],
+  "staging_models": [
+    "stg_player",
+    "stg_tryout"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_player_tryout",
+    "type": "report",
+    "grain": "1 row per player name and club name"
+  },
+  "ctes": [
+    "stg_player",
+    "stg_tryout"
+  ],
+  "joins": [
+    {
+      "left": "stg_player",
+      "right": "stg_tryout",
+      "on": "pID"
+    }
+  ],
+  "tests": {
+    "pName": [
+      "not_null"
+    ],
+    "cName": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Plays_games",
+    "raw.Video_games"
+  ],
+  "staging_models": [
+    "stg_Plays_games",
+    "stg_Video_games"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_game_playtime_summary",
+    "type": "report",
+    "grain": "1 row per gameid"
+  },
+  "ctes": [
+    "stg_Plays_games",
+    "stg_Video_games"
+  ],
+  "joins": [
+    {
+      "left": "stg_Plays_games",
+      "right": "stg_Video_games",
+      "on": "stg_Plays_games.gameid = stg_Video_games.gameid"
+    }
+  ],
+  "tests": {
+    "gameid": [
+      "not_null",
+      "unique"
+    ],
+    "gname": [
+      "not_null"
+    ]
+  }
+}

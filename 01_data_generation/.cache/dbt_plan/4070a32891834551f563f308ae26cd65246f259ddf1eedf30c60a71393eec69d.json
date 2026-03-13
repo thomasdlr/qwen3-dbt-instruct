@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.web_client_accelerator",
+    "raw.accelerator_compatible_browser",
+    "raw.browser"
+  ],
+  "staging_models": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser",
+    "stg_browser"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accelerator_browser_market",
+    "type": "report",
+    "grain": "1 row per web_client_accelerator.name"
+  },
+  "ctes": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser",
+    "stg_browser"
+  ],
+  "joins": [
+    {
+      "left": "stg_web_client_accelerator",
+      "right": "stg_accelerator_compatible_browser",
+      "on": "accelerator_id = id"
+    },
+    {
+      "left": "stg_accelerator_compatible_browser",
+      "right": "stg_browser",
+      "on": "browser_id = id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "head",
+    "management"
+  ],
+  "joins": [
+    {
+      "left_table": "head AS T1",
+      "right_table": "management AS T2",
+      "condition": "T1.head_id = T2.head_id"
+    }
+  ],
+  "filters": [
+    "T2.temporary_acting = 'Yes'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.age"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.age",
+  "model_type": "dimension"
+}

@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "raw.camera_lens"
+  ],
+  "staging_models": [
+    "stg_camera_lens"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_unused_camera_lenses",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_camera_lens"
+  ],
+  "joins": [],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

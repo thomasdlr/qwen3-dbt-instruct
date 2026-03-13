@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "Student_Course_Enrolment",
+    "Students"
+  ],
+  "joins": [
+    {
+      "left_table": "Student_Course_Enrolment",
+      "right_table": "Students",
+      "condition": "T1.student_id = T2.student_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.student_id"
+  ],
+  "having": [
+    "COUNT(*) <= 2"
+  ],
+  "select_columns": [
+    "T1.student_id",
+    "T2.middle_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.student_id",
+  "model_type": "fact"
+}

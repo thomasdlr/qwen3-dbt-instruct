@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "parties",
+    "party_services"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.party_id = t2.customer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "t1.party_email"
+  ],
+  "having": [],
+  "select_columns": [
+    "t1.party_email"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.party_email",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "region",
+    "party",
+    "party_events"
+  ],
+  "joins": [
+    {
+      "left_table": "region",
+      "right_table": "party",
+      "condition": "t1.region_id = t2.region_id"
+    },
+    {
+      "left_table": "party",
+      "right_table": "party_events",
+      "condition": "t2.party_id = t3.party_id"
+    }
+  ],
+  "filters": [
+    "t1.region_name = \"United Kingdom\"",
+    "t3.Event_Name = \"Annaual Meeting\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "grain": "region.region_id",
+  "model_type": "report"
+}

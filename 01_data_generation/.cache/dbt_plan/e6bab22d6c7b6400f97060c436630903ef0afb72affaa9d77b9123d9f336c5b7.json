@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.film_market_estimation",
+    "raw.market"
+  ],
+  "staging_models": [
+    "stg_film_market_estimation",
+    "stg_market"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_japan_market_estimations",
+    "type": "report",
+    "grain": "1 row per Year"
+  },
+  "ctes": [
+    "stg_film_market_estimation",
+    "stg_market"
+  ],
+  "joins": [
+    {
+      "left": "stg_film_market_estimation",
+      "right": "stg_market",
+      "on": "film_market_estimation.Market_ID = market.Market_ID"
+    }
+  ],
+  "tests": {
+    "Year": [
+      "not_null"
+    ]
+  }
+}

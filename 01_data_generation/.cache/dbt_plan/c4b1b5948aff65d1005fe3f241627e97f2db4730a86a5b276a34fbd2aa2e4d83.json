@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.store",
+    "raw.store_district"
+  ],
+  "staging_models": [
+    "stg_store",
+    "stg_store_district"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_top_district_stores",
+    "type": "report",
+    "grain": "1 row per store.store_name"
+  },
+  "ctes": [
+    "stg_store",
+    "stg_store_district"
+  ],
+  "joins": [
+    {
+      "left": "stg_store",
+      "right": "stg_store_district",
+      "on": "store_id = store_district.store_id"
+    }
+  ],
+  "tests": {
+    "store_name": [
+      "not_null"
+    ]
+  }
+}

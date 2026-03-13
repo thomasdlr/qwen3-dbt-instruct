@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "advisor",
+    "student"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.s_id = T2.id"
+    }
+  ],
+  "filters": [
+    "T2.dept_name = 'History'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "i_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.id",
+  "model_type": "dimension"
+}

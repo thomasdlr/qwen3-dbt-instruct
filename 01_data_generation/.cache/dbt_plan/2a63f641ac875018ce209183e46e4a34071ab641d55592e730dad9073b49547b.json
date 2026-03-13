@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.All_documents",
+    "raw.Ref_document_types"
+  ],
+  "staging_models": [
+    "stg_All_documents",
+    "stg_Ref_document_types"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_document_type",
+    "type": "dimension",
+    "grain": "1 row per document_type_name"
+  },
+  "ctes": [
+    "stg_All_documents",
+    "stg_Ref_document_types"
+  ],
+  "joins": [
+    {
+      "left": "stg_All_documents",
+      "right": "stg_Ref_document_types",
+      "on": "document_type_code = document_type_code"
+    }
+  ],
+  "tests": {
+    "document_type_name": [
+      "not_null"
+    ]
+  }
+}

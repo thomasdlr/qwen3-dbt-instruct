@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.Employee",
+    "raw.Certificate",
+    "raw.Aircraft"
+  ],
+  "staging_models": [
+    "stg_Employee",
+    "stg_Certificate",
+    "stg_Aircraft"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employee_certificates",
+    "type": "report",
+    "grain": "1 row per Employee.eid, Certificate.aid"
+  },
+  "ctes": [
+    "stg_Employee",
+    "stg_Certificate",
+    "stg_Aircraft"
+  ],
+  "joins": [
+    {
+      "left": "stg_Employee",
+      "right": "stg_Certificate",
+      "on": "eid = eid"
+    },
+    {
+      "left": "stg_Aircraft",
+      "right": "stg_Certificate",
+      "on": "aid = aid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

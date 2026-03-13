@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.product",
+    "raw.problems"
+  ],
+  "staging_models": [
+    "stg_product",
+    "stg_problems"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_product_problems_count",
+    "type": "fact",
+    "grain": "1 row per product with name 'voluptatem'"
+  },
+  "ctes": [
+    "stg_product",
+    "stg_problems"
+  ],
+  "joins": [
+    {
+      "left": "stg_product",
+      "right": "stg_problems",
+      "on": "product.product_id = problems.product_id"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

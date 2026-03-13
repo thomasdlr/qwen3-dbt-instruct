@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "races",
+    "results"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.raceid = T2.raceid"
+    }
+  ],
+  "filters": [
+    "T1.year = 2008",
+    "T1.name = \"Monaco Grand Prix\""
+  ],
+  "aggregations": [
+    {
+      "function": "MAX",
+      "column": "T2.fastestlapspeed",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "MAX(T2.fastestlapspeed)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

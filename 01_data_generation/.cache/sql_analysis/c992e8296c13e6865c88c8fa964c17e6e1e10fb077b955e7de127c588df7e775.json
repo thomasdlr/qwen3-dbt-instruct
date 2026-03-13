@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "singer",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (singer)",
+      "right_table": "T2 (song)",
+      "condition": "T1.Singer_ID = T2.Singer_ID"
+    }
+  ],
+  "filters": [
+    "T2.Sales > 300000"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "singer.Name",
+  "model_type": "dimension"
+}

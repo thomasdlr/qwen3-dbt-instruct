@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Course_Authors_and_Tutors",
+    "Students"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "personal_name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "personal_name",
+  "model_type": "report"
+}

@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.catalog_contents",
+    "raw.catalog_structure"
+  ],
+  "staging_models": [
+    "stg_catalog_contents",
+    "stg_catalog_structure"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_catalog_level_name",
+    "type": "dimension",
+    "grain": "1 row per catalog_level_name"
+  },
+  "ctes": [
+    "stg_catalog_contents",
+    "stg_catalog_structure"
+  ],
+  "joins": [
+    {
+      "left": "stg_catalog_contents",
+      "right": "stg_catalog_structure",
+      "on": "catalog_level_number = catalog_level_number"
+    }
+  ],
+  "tests": {
+    "catalog_level_name": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

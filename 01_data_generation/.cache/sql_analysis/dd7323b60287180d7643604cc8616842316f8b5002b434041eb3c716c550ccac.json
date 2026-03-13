@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "accounts",
+    "checking",
+    "savings"
+  ],
+  "joins": [
+    {
+      "left_table": "accounts",
+      "right_table": "checking",
+      "condition": "T1.custid = T2.custid"
+    },
+    {
+      "left_table": "accounts",
+      "right_table": "savings",
+      "condition": "T1.custid = T3.custid"
+    }
+  ],
+  "filters": [
+    "T3.balance < T2.balance"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "T3.balance + T2.balance"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.custid",
+  "model_type": "report"
+}

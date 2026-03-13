@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.staff",
+    "raw.staff_department_assignments"
+  ],
+  "staging_models": [
+    "stg_staff",
+    "stg_staff_department_assignments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_staff",
+    "type": "dimension",
+    "grain": "1 row per staff"
+  },
+  "ctes": [
+    "stg_staff",
+    "stg_staff_department_assignments"
+  ],
+  "joins": [
+    {
+      "left": "stg_staff",
+      "right": "stg_staff_department_assignments",
+      "on": "stg_staff.staff_id = stg_staff_department_assignments.staff_id"
+    }
+  ],
+  "tests": {
+    "staff_name": [
+      "not_null"
+    ],
+    "staff_gender": [
+      "not_null"
+    ]
+  }
+}

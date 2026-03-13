@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.enzyme",
+    "raw.medicine_enzyme_interaction"
+  ],
+  "staging_models": [
+    "stg_enzyme",
+    "stg_medicine_enzyme_interaction"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_enzyme_activators",
+    "type": "dimension",
+    "grain": "1 row per enzyme"
+  },
+  "ctes": [
+    "stg_enzyme",
+    "stg_medicine_enzyme_interaction"
+  ],
+  "joins": [
+    {
+      "left": "stg_enzyme",
+      "right": "stg_medicine_enzyme_interaction",
+      "on": "stg_enzyme.id = stg_medicine_enzyme_interaction.enzyme_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

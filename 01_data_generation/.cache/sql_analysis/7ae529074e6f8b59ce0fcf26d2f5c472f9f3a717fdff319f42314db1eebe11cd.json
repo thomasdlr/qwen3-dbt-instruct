@@ -1,0 +1,23 @@
+{
+  "tables": [
+    "Student",
+    "Has_allergy"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT StuID IN (SELECT StuID FROM Has_allergy WHERE Allergy = \"Soy\")"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "fname",
+    "major"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "Student.fname, Student.major",
+  "model_type": "report"
+}

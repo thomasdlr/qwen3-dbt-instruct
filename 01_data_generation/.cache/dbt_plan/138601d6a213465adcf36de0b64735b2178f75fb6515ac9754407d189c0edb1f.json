@@ -1,0 +1,47 @@
+{
+  "sources": [
+    "raw.Employee",
+    "raw.Certificate",
+    "raw.Aircraft"
+  ],
+  "staging_models": [
+    "stg_Employee",
+    "stg_Certificate",
+    "stg_Aircraft"
+  ],
+  "intermediate_models": [
+    "int_EmployeeCertificateAircraft"
+  ],
+  "mart_model": {
+    "name": "rpt_Boeing_A340_Employee_Certificates",
+    "type": "report",
+    "grain": "1 row per Employee.name"
+  },
+  "ctes": [
+    "stg_Employee",
+    "stg_Certificate",
+    "stg_Aircraft"
+  ],
+  "joins": [
+    {
+      "left": "int_EmployeeCertificateAircraft",
+      "right": "stg_Aircraft",
+      "on": "aid = aid"
+    },
+    {
+      "left": "int_EmployeeCertificateAircraft",
+      "right": "stg_Certificate",
+      "on": "eid = eid"
+    },
+    {
+      "left": "int_EmployeeCertificateAircraft",
+      "right": "stg_Employee",
+      "on": "eid = eid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

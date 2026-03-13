@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.Locations",
+    "raw.Tourist_Attractions"
+  ],
+  "staging_models": [
+    "stg_locations",
+    "stg_tourist_attractions"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_tourist_attractions_by_address",
+    "type": "fact",
+    "grain": "1 row per tourist attraction at a specific address"
+  },
+  "ctes": [
+    "stg_locations",
+    "stg_tourist_attractions"
+  ],
+  "joins": [
+    {
+      "left": "stg_locations",
+      "right": "stg_tourist_attractions",
+      "on": "T1.Location_ID = T2.Location_ID"
+    }
+  ],
+  "tests": {
+    "Location_ID": [
+      "not_null"
+    ],
+    "Address": [
+      "not_null",
+      "unique"
+    ],
+    "How_to_Get_There": [
+      "not_null"
+    ]
+  }
+}

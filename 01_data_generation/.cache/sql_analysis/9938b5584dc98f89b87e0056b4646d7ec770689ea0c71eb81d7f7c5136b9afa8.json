@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "Tasks",
+    "Projects",
+    "Project_outcomes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.project_id = T2.project_id"
+    },
+    {
+      "left_table": "T2",
+      "right_table": "T3",
+      "condition": "T2.project_id = T3.project_id"
+    }
+  ],
+  "filters": [
+    "T2.project_details = 'omnis'"
+  ],
+  "aggregations": [],
+  "group_by": [
+    "T2.project_id"
+  ],
+  "having": [
+    "COUNT(*) > 2"
+  ],
+  "select_columns": [
+    "T1.task_details",
+    "T1.task_id",
+    "T2.project_id"
+  ],
+  "set_operations": [
+    "UNION"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.project_id",
+  "model_type": "report"
+}

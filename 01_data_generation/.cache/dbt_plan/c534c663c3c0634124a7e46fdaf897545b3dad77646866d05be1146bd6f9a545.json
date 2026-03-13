@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.actor",
+    "raw.musical"
+  ],
+  "staging_models": [
+    "stg_actor",
+    "stg_musical"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_actor_name",
+    "type": "dimension",
+    "grain": "1 row per actor.Name"
+  },
+  "ctes": [
+    "stg_actor",
+    "stg_musical"
+  ],
+  "joins": [
+    {
+      "left": "stg_actor",
+      "right": "stg_musical",
+      "on": "stg_actor.Musical_ID = stg_musical.Musical_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

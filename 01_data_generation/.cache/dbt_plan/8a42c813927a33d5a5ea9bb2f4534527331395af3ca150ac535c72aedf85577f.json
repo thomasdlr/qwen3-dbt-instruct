@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.grapes",
+    "raw.wine"
+  ],
+  "staging_models": [
+    "stg_grapes",
+    "stg_wine"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_grape_wine_prices",
+    "type": "fact",
+    "grain": "1 row per Grape"
+  },
+  "ctes": [
+    "stg_grapes",
+    "stg_wine"
+  ],
+  "joins": [
+    {
+      "left": "stg_grapes",
+      "right": "stg_wine",
+      "on": "grapes.Grape = wine.Grape"
+    }
+  ],
+  "tests": {
+    "Color": [
+      "not_null"
+    ],
+    "Grape": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

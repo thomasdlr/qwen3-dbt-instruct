@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.dorm_amenity",
+    "raw.has_amenity"
+  ],
+  "staging_models": [
+    "stg_dorm_amenity",
+    "stg_has_amenity"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_amenity_counts",
+    "type": "fact",
+    "grain": "1 row per amenid"
+  },
+  "ctes": [
+    "stg_dorm_amenity",
+    "stg_has_amenity"
+  ],
+  "joins": [
+    {
+      "left": "stg_dorm_amenity",
+      "right": "stg_has_amenity",
+      "on": "T1.amenid = T2.amenid"
+    }
+  ],
+  "tests": {
+    "amenity_name": [
+      "not_null"
+    ],
+    "amenid": [
+      "not_null"
+    ]
+  }
+}

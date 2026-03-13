@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Addresses",
+    "raw.Students"
+  ],
+  "staging_models": [
+    "stg_Addresses",
+    "stg_Students"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_Students_In_Wisconsin",
+    "type": "report",
+    "grain": "1 row per student"
+  },
+  "ctes": [
+    "stg_Addresses",
+    "stg_Students"
+  ],
+  "joins": [
+    {
+      "left": "stg_Addresses",
+      "right": "stg_Students",
+      "on": "stg_Addresses.address_id = stg_Students.address_id"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

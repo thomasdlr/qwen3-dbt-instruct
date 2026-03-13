@@ -1,0 +1,29 @@
+{
+  "sources": [
+    "raw.ship",
+    "raw.captain"
+  ],
+  "staging_models": [
+    "stg_ship",
+    "stg_captain"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_ships_excluding_midshipmen",
+    "type": "report",
+    "grain": "1 row per ship"
+  },
+  "ctes": [
+    "stg_ship",
+    "stg_captain"
+  ],
+  "joins": [],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "flag": [
+      "not_null"
+    ]
+  }
+}

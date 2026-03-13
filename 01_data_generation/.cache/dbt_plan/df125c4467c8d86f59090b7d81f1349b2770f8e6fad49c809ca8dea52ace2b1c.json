@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.order_items"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_order_items"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_product_order_quantities",
+    "type": "fact",
+    "grain": "1 row per product_id"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_order_items"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_order_items",
+      "on": "product_id"
+    }
+  ],
+  "tests": {
+    "product_name": [
+      "not_null"
+    ],
+    "SUM(order_quantity)": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "customers",
+    "first_notification_of_loss",
+    "services"
+  ],
+  "joins": [
+    {
+      "left_table": "customers",
+      "right_table": "first_notification_of_loss",
+      "condition": "t1.customer_id = t2.customer_id"
+    },
+    {
+      "left_table": "first_notification_of_loss",
+      "right_table": "services",
+      "condition": "t2.service_id = t3.service_id"
+    }
+  ],
+  "filters": [
+    "t3.service_name = \"Close a policy\"",
+    "t3.service_name = \"Upgrade a policy\""
+  ],
+  "select_columns": [
+    "t1.customer_name"
+  ],
+  "grain": "customer_id",
+  "model_type": "report"
+}

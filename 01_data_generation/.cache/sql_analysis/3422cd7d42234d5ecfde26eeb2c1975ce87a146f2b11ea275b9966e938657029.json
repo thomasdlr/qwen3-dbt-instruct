@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Student_Course_Enrolment",
+    "Students"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.student_id = T2.student_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.student_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.student_id",
+    "T2.login_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.student_id",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.furniture",
+    "raw.furniture_manufacte",
+    "raw.manufacturer"
+  ],
+  "staging_models": [
+    "stg_furniture",
+    "stg_furniture_manufacte",
+    "stg_manufacturer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_manufacturer_furniture_components",
+    "type": "report",
+    "grain": "1 row per manufacturer.name"
+  },
+  "ctes": [
+    "stg_furniture",
+    "stg_furniture_manufacte",
+    "stg_manufacturer"
+  ],
+  "joins": [
+    {
+      "left": "stg_furniture",
+      "right": "stg_furniture_manufacte",
+      "on": "furniture_id = furniture_id"
+    },
+    {
+      "left": "stg_furniture_manufacte",
+      "right": "stg_manufacturer",
+      "on": "manufacturer_id = manufacturer_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

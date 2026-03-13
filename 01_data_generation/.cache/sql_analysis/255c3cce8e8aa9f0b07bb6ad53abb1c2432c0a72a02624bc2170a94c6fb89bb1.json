@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "CLASS",
+    "course",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "CLASS",
+      "right_table": "course",
+      "condition": "T1.crs_code = T2.crs_code"
+    },
+    {
+      "left_table": "course",
+      "right_table": "department",
+      "condition": "T2.dept_code = T3.dept_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.school_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T3.school_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.school_code",
+  "model_type": "report"
+}

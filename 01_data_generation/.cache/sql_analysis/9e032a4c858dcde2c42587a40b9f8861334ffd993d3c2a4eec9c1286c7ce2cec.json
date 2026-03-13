@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "loan",
+    "bank",
+    "customer"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (loan)",
+      "right_table": "T2 (bank)",
+      "condition": "T1.branch_id = T2.branch_id"
+    },
+    {
+      "left_table": "T1 (loan)",
+      "right_table": "T3 (customer)",
+      "condition": "T1.cust_id = T3.cust_id"
+    }
+  ],
+  "filters": [
+    "T3.credit_score < 100"
+  ],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T1.amount",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.bname"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.bname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.bname",
+  "model_type": "report"
+}

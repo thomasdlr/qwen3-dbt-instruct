@@ -1,0 +1,52 @@
+{
+  "sources": [
+    "raw.participants",
+    "raw.Participants_in_Events",
+    "raw.EVENTS",
+    "raw.services"
+  ],
+  "staging_models": [
+    "stg_participants",
+    "stg_Participants_in_Events",
+    "stg_EVENTS",
+    "stg_services"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_service_participation",
+    "type": "report",
+    "grain": "1 row per service_id"
+  },
+  "ctes": [
+    "stg_participants",
+    "stg_Participants_in_Events",
+    "stg_EVENTS",
+    "stg_services"
+  ],
+  "joins": [
+    {
+      "left": "stg_participants",
+      "right": "stg_Participants_in_Events",
+      "on": "Participant_ID = Participant_ID"
+    },
+    {
+      "left": "stg_Participants_in_Events",
+      "right": "stg_EVENTS",
+      "on": "Event_ID = Event_ID"
+    },
+    {
+      "left": "stg_EVENTS",
+      "right": "stg_services",
+      "on": "service_id = service_id"
+    }
+  ],
+  "tests": {
+    "service_id": [
+      "not_null",
+      "unique"
+    ],
+    "Service_Type_Code": [
+      "not_null"
+    ]
+  }
+}

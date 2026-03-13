@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.dorm_amenity",
+    "raw.has_amenity",
+    "raw.dorm"
+  ],
+  "staging_models": [
+    "stg_dorm_amenity",
+    "stg_has_amenity",
+    "stg_dorm"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_amenities_by_dorm",
+    "type": "report",
+    "grain": "1 row per amenity_name"
+  },
+  "ctes": [
+    "stg_has_amenity",
+    "stg_dorm_amenity",
+    "stg_dorm"
+  ],
+  "joins": [
+    {
+      "left": "stg_has_amenity",
+      "right": "stg_dorm_amenity",
+      "on": "T2.amenid = T1.amenid"
+    },
+    {
+      "left": "stg_has_amenity",
+      "right": "stg_dorm",
+      "on": "T2.dormid = T3.dormid"
+    }
+  ],
+  "tests": {
+    "amenity_name": [
+      "not_null"
+    ]
+  }
+}

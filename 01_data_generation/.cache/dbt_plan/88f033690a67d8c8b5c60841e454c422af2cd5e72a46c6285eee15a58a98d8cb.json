@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.bridge",
+    "raw.architect"
+  ],
+  "staging_models": [
+    "stg_bridge",
+    "stg_architect"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_american_bridges",
+    "type": "report",
+    "grain": "1 row per bridge.name"
+  },
+  "ctes": [
+    "stg_bridge",
+    "stg_architect"
+  ],
+  "joins": [
+    {
+      "left": "stg_bridge",
+      "right": "stg_architect",
+      "on": "stg_bridge.architect_id = stg_architect.id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

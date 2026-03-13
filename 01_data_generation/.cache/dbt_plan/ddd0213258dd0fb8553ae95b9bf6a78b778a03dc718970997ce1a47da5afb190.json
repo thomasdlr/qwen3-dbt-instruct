@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.Rating",
+    "raw.Movie",
+    "raw.Reviewer"
+  ],
+  "staging_models": [
+    "stg_Rating",
+    "stg_Movie",
+    "stg_Reviewer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_directors_by_sarah",
+    "type": "report",
+    "grain": "1 row per director"
+  },
+  "ctes": [
+    "stg_Rating",
+    "stg_Movie",
+    "stg_Reviewer"
+  ],
+  "joins": [
+    {
+      "left": "stg_Rating",
+      "right": "stg_Movie",
+      "on": "Rating.mID = Movie.mID"
+    },
+    {
+      "left": "stg_Rating",
+      "right": "stg_Reviewer",
+      "on": "Rating.rID = Reviewer.rID"
+    }
+  ],
+  "tests": {
+    "director": [
+      "not_null"
+    ]
+  }
+}

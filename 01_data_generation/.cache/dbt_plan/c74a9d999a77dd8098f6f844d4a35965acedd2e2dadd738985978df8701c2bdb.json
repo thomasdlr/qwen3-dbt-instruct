@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.CAR_MAKERS",
+    "raw.MODEL_LIST"
+  ],
+  "staging_models": [
+    "stg_CAR_MAKERS",
+    "stg_MODEL_LIST"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_car_makers_with_models",
+    "type": "fact",
+    "grain": "1 row per CAR_MAKERS.Id"
+  },
+  "ctes": [
+    "stg_CAR_MAKERS",
+    "stg_MODEL_LIST"
+  ],
+  "joins": [
+    {
+      "left": "stg_CAR_MAKERS",
+      "right": "stg_MODEL_LIST",
+      "on": "stg_CAR_MAKERS.Id = stg_MODEL_LIST.Maker"
+    }
+  ],
+  "tests": {
+    "Id": [
+      "not_null",
+      "unique"
+    ],
+    "FullName": [
+      "not_null"
+    ]
+  }
+}

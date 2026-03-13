@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.orders"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_customer_orders",
+    "type": "fact",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_orders",
+      "on": "customer_id"
+    }
+  ],
+  "tests": {
+    "customer_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

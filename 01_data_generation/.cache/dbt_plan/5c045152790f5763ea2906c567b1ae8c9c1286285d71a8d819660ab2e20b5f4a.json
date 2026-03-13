@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.technician",
+    "raw.repair_assignment"
+  ],
+  "staging_models": [
+    "stg_technician",
+    "stg_repair_assignment"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_technicians_without_repairs",
+    "type": "report",
+    "grain": "1 row per technician Name"
+  },
+  "ctes": [
+    "stg_technician",
+    "stg_repair_assignment"
+  ],
+  "joins": [],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

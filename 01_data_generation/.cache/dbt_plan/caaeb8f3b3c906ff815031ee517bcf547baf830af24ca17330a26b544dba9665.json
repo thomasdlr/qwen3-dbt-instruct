@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.staff",
+    "raw.address"
+  ],
+  "staging_models": [
+    "stg_staff",
+    "stg_address"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_elsa_addresses",
+    "type": "report",
+    "grain": "1 row per address_id"
+  },
+  "ctes": [
+    "stg_staff",
+    "stg_address"
+  ],
+  "joins": [
+    {
+      "left": "stg_staff",
+      "right": "stg_address",
+      "on": "address_id"
+    }
+  ],
+  "tests": {
+    "address": [
+      "not_null"
+    ]
+  }
+}

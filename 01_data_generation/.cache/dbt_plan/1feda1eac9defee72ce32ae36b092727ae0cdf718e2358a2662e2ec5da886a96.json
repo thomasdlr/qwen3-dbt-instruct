@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.mailshot_customers",
+    "raw.customers"
+  ],
+  "staging_models": [
+    "stg_mailshot_customers",
+    "stg_customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_mailshot_outcomes",
+    "type": "report",
+    "grain": "1 row per customer_name, payment_method"
+  },
+  "ctes": [
+    "stg_mailshot_customers",
+    "stg_customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_mailshot_customers",
+      "right": "stg_customers",
+      "on": "customer_id = customer_id"
+    },
+    {
+      "left": "stg_mailshot_customers",
+      "right": "stg_customers",
+      "on": "customer_id = customer_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ],
+    "payment_method": [
+      "not_null"
+    ]
+  }
+}

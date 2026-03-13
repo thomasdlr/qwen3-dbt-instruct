@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Customer_Payments",
+    "raw.Customers"
+  ],
+  "staging_models": [
+    "stg_Customer_Payments",
+    "stg_Customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customer_payment_summary",
+    "type": "report",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_Customer_Payments",
+    "stg_Customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_Customer_Payments",
+      "right": "stg_Customers",
+      "on": "customer_id = customer_id"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

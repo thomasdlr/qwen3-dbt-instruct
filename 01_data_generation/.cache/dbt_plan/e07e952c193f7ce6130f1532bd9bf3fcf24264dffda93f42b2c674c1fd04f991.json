@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.product",
+    "raw.problems"
+  ],
+  "staging_models": [
+    "stg_product",
+    "stg_problems"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_product_problems_count",
+    "type": "report",
+    "grain": "1 row per product_name"
+  },
+  "ctes": [
+    "stg_product",
+    "stg_problems"
+  ],
+  "joins": [
+    {
+      "left": "stg_product",
+      "right": "stg_problems",
+      "on": "product_id"
+    }
+  ],
+  "tests": {
+    "count": [
+      "not_null"
+    ],
+    "product_name": [
+      "not_null"
+    ]
+  }
+}

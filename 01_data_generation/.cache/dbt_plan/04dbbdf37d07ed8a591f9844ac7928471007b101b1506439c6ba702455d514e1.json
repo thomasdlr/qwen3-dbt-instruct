@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.club",
+    "raw.player"
+  ],
+  "staging_models": [
+    "stg_club",
+    "stg_player"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_aib_avg_points",
+    "type": "report",
+    "grain": "1 row per club with name 'AIB'"
+  },
+  "ctes": [
+    "stg_club",
+    "stg_player"
+  ],
+  "joins": [
+    {
+      "left": "stg_club",
+      "right": "stg_player",
+      "on": "stg_club.Club_ID = stg_player.Club_ID"
+    }
+  ],
+  "tests": {
+    "avg_points": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.item",
+    "raw.review"
+  ],
+  "staging_models": [
+    "stg_item",
+    "stg_review"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_item_reviews",
+    "type": "fact",
+    "grain": "1 row per item"
+  },
+  "ctes": [
+    "stg_item",
+    "stg_review"
+  ],
+  "joins": [
+    {
+      "left": "stg_item",
+      "right": "stg_review",
+      "on": "item.i_id = review.i_id"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ],
+    "i_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

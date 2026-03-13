@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "journal_committee",
+    "editor",
+    "journal"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (journal_committee)",
+      "right_table": "T2 (editor)",
+      "condition": "T1.Editor_ID = T2.Editor_ID"
+    },
+    {
+      "left_table": "T1 (journal_committee)",
+      "right_table": "T3 (journal)",
+      "condition": "T1.Journal_ID = T3.Journal_ID"
+    }
+  ],
+  "filters": [
+    "T3.Sales > 3000"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Name",
+  "model_type": "dimension"
+}

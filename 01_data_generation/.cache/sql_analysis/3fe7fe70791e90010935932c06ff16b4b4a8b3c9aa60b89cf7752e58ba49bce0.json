@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "student",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.dept_code = T2.dept_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.dept_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.dept_name",
+    "T2.dept_address"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.dept_code",
+  "model_type": "report"
+}

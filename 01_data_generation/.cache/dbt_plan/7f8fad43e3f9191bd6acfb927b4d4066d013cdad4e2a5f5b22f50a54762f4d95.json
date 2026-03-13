@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Reservations",
+    "raw.Rooms"
+  ],
+  "staging_models": [
+    "stg_Reservations",
+    "stg_Rooms"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_occupancy_validation",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_Reservations",
+    "stg_Rooms"
+  ],
+  "joins": [
+    {
+      "left": "stg_Reservations",
+      "right": "stg_Rooms",
+      "on": "T1.Room = T2.RoomId"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

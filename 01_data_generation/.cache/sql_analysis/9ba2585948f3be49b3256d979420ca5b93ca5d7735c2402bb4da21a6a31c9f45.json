@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "races",
+    "results"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.raceid = T2.raceid"
+    }
+  ],
+  "filters": [
+    "T1.year > 2014"
+  ],
+  "aggregations": [
+    {
+      "function": "MAX",
+      "column": "T2.fastestlapspeed",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.name"
+  ],
+  "select_columns": [
+    "MAX(T2.fastestlapspeed)",
+    "T1.name",
+    "T1.year"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.name",
+  "model_type": "report"
+}

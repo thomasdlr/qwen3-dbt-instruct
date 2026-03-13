@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "user_profiles",
+    "follows"
+  ],
+  "joins": [
+    {
+      "left_table": "user_profiles",
+      "right_table": "follows",
+      "condition": "T1.uid = T2.f1"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.f1"
+  ],
+  "having": [
+    "COUNT(*) > 1"
+  ],
+  "select_columns": [
+    "T1.name",
+    "T1.email"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.f1",
+  "model_type": "report"
+}

@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.car_makers",
+    "raw.model_list",
+    "raw.car_names",
+    "raw.cars_data"
+  ],
+  "staging_models": [
+    "stg_car_makers",
+    "stg_model_list",
+    "stg_car_names",
+    "stg_cars_data"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_car_makers_1970",
+    "type": "dimension",
+    "grain": "1 row per Maker"
+  },
+  "ctes": [
+    "stg_car_makers",
+    "stg_model_list",
+    "stg_car_names",
+    "stg_cars_data"
+  ],
+  "joins": [
+    {
+      "left": "stg_car_makers",
+      "right": "stg_model_list",
+      "on": "stg_car_makers.id = stg_model_list.maker"
+    },
+    {
+      "left": "stg_model_list",
+      "right": "stg_car_names",
+      "on": "stg_model_list.model = stg_car_names.model"
+    },
+    {
+      "left": "stg_car_names",
+      "right": "stg_cars_data",
+      "on": "stg_car_names.makeid = stg_cars_data.id"
+    }
+  ],
+  "tests": {
+    "maker": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.assessment_notes",
+    "raw.teachers"
+  ],
+  "staging_models": [
+    "stg_assessment_notes",
+    "stg_teachers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_teacher_assessment_summary",
+    "type": "report",
+    "grain": "1 row per teacher"
+  },
+  "ctes": [
+    "stg_assessment_notes",
+    "stg_teachers"
+  ],
+  "joins": [
+    {
+      "left": "stg_assessment_notes",
+      "right": "stg_teachers",
+      "on": "stg_assessment_notes.teacher_id = stg_teachers.teacher_id"
+    }
+  ],
+  "tests": {
+    "teacher_id": [
+      "not_null",
+      "unique"
+    ],
+    "first_name": [
+      "not_null"
+    ]
+  }
+}

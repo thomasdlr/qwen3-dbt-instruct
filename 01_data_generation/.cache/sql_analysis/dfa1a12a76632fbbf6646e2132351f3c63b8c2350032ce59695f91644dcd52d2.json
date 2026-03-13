@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "AIRLINES",
+    "FLIGHTS"
+  ],
+  "joins": [
+    {
+      "left_table": "AIRLINES",
+      "right_table": "FLIGHTS",
+      "condition": "T1.uid = T2.Airline"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Airline"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Airline"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Airline",
+  "model_type": "report"
+}

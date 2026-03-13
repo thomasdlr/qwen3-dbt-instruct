@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.city",
+    "raw.country"
+  ],
+  "staging_models": [
+    "stg_city",
+    "stg_country"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_country_city_count",
+    "type": "report",
+    "grain": "1 row per country"
+  },
+  "ctes": [
+    "stg_city",
+    "stg_country"
+  ],
+  "joins": [
+    {
+      "left": "stg_city",
+      "right": "stg_country",
+      "on": "city.country_id = country.country_id"
+    }
+  ],
+  "tests": {
+    "country": [
+      "not_null"
+    ]
+  }
+}

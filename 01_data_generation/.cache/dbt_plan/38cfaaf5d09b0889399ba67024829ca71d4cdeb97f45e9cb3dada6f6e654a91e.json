@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.course_arrange",
+    "raw.teacher"
+  ],
+  "staging_models": [
+    "stg_course_arrange",
+    "stg_teacher"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_teacher_course_count",
+    "type": "report",
+    "grain": "1 row per teacher"
+  },
+  "ctes": [
+    "stg_course_arrange",
+    "stg_teacher"
+  ],
+  "joins": [
+    {
+      "left": "stg_course_arrange",
+      "right": "stg_teacher",
+      "on": "T1.Teacher_ID = T2.Teacher_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

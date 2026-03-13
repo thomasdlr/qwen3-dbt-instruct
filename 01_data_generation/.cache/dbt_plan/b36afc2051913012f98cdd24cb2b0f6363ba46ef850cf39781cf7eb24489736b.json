@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.operate_company",
+    "raw.flight"
+  ],
+  "staging_models": [
+    "stg_operate_company",
+    "stg_flight"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_pilot_cargo_catering",
+    "type": "report",
+    "grain": "1 row per pilot"
+  },
+  "ctes": [
+    "stg_operate_company",
+    "stg_flight"
+  ],
+  "joins": [
+    {
+      "left": "stg_operate_company",
+      "right": "stg_flight",
+      "on": "stg_operate_company.id = stg_flight.company_id"
+    }
+  ],
+  "tests": {
+    "pilot": [
+      "not_null"
+    ]
+  }
+}

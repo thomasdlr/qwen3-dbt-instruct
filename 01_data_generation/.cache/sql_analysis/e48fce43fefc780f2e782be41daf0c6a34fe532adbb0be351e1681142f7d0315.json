@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "journalist",
+    "news_report"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT journalist_ID IN (SELECT journalist_ID FROM news_report)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "journalist.Name",
+  "model_type": "dimension"
+}

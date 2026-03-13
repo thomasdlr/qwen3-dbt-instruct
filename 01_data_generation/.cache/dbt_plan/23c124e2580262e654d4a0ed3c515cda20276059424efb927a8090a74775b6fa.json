@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.services",
+    "raw.organizations"
+  ],
+  "staging_models": [
+    "stg_services",
+    "stg_organizations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_services_by_denesik",
+    "type": "report",
+    "grain": "1 row per services.service_type_code"
+  },
+  "ctes": [
+    "stg_services",
+    "stg_organizations"
+  ],
+  "joins": [
+    {
+      "left": "stg_services",
+      "right": "stg_organizations",
+      "on": "stg_services.organization_id = stg_organizations.organization_id"
+    }
+  ],
+  "tests": {
+    "service_type_code": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

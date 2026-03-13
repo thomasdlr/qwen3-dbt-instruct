@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "DEPARTMENT",
+    "MEMBER_OF"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.DNO = T2.DNO"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.DNO"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.DName"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.DNO",
+  "model_type": "report"
+}

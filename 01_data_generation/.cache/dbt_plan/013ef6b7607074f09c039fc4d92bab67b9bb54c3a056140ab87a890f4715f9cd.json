@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.exhibition_record",
+    "raw.exhibition"
+  ],
+  "staging_models": [
+    "stg_exhibition_record",
+    "stg_exhibition"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_exhibition_themes",
+    "type": "report",
+    "grain": "1 row per theme"
+  },
+  "ctes": [
+    "stg_exhibition_record",
+    "stg_exhibition"
+  ],
+  "joins": [
+    {
+      "left": "stg_exhibition_record",
+      "right": "stg_exhibition",
+      "on": "exhibition_id = exhibition.exhibition_id"
+    }
+  ],
+  "tests": {
+    "theme": [
+      "not_null"
+    ]
+  }
+}

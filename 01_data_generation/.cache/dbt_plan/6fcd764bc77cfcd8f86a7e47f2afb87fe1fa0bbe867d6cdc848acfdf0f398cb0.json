@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.chip_model",
+    "raw.phone"
+  ],
+  "staging_models": [
+    "stg_chip_model",
+    "stg_phone"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_full_accredited_models",
+    "type": "report",
+    "grain": "1 row per model_name"
+  },
+  "ctes": [
+    "stg_chip_model",
+    "stg_phone"
+  ],
+  "joins": [],
+  "tests": {
+    "model_name": [
+      "not_null"
+    ]
+  }
+}

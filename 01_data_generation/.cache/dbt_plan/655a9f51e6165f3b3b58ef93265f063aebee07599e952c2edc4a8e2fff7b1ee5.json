@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.university",
+    "raw.basketball_match"
+  ],
+  "staging_models": [
+    "stg_university",
+    "stg_basketball_match"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_university_not_in_basketball_match",
+    "type": "report",
+    "grain": "1 row per aggregate count of university.school_id not in basketball_match"
+  },
+  "ctes": [
+    "stg_university",
+    "stg_basketball_match"
+  ],
+  "joins": [],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

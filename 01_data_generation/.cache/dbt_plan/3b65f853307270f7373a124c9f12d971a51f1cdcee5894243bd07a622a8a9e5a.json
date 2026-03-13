@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.city",
+    "raw.hosting_city"
+  ],
+  "staging_models": [
+    "stg_city",
+    "stg_hosting_city"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_cities_hosted_after_2010",
+    "type": "report",
+    "grain": "city.city_id"
+  },
+  "ctes": [
+    "stg_city",
+    "stg_hosting_city"
+  ],
+  "joins": [
+    {
+      "left": "stg_city",
+      "right": "stg_hosting_city",
+      "on": "stg_city.city_id = stg_hosting_city.host_city"
+    }
+  ],
+  "tests": {
+    "city": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.mountain",
+    "raw.photos",
+    "raw.camera_lens"
+  ],
+  "staging_models": [
+    "stg_mountain",
+    "stg_photos",
+    "stg_camera_lens"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_toubkal_brands",
+    "type": "report",
+    "grain": "1 row per camera brand"
+  },
+  "ctes": [
+    "stg_mountain",
+    "stg_photos",
+    "stg_camera_lens"
+  ],
+  "joins": [
+    {
+      "left": "stg_mountain",
+      "right": "stg_photos",
+      "on": "mountain.id = photos.mountain_id"
+    },
+    {
+      "left": "stg_photos",
+      "right": "stg_camera_lens",
+      "on": "photos.camera_lens_id = camera_lens.id"
+    }
+  ],
+  "tests": {
+    "brand": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.election",
+    "raw.party"
+  ],
+  "staging_models": [
+    "stg_election",
+    "stg_party"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_economic_appropriations_parties",
+    "type": "report",
+    "grain": "1 row per party"
+  },
+  "ctes": [
+    "stg_election",
+    "stg_party"
+  ],
+  "joins": [
+    {
+      "left": "stg_election",
+      "right": "stg_party",
+      "on": "election.party = party.party_id"
+    },
+    {
+      "left": "stg_election",
+      "right": "stg_party",
+      "on": "election.party = party.party_id"
+    }
+  ],
+  "tests": {
+    "party": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

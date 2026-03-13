@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "enroll",
+    "student",
+    "CLASS"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.stu_num = T2.stu_num"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T3",
+      "condition": "T1.class_code = T3.class_code"
+    }
+  ],
+  "filters": [
+    "T3.crs_code = 'ACCT-211'"
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "T2.stu_gpa",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "AVG(T2.stu_gpa)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.crs_code",
+  "model_type": "report"
+}

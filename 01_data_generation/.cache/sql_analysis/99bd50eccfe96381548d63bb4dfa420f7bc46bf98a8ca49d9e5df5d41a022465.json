@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "problems",
+    "staff"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.reported_by_staff_id = T2.staff_id"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.closure_authorised_by_staff_id = T2.staff_id"
+    }
+  ],
+  "filters": [
+    "T2.staff_first_name = \"Christop\"",
+    "T2.staff_last_name = \"Berge\"",
+    "T2.staff_first_name = \"Ashley\"",
+    "T2.staff_last_name = \"Medhurst\""
+  ],
+  "select_columns": [
+    "product_id"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "product_id",
+  "model_type": "report"
+}

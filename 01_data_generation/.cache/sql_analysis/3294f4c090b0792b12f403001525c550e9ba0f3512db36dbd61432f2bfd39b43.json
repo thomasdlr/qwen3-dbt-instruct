@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "players",
+    "matches"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.player_id = T2.winner_id"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.player_id = T2.winner_id"
+    }
+  ],
+  "filters": [
+    "T2.tourney_name = 'WTA Championships'",
+    "T2.tourney_name = 'Australian Open'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.country_code",
+    "T1.first_name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.player_id",
+  "model_type": "report"
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "departments",
+    "locations"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T2.location_id = T1.location_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.department_name",
+    "T2.city",
+    "T2.state_province"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.department_name, T2.city, T2.state_province",
+  "model_type": "dimension"
+}

@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "affected_region",
+    "region",
+    "storm"
+  ],
+  "joins": [
+    {
+      "left_table": "affected_region",
+      "right_table": "region",
+      "condition": "T1.region_id = T2.region_id"
+    },
+    {
+      "left_table": "affected_region",
+      "right_table": "storm",
+      "condition": "T1.storm_id = T3.storm_id"
+    }
+  ],
+  "filters": [
+    "T2.Region_name = 'Afghanistan'",
+    "T2.Region_name = 'Albania'"
+  ],
+  "select_columns": [
+    "T3.Name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "T3.Name",
+  "model_type": "report"
+}

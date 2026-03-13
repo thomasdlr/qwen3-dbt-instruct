@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.affected_region",
+    "raw.region",
+    "raw.storm"
+  ],
+  "staging_models": [
+    "stg_affected_region",
+    "stg_region",
+    "stg_storm"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_storm_names_afghanistan_albania",
+    "type": "report",
+    "grain": "1 row per storm name"
+  },
+  "ctes": [
+    "stg_affected_region",
+    "stg_region",
+    "stg_storm"
+  ],
+  "joins": [
+    {
+      "left": "stg_affected_region",
+      "right": "stg_region",
+      "on": "region_id = region.region_id"
+    },
+    {
+      "left": "stg_affected_region",
+      "right": "stg_storm",
+      "on": "storm_id = storm.storm_id"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

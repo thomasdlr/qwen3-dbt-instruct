@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.aircraft",
+    "raw.MATCH"
+  ],
+  "staging_models": [
+    "stg_aircraft",
+    "stg_MATCH"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_winning_aircraft",
+    "type": "report",
+    "grain": "1 row per Winning_Aircraft"
+  },
+  "ctes": [
+    "stg_aircraft",
+    "stg_MATCH"
+  ],
+  "joins": [
+    {
+      "left": "stg_aircraft",
+      "right": "stg_MATCH",
+      "on": "Aircraft_ID = Winning_Aircraft"
+    }
+  ],
+  "tests": {
+    "Winning_Aircraft": [
+      "not_null",
+      "unique"
+    ],
+    "Aircraft": [
+      "not_null"
+    ]
+  }
+}

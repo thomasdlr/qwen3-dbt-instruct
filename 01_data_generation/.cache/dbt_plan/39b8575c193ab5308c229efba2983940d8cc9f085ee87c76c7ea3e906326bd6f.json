@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Rating",
+    "raw.Movie"
+  ],
+  "staging_models": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_movies_above_james_cameron_avg_rating",
+    "type": "report",
+    "grain": "1 row per movie title and director"
+  },
+  "ctes": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "joins": [
+    {
+      "left": "stg_Rating",
+      "right": "stg_Movie",
+      "on": "mID"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ],
+    "director": [
+      "not_null"
+    ]
+  }
+}

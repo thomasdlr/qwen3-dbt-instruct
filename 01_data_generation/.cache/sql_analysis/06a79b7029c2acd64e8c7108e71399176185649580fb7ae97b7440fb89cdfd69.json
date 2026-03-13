@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "city",
+    "temperature",
+    "hosting_city"
+  ],
+  "joins": [
+    {
+      "left_table": "city",
+      "right_table": "temperature",
+      "condition": "T1.city_id = T2.city_id"
+    },
+    {
+      "left_table": "city",
+      "right_table": "hosting_city",
+      "condition": "T3.city_id = T4.host_city"
+    }
+  ],
+  "filters": [
+    "T2.Mar < T2.Jul"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.city",
+    "T3.city"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "city.city (via city_id)",
+  "model_type": "report"
+}

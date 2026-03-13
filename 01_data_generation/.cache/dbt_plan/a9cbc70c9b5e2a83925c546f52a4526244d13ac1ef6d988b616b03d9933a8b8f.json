@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Course_Authors_and_Tutors",
+    "raw.Courses"
+  ],
+  "staging_models": [
+    "stg_Course_Authors_and_Tutors",
+    "stg_Courses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_author_course_count",
+    "type": "fact",
+    "grain": "1 row per author_id"
+  },
+  "ctes": [
+    "stg_Course_Authors_and_Tutors",
+    "stg_Courses"
+  ],
+  "joins": [
+    {
+      "left": "stg_Course_Authors_and_Tutors",
+      "right": "stg_Courses",
+      "on": "T1.author_id = T2.author_id"
+    }
+  ],
+  "tests": {
+    "address_line_1": [
+      "not_null"
+    ],
+    "author_id": [
+      "not_null"
+    ]
+  }
+}

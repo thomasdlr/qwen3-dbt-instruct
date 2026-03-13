@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "performance",
+    "band",
+    "songs"
+  ],
+  "joins": [
+    {
+      "left_table": "performance",
+      "right_table": "band",
+      "condition": "T1.bandmate = T2.id"
+    },
+    {
+      "left_table": "songs",
+      "right_table": "performance",
+      "condition": "T3.songid = T1.songid"
+    }
+  ],
+  "filters": [
+    "T3.Title = \"Flash\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

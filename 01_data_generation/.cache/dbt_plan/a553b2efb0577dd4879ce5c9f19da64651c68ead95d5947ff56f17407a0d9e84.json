@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_dept_student_count",
+    "type": "fact",
+    "grain": "1 row per department"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_department",
+      "on": "stg_student.dept_code = stg_department.dept_code"
+    }
+  ],
+  "tests": {
+    "dept_name": [
+      "not_null"
+    ],
+    "dept_address": [
+      "not_null"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

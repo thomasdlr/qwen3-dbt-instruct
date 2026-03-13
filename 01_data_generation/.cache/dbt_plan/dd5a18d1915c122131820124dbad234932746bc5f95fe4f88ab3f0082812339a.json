@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.vocals",
+    "raw.band"
+  ],
+  "staging_models": [
+    "stg_vocals",
+    "stg_band"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_vocals_by_type",
+    "type": "report",
+    "grain": "1 row per TYPE"
+  },
+  "ctes": [
+    "stg_vocals",
+    "stg_band"
+  ],
+  "joins": [
+    {
+      "left": "stg_vocals",
+      "right": "stg_band",
+      "on": "stg_vocals.bandmate = stg_band.id"
+    }
+  ],
+  "tests": {
+    "TYPE": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

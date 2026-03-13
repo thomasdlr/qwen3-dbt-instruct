@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Reservations",
+    "raw.Rooms"
+  ],
+  "staging_models": [
+    "stg_Reservations",
+    "stg_Rooms"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_reservations_with_rate_diff",
+    "type": "report",
+    "grain": "1 row per Reservations.firstname, Reservations.lastname"
+  },
+  "ctes": [
+    "stg_Reservations",
+    "stg_Rooms"
+  ],
+  "joins": [
+    {
+      "left": "stg_Reservations",
+      "right": "stg_Rooms",
+      "on": "stg_Reservations.Room = stg_Rooms.RoomId"
+    }
+  ],
+  "tests": {
+    "firstname": [
+      "not_null"
+    ],
+    "lastname": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "services",
+    "organizations"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.organization_id = T2.organization_id"
+    }
+  ],
+  "filters": [
+    "T2.organization_details = 'Denesik and Sons Party'"
+  ],
+  "select_columns": [
+    "T1.service_type_code"
+  ],
+  "has_distinct": true,
+  "grain": "services.service_type_code",
+  "model_type": "report"
+}

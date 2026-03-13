@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "albums",
+    "artists"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (albums)",
+      "right_table": "T2 (artists)",
+      "condition": "T1.artist_id = T2.id"
+    }
+  ],
+  "filters": [
+    "T2.name = \"Aerosmith\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.title"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.title",
+  "model_type": "report"
+}

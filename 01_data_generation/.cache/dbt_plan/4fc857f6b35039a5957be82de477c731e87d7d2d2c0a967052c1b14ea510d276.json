@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.documents",
+    "raw.document_functional_areas",
+    "raw.functional_areas"
+  ],
+  "staging_models": [
+    "stg_documents",
+    "stg_document_functional_areas",
+    "stg_functional_areas"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_document_acknowledgement_stats",
+    "type": "fact",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_documents",
+    "stg_document_functional_areas",
+    "stg_functional_areas"
+  ],
+  "joins": [
+    {
+      "left": "stg_documents",
+      "right": "stg_document_functional_areas",
+      "on": "document_code"
+    },
+    {
+      "left": "stg_document_functional_areas",
+      "right": "stg_functional_areas",
+      "on": "functional_area_code"
+    }
+  ],
+  "tests": {
+    "<all_columns>": [
+      "not_null"
+    ]
+  }
+}

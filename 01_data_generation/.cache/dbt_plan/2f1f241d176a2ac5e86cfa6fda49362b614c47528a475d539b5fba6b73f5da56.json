@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.LOTS",
+    "raw.TRANSACTIONS_LOTS",
+    "raw.TRANSACTIONS"
+  ],
+  "staging_models": [
+    "stg_LOTS",
+    "stg_TRANSACTIONS_LOTS",
+    "stg_TRANSACTIONS"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_lot_transactions",
+    "type": "report",
+    "grain": "1 row per lot_id"
+  },
+  "ctes": [
+    "stg_LOTS",
+    "stg_TRANSACTIONS_LOTS",
+    "stg_TRANSACTIONS"
+  ],
+  "joins": [
+    {
+      "left": "stg_LOTS",
+      "right": "stg_TRANSACTIONS_LOTS",
+      "on": "lot_id = transaction_id"
+    },
+    {
+      "left": "stg_TRANSACTIONS_LOTS",
+      "right": "stg_TRANSACTIONS",
+      "on": "transaction_id = transaction_id"
+    }
+  ],
+  "tests": {
+    "lot_details": [
+      "not_null"
+    ]
+  }
+}

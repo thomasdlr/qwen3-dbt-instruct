@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "school"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT school_id IN (SELECT school_id FROM endowment)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "school_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "school_name",
+  "model_type": "report"
+}

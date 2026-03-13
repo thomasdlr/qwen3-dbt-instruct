@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.salary",
+    "raw.player"
+  ],
+  "staging_models": [
+    "stg_salary",
+    "stg_player"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_player_salary_len_barker",
+    "type": "fact",
+    "grain": "1 row per player_id, year"
+  },
+  "ctes": [
+    "stg_salary",
+    "stg_player"
+  ],
+  "joins": [
+    {
+      "left": "stg_salary",
+      "right": "stg_player",
+      "on": "stg_salary.player_id = stg_player.player_id"
+    }
+  ],
+  "tests": {
+    "SUM(T1.salary)": [
+      "not_null"
+    ]
+  }
+}

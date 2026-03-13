@@ -1,0 +1,19 @@
+{
+  "tables": [
+    "FLIGHTS",
+    "AIRPORTS"
+  ],
+  "joins": [
+    {
+      "left_table": "FLIGHTS",
+      "right_table": "AIRPORTS",
+      "condition": "T1.DestAirport = T2.AirportCode"
+    }
+  ],
+  "filters": [
+    "T2.City = \"Aberdeen\""
+  ],
+  "select_columns": [
+    "T1.FlightNo"
+  ]
+}

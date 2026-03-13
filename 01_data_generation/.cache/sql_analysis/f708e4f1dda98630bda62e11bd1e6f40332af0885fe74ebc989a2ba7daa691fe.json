@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "county",
+    "election"
+  ],
+  "joins": [
+    {
+      "left_table": "county",
+      "right_table": "election",
+      "condition": "T1.County_id = T2.District"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Delegate",
+    "T1.County_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Delegate, T1.County_name",
+  "model_type": "report"
+}

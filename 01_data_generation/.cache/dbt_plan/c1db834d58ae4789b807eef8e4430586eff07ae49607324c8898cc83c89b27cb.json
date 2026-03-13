@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.swimmer",
+    "raw.record"
+  ],
+  "staging_models": [
+    "stg_swimmer",
+    "stg_record"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_swimmer_count",
+    "type": "report",
+    "grain": "1 row per swimmer_id"
+  },
+  "ctes": [
+    "stg_swimmer",
+    "stg_record"
+  ],
+  "joins": [
+    {
+      "left": "stg_swimmer",
+      "right": "stg_record",
+      "on": "stg_swimmer.id = stg_record.swimmer_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "swimmer_id": [
+      "not_null"
+    ]
+  }
+}

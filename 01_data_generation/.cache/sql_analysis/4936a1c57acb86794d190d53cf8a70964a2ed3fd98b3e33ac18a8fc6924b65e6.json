@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "student",
+    "lives_in",
+    "dorm"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "lives_in",
+      "condition": "T1.stuid = T2.stuid"
+    },
+    {
+      "left_table": "dorm",
+      "right_table": "lives_in",
+      "condition": "T3.dormid = T2.dormid"
+    }
+  ],
+  "filters": [
+    "T1.age > 20"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.dorm_name"
+  ],
+  "select_columns": [
+    "COUNT(*)",
+    "T3.dorm_name"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.dorm_name",
+  "model_type": "fact"
+}

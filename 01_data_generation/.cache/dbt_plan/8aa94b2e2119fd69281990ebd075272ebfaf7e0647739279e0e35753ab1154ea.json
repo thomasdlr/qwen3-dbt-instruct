@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.voting_record"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_voting_record"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_female_student_names",
+    "type": "report",
+    "grain": "1 row per female student"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_voting_record"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_voting_record",
+      "on": "stg_student.stu_id = stg_voting_record.president_vote"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "lname": [
+      "not_null"
+    ]
+  }
+}

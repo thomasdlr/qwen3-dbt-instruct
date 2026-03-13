@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.addresses",
+    "raw.student_addresses"
+  ],
+  "staging_models": [
+    "stg_addresses",
+    "stg_student_addresses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_addresses_with_postcode",
+    "type": "report",
+    "grain": "1 row per T2.address_id, T1.zip_postcode"
+  },
+  "ctes": [
+    "stg_addresses",
+    "stg_student_addresses"
+  ],
+  "joins": [
+    {
+      "left": "stg_student_addresses",
+      "right": "stg_addresses",
+      "on": "T1.address_id = T2.address_id"
+    }
+  ],
+  "tests": {
+    "address_id": [
+      "not_null",
+      "unique"
+    ],
+    "zip_postcode": [
+      "not_null"
+    ]
+  }
+}

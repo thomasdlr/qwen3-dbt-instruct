@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.film",
+    "raw.inventory"
+  ],
+  "staging_models": [
+    "stg_film",
+    "stg_inventory"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_film_inventory_count",
+    "type": "report",
+    "grain": "1 row per film_id"
+  },
+  "ctes": [
+    "stg_film",
+    "stg_inventory"
+  ],
+  "joins": [
+    {
+      "left": "stg_film",
+      "right": "stg_inventory",
+      "on": "stg_film.film_id = stg_inventory.film_id"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ],
+    "film_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

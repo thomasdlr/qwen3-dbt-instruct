@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.customer_events"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_customer_events"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_customers",
+    "type": "dimension",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_customer_events"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_customer_events",
+      "on": "customer_id"
+    }
+  ],
+  "tests": {
+    "date_moved_in": [
+      "not_null"
+    ],
+    "customer_id": [
+      "not_null",
+      "unique"
+    ],
+    "customer_details": [
+      "not_null"
+    ]
+  }
+}

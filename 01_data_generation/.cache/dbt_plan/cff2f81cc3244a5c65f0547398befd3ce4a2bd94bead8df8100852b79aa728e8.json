@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.campuses",
+    "raw.degrees"
+  ],
+  "staging_models": [
+    "stg_campuses",
+    "stg_degrees"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_san_jose_state_degrees_2000",
+    "type": "report",
+    "grain": "1 row per campus_degree combination at San Jose State University for year 2000"
+  },
+  "ctes": [
+    "stg_campuses",
+    "stg_degrees"
+  ],
+  "joins": [
+    {
+      "left": "stg_campuses",
+      "right": "stg_degrees",
+      "on": "stg_campuses.id = stg_degrees.campus"
+    }
+  ],
+  "tests": {
+    "degrees": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "tables": [
+    "concert",
+    "stadium"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.stadium_id = t2.stadium_id"
+    }
+  ],
+  "filters": [
+    "t1.year > 2013"
+  ],
+  "aggregations": [],
+  "group_by": [
+    "t2.stadium_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "t2.name",
+    "t2.capacity"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.stadium_id",
+  "model_type": "report"
+}

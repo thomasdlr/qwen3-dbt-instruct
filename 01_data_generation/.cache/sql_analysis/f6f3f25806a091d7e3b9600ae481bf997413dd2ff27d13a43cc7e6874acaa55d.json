@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "Rating",
+    "Reviewer"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.rID = T2.rID"
+    }
+  ],
+  "filters": [
+    "T1.stars > 3"
+  ],
+  "select_columns": [
+    "T2.name"
+  ],
+  "grain": "Reviewer.rID",
+  "model_type": "dimension"
+}

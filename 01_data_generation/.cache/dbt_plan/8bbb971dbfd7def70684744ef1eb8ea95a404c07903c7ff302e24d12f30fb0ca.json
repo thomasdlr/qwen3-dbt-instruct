@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.trip",
+    "raw.station"
+  ],
+  "staging_models": [
+    "stg_trip",
+    "stg_station"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_trip_count_by_city",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_trip",
+    "stg_station"
+  ],
+  "joins": [
+    {
+      "left": "stg_trip",
+      "right": "stg_station",
+      "on": "T1.end_station_id = T2.id"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

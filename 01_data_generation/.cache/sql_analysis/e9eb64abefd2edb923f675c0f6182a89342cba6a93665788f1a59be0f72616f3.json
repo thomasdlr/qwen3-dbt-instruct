@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "employees",
+    "departments"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.department_id = T2.department_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.department_name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.department_name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.department_name",
+  "model_type": "fact"
+}

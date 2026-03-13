@@ -1,0 +1,17 @@
+{
+  "tables": [
+    "artist",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "artist",
+      "right_table": "song",
+      "condition": "T1.artist_name = T2.artist_name"
+    }
+  ],
+  "filters": [
+    "T1.gender = \"Female\"",
+    "T2.languages = \"bangla\""
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "Performance",
+    "Band",
+    "Songs"
+  ],
+  "joins": [
+    {
+      "left_table": "Performance",
+      "right_table": "Band",
+      "condition": "T1.bandmate = T2.id"
+    },
+    {
+      "left_table": "Performance",
+      "right_table": "Songs",
+      "condition": "T3.SongId = T1.SongId"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "lastname"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.lastname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "lastname",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "Grants",
+    "Organisations",
+    "organisation_Types"
+  ],
+  "joins": [
+    {
+      "left_table": "Grants",
+      "right_table": "Organisations",
+      "condition": "T1.organisation_id = T2.organisation_id"
+    },
+    {
+      "left_table": "Organisations",
+      "right_table": "organisation_Types",
+      "condition": "T2.organisation_type = T3.organisation_type"
+    }
+  ],
+  "filters": [
+    "T3.organisation_type_description = 'Research'"
+  ],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "grant_amount",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "SUM(grant_amount)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "organisation_id",
+  "model_type": "fact"
+}

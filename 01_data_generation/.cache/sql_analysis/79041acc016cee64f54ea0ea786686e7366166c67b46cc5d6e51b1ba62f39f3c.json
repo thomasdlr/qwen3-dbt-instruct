@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "orders",
+    "order_items",
+    "products"
+  ],
+  "joins": [
+    {
+      "left_table": "orders",
+      "right_table": "order_items",
+      "condition": "T1.order_id = T2.order_id"
+    },
+    {
+      "left_table": "order_items",
+      "right_table": "products",
+      "condition": "T2.product_id = T3.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.product_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T3.product_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.product_id",
+  "model_type": "fact"
+}

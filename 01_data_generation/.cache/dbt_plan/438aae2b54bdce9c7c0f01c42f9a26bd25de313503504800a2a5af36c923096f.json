@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.Assets",
+    "raw.Asset_Parts",
+    "raw.Fault_Log"
+  ],
+  "staging_models": [
+    "stg_Assets",
+    "stg_Asset_Parts",
+    "stg_Fault_Log"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_asset_fault_intersection",
+    "type": "report",
+    "grain": "1 row per asset_id"
+  },
+  "ctes": [
+    "stg_Assets",
+    "stg_Asset_Parts",
+    "stg_Fault_Log"
+  ],
+  "joins": [
+    {
+      "left": "stg_Assets",
+      "right": "stg_Asset_Parts",
+      "on": "asset_id = asset_id"
+    },
+    {
+      "left": "stg_Assets",
+      "right": "stg_Fault_Log",
+      "on": "asset_id = asset_id"
+    }
+  ],
+  "tests": {
+    "asset_id": [
+      "not_null",
+      "unique"
+    ],
+    "asset_details": [
+      "not_null"
+    ]
+  }
+}

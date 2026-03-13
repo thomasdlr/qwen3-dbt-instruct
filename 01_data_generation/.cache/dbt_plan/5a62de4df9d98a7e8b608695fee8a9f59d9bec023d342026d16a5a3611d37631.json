@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.schedule",
+    "raw.film"
+  ],
+  "staging_models": [
+    "stg_schedule",
+    "stg_film"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_directed_by_showtimes",
+    "type": "report",
+    "grain": "1 row per directed_by"
+  },
+  "ctes": [
+    "stg_schedule",
+    "stg_film"
+  ],
+  "joins": [
+    {
+      "left": "stg_schedule",
+      "right": "stg_film",
+      "on": "stg_schedule.film_id = stg_film.film_id"
+    }
+  ],
+  "tests": {
+    "directed_by": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

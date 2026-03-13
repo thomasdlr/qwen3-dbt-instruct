@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Faculty",
+    "raw.Faculty_participates_in"
+  ],
+  "staging_models": [
+    "stg_Faculty",
+    "stg_Faculty_participates_in"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_faculty_participation_count",
+    "type": "report",
+    "grain": "1 row per Faculty.facID"
+  },
+  "ctes": [
+    "stg_Faculty",
+    "stg_Faculty_participates_in"
+  ],
+  "joins": [
+    {
+      "left": "stg_Faculty",
+      "right": "stg_Faculty_participates_in",
+      "on": "T1.facID = T2.facID"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.station",
+    "raw.status"
+  ],
+  "staging_models": [
+    "stg_station",
+    "stg_status"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_station_status_min_bikes",
+    "type": "report",
+    "grain": "1 row per station.id"
+  },
+  "ctes": [
+    "stg_station",
+    "stg_status"
+  ],
+  "joins": [
+    {
+      "left": "stg_status",
+      "right": "stg_station",
+      "on": "status.station_id = station.id"
+    }
+  ],
+  "tests": {
+    "station_id": [
+      "not_null",
+      "unique"
+    ],
+    "bikes_available_min": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.aircraft",
+    "raw.airport_aircraft",
+    "raw.airport"
+  ],
+  "staging_models": [
+    "stg_aircraft",
+    "stg_airport_aircraft",
+    "stg_airport"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_uk_london_airports",
+    "type": "report",
+    "grain": "1 row per airport_aircraft"
+  },
+  "ctes": [
+    "stg_aircraft",
+    "stg_airport_aircraft",
+    "stg_airport"
+  ],
+  "joins": [
+    {
+      "left": "stg_aircraft",
+      "right": "stg_airport_aircraft",
+      "on": "aircraft.aircraft_id = airport_aircraft.aircraft_id"
+    },
+    {
+      "left": "stg_airport_aircraft",
+      "right": "stg_airport",
+      "on": "airport_aircraft.airport_id = airport.airport_id"
+    }
+  ],
+  "tests": {
+    "*": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.club",
+    "raw.member_of_club",
+    "raw.student"
+  ],
+  "staging_models": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_bootup_baltimore_avg_age",
+    "type": "fact",
+    "grain": "1 row per club.clubid"
+  },
+  "ctes": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "joins": [
+    {
+      "left": "stg_club",
+      "right": "stg_member_of_club",
+      "on": "clubid = clubid"
+    },
+    {
+      "left": "stg_member_of_club",
+      "right": "stg_student",
+      "on": "stuid = stuid"
+    }
+  ],
+  "tests": {
+    "avg_age": [
+      "not_null"
+    ]
+  }
+}

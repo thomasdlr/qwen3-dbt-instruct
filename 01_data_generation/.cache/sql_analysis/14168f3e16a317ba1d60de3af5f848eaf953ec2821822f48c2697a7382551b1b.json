@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "people",
+    "candidate"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.people_id = t2.people_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "MIN",
+      "column": "oppose_rate",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.sex"
+  ],
+  "having": [],
+  "select_columns": [
+    "t1.name",
+    "t1.sex",
+    "MIN(oppose_rate)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.sex",
+  "model_type": "report"
+}

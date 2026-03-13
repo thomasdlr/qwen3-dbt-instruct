@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "Suppliers",
+    "supplier_addresses",
+    "addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "Suppliers",
+      "right_table": "supplier_addresses",
+      "condition": "T1.supplier_id = T2.supplier_id"
+    },
+    {
+      "left_table": "supplier_addresses",
+      "right_table": "addresses",
+      "condition": "T2.address_id = T3.address_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.supplier_name",
+    "T1.supplier_phone"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.supplier_id, T2.address_id",
+  "model_type": "dimension"
+}

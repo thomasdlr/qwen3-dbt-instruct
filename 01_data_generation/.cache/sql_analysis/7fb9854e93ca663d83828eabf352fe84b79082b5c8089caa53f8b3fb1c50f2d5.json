@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "club",
+    "coach"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (club)",
+      "right_table": "T2 (coach)",
+      "condition": "T1.club_id = T2.club_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.club_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.club_id",
+    "T1.club_name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.club_id",
+  "model_type": "fact"
+}

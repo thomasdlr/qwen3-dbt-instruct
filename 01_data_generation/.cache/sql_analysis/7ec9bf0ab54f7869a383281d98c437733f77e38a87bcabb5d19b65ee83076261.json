@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "nomination",
+    "artwork",
+    "festival_detail"
+  ],
+  "joins": [
+    {
+      "left_table": "nomination",
+      "right_table": "artwork",
+      "condition": "T1.Artwork_ID = T2.Artwork_ID"
+    },
+    {
+      "left_table": "nomination",
+      "right_table": "festival_detail",
+      "condition": "T1.Festival_ID = T3.Festival_ID"
+    }
+  ],
+  "filters": [
+    "T2.Type = \"Program Talent Show\""
+  ],
+  "select_columns": [
+    "T3.Festival_Name"
+  ],
+  "grain": "T1.Artwork_ID, T1.Festival_ID",
+  "model_type": "report"
+}

@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.professionals",
+    "raw.Treatments",
+    "raw.Treatment_types"
+  ],
+  "staging_models": [
+    "stg_professionals",
+    "stg_Treatments",
+    "stg_Treatment_types"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_professional_treatment_types",
+    "type": "report",
+    "grain": "1 row per professional_id, treatment_type_code"
+  },
+  "ctes": [
+    "stg_professionals",
+    "stg_Treatments",
+    "stg_Treatment_types"
+  ],
+  "joins": [
+    {
+      "left": "stg_professionals",
+      "right": "stg_Treatments",
+      "on": "professional_id = professional_id"
+    },
+    {
+      "left": "stg_Treatments",
+      "right": "stg_Treatment_types",
+      "on": "treatment_type_code = treatment_type_code"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "treatment_type_description": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.documents",
+    "raw.documents_with_expenses"
+  ],
+  "staging_models": [
+    "stg_documents",
+    "stg_documents_with_expenses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_document_count_without_expenses",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_documents",
+    "stg_documents_with_expenses"
+  ],
+  "joins": [],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

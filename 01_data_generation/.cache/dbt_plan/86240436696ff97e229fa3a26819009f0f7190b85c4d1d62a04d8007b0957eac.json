@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.mountain",
+    "raw.photos"
+  ],
+  "staging_models": [
+    "stg_mountain",
+    "stg_photos"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_mountain_photos",
+    "type": "dimension",
+    "grain": "1 row per mountain"
+  },
+  "ctes": [
+    "stg_mountain",
+    "stg_photos"
+  ],
+  "joins": [
+    {
+      "left": "stg_mountain",
+      "right": "stg_photos",
+      "on": "stg_mountain.id = stg_photos.mountain_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

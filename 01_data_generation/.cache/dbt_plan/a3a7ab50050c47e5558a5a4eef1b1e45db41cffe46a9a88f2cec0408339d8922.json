@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.storm",
+    "raw.affected_region"
+  ],
+  "staging_models": [
+    "stg_storm",
+    "stg_affected_region"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_storm_names_not_affected",
+    "type": "report",
+    "grain": "1 row per storm.name"
+  },
+  "ctes": [
+    "stg_storm",
+    "stg_affected_region"
+  ],
+  "joins": [],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

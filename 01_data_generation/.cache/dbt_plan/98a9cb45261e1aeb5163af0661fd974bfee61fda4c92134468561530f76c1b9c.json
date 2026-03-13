@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.home_game",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_avg_attendance_by_team_2014",
+    "type": "report",
+    "grain": "1 row per team"
+  },
+  "ctes": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_home_game",
+      "right": "stg_team",
+      "on": "stg_home_game.team_id = stg_team.team_id"
+    }
+  ],
+  "tests": {
+    "team_id": [
+      "not_null"
+    ],
+    "rank": [
+      "not_null"
+    ]
+  }
+}

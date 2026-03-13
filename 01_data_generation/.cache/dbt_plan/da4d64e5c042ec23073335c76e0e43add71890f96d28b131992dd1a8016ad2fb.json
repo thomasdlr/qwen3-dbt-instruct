@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.employees",
+    "raw.departments"
+  ],
+  "staging_models": [
+    "stg_employees",
+    "stg_departments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_employee_count_by_department",
+    "type": "fact",
+    "grain": "1 row per department_name"
+  },
+  "ctes": [
+    "stg_employees",
+    "stg_departments"
+  ],
+  "joins": [
+    {
+      "left": "stg_employees",
+      "right": "stg_departments",
+      "on": "stg_employees.department_id = stg_departments.department_id"
+    }
+  ],
+  "tests": {
+    "department_name": [
+      "not_null"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

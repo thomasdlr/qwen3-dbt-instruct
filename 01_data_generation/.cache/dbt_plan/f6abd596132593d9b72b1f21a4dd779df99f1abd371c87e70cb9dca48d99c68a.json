@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.has_pet",
+    "raw.pets"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_has_pet",
+    "stg_pets"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_cat_owners",
+    "type": "report",
+    "grain": "1 row per student.lname"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_has_pet",
+    "stg_pets"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_has_pet",
+      "on": "stuid"
+    },
+    {
+      "left": "stg_pets",
+      "right": "stg_has_pet",
+      "on": "petid"
+    }
+  ],
+  "tests": {
+    "lname": [
+      "not_null"
+    ]
+  }
+}

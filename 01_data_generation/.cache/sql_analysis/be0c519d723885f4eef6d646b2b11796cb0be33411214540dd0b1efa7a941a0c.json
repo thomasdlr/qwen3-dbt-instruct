@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "employment",
+    "people",
+    "company"
+  ],
+  "joins": [
+    {
+      "left_table": "employment",
+      "right_table": "people",
+      "condition": "T1.People_ID = T2.People_ID"
+    },
+    {
+      "left_table": "employment",
+      "right_table": "company",
+      "condition": "T1.Company_ID = T3.Company_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.Name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T3.Name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.Name",
+  "model_type": "fact"
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Behavior_Incident",
+    "Ref_Incident_Type"
+  ],
+  "joins": [
+    {
+      "left_table": "Behavior_Incident",
+      "right_table": "Ref_Incident_Type",
+      "condition": "T1.incident_type_code = T2.incident_type_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.incident_type_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.incident_type_code",
+    "T2.incident_type_description"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.incident_type_code",
+  "model_type": "report"
+}

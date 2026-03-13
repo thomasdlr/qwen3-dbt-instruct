@@ -1,0 +1,16 @@
+{
+  "tables": [
+    "gymnast",
+    "people"
+  ],
+  "joins": [
+    {
+      "left_table": "gymnast",
+      "right_table": "people",
+      "condition": "T1.Gymnast_ID = T2.People_ID"
+    }
+  ],
+  "filters": [
+    "T2.Hometown <> \"Santo Domingo\""
+  ]
+}

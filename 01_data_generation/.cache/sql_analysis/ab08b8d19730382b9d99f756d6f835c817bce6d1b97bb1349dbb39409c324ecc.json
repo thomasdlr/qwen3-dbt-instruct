@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "Templates",
+    "Documents"
+  ],
+  "joins": [
+    {
+      "left_table": "Templates",
+      "right_table": "Documents",
+      "condition": "T1.template_id = T2.template_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.template_type_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.template_type_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.template_type_code",
+  "model_type": "report"
+}

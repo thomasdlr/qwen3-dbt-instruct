@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.country",
+    "raw.roller_coaster"
+  ],
+  "staging_models": [
+    "stg_country",
+    "stg_roller_coaster"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_country_roller_coaster_counts",
+    "type": "fact",
+    "grain": "1 row per country"
+  },
+  "ctes": [
+    "stg_country",
+    "stg_roller_coaster"
+  ],
+  "joins": [
+    {
+      "left": "T1",
+      "right": "T2",
+      "on": "T1.Country_ID = T2.Country_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

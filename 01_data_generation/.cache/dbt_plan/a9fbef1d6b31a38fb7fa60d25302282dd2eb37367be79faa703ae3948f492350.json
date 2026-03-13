@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.checking",
+    "raw.savings"
+  ],
+  "staging_models": [
+    "stg_checking",
+    "stg_savings"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customer_balance",
+    "type": "report",
+    "grain": "1 row per custid"
+  },
+  "ctes": [
+    "stg_checking",
+    "stg_savings"
+  ],
+  "joins": [
+    {
+      "left": "stg_checking",
+      "right": "stg_savings",
+      "on": "custid"
+    }
+  ],
+  "tests": {
+    "balance": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.game",
+    "raw.stadium",
+    "raw.injury_accident"
+  ],
+  "staging_models": [
+    "stg_game",
+    "stg_stadium",
+    "stg_injury_accident"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_stadiums_with_walter_samuel_and_thiago_motta_injuries",
+    "type": "report",
+    "grain": "1 row per stadium.name"
+  },
+  "ctes": [
+    "stg_game",
+    "stg_stadium",
+    "stg_injury_accident"
+  ],
+  "joins": [
+    {
+      "left": "stg_game",
+      "right": "stg_stadium",
+      "on": "stg_game.stadium_id = stg_stadium.id"
+    },
+    {
+      "left": "stg_game",
+      "right": "stg_injury_accident",
+      "on": "stg_game.id = stg_injury_accident.game_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

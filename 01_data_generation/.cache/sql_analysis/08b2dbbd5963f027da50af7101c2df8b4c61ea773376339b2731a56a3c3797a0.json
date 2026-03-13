@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "employee",
+    "evaluation"
+  ],
+  "joins": [
+    {
+      "left_table": "employee",
+      "right_table": "evaluation",
+      "condition": "t1.Employee_ID = t2.Employee_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.name",
+  "model_type": "report"
+}

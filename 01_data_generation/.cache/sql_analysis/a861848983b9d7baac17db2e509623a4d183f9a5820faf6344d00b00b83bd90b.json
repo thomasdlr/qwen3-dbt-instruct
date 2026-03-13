@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "professor",
+    "employee",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "professor",
+      "right_table": "employee",
+      "condition": "T1.emp_num = T2.emp_num"
+    },
+    {
+      "left_table": "professor",
+      "right_table": "department",
+      "condition": "T1.dept_code = T3.dept_code"
+    }
+  ],
+  "filters": [
+    "T3.dept_name = 'History'",
+    "T1.prof_high_degree <> 'Ph.D.'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.emp_fname",
+    "T1.prof_office"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.emp_num, T2.emp_num",
+  "model_type": "report"
+}

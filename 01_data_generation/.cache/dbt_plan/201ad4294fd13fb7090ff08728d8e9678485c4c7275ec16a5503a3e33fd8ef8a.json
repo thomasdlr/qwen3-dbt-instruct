@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Degree_Programs",
+    "raw.Student_Enrolment"
+  ],
+  "staging_models": [
+    "stg_Degree_Programs",
+    "stg_Student_Enrolment"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_semester_degree_intersection",
+    "type": "report",
+    "grain": "1 row per semester_id"
+  },
+  "ctes": [
+    "stg_Degree_Programs",
+    "stg_Student_Enrolment"
+  ],
+  "joins": [
+    {
+      "left": "stg_Degree_Programs",
+      "right": "stg_Student_Enrolment",
+      "on": "degree_program_id = degree_program_id"
+    }
+  ],
+  "tests": {
+    "semester_id": [
+      "not_null"
+    ]
+  }
+}

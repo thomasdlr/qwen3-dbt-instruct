@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.medicine",
+    "raw.medicine_enzyme_interaction"
+  ],
+  "staging_models": [
+    "stg_medicine",
+    "stg_medicine_enzyme_interaction"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_medicine_interaction_count",
+    "type": "fact",
+    "grain": "1 row per medicine"
+  },
+  "ctes": [
+    "stg_medicine",
+    "stg_medicine_enzyme_interaction"
+  ],
+  "joins": [
+    {
+      "left": "stg_medicine",
+      "right": "stg_medicine_enzyme_interaction",
+      "on": "stg_medicine_enzyme_interaction.medicine_id = stg_medicine.id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "trade_name": [
+      "not_null"
+    ]
+  }
+}

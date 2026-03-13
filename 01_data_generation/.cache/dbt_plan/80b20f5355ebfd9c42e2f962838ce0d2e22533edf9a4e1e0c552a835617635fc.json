@@ -1,0 +1,42 @@
+{
+  "sources": [
+    "raw.list",
+    "raw.teachers"
+  ],
+  "staging_models": [
+    "stg_list",
+    "stg_teachers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_list_teachers",
+    "type": "fact",
+    "grain": "1 row per list classroom"
+  },
+  "ctes": [
+    "stg_list",
+    "stg_teachers"
+  ],
+  "joins": [
+    {
+      "left": "stg_list",
+      "right": "stg_teachers",
+      "on": "stg_list.classroom = stg_teachers.classroom"
+    }
+  ],
+  "tests": {
+    "classroom": [
+      "not_null",
+      "unique"
+    ],
+    "grade": [
+      "not_null"
+    ],
+    "firstname": [
+      "not_null"
+    ],
+    "lastname": [
+      "not_null"
+    ]
+  }
+}

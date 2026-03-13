@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.routes",
+    "raw.airports"
+  ],
+  "staging_models": [
+    "stg_routes",
+    "stg_airports"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_canada_us_flights_count",
+    "type": "report",
+    "grain": "1 row per aggregated result of COUNT(*)"
+  },
+  "ctes": [
+    "stg_routes",
+    "stg_airports"
+  ],
+  "joins": [
+    {
+      "left": "stg_routes",
+      "right": "stg_airports",
+      "on": "routes.src_apid = airports.apid AND routes.dst_apid = airports.apid"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

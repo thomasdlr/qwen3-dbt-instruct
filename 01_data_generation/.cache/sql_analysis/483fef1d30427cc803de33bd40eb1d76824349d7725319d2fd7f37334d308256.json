@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "repair_assignment",
+    "machine",
+    "technician"
+  ],
+  "joins": [
+    {
+      "left_table": "repair_assignment",
+      "right_table": "machine",
+      "condition": "T1.machine_id = T2.machine_id"
+    },
+    {
+      "left_table": "repair_assignment",
+      "right_table": "technician",
+      "condition": "T1.technician_ID = T3.technician_ID"
+    }
+  ],
+  "filters": [
+    "T2.value_points > 70"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.technician_ID",
+  "model_type": "report"
+}

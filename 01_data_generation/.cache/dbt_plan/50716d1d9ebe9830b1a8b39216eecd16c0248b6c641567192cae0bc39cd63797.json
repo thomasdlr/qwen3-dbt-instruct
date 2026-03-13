@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.membership_register_branch",
+    "raw.branch"
+  ],
+  "staging_models": [
+    "stg_membership_register_branch",
+    "stg_branch"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_branch_memberships",
+    "type": "fact",
+    "grain": "1 row per branch"
+  },
+  "ctes": [
+    "stg_membership_register_branch",
+    "stg_branch"
+  ],
+  "joins": [
+    {
+      "left": "stg_membership_register_branch",
+      "right": "stg_branch",
+      "on": "T1.branch_id = T2.branch_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "branch_id": [
+      "not_null"
+    ]
+  }
+}

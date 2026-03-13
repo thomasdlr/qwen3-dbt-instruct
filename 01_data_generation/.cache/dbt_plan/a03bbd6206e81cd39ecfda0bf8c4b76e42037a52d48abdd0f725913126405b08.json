@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.repair_assignment",
+    "raw.machine",
+    "raw.technician"
+  ],
+  "staging_models": [
+    "stg_repair_assignment",
+    "stg_machine",
+    "stg_technician"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_technicians_with_high_value_machines",
+    "type": "report",
+    "grain": "1 row per technician"
+  },
+  "ctes": [
+    "stg_repair_assignment",
+    "stg_machine",
+    "stg_technician"
+  ],
+  "joins": [
+    {
+      "left": "stg_repair_assignment",
+      "right": "stg_machine",
+      "on": "machine_id = machine.machine_id"
+    },
+    {
+      "left": "stg_repair_assignment",
+      "right": "stg_technician",
+      "on": "technician_ID = technician.technician_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

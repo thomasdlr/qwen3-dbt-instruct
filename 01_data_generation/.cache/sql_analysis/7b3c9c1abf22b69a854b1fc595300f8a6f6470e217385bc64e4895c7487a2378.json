@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "vocals",
+    "songs",
+    "band"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (vocals)",
+      "right_table": "T2 (songs)",
+      "condition": "T1.songid = T2.songid"
+    },
+    {
+      "left_table": "T1 (vocals)",
+      "right_table": "T3 (band)",
+      "condition": "T1.bandmate = T3.id"
+    }
+  ],
+  "filters": [
+    "T3.firstname = \"Solveig\"",
+    "T2.title = \"A Bar In Amsterdam\""
+  ],
+  "select_columns": [
+    "TYPE"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "\"A Bar In Amsterdam\" song with Solveig bandmate",
+  "model_type": "report"
+}

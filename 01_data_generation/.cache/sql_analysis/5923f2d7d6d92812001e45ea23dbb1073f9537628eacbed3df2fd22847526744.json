@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "salary",
+    "team"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.team_id = T2.team_id_br"
+    }
+  ],
+  "filters": [
+    "T2.name = 'Boston Red Stockings'",
+    "T1.year = 2010"
+  ],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T1.salary",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "SUM(T1.salary)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "fact"
+}

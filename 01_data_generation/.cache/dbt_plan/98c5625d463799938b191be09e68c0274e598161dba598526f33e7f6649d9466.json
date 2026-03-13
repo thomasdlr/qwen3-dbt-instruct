@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.aircraft"
+  ],
+  "staging_models": [
+    "stg_aircraft"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_aircraft_location",
+    "type": "dimension",
+    "grain": "1 row per Aircraft_ID"
+  },
+  "ctes": [
+    "stg_aircraft"
+  ],
+  "joins": [
+    {
+      "left": "stg_aircraft",
+      "right": "MATCH",
+      "on": "T1.Aircraft_ID = T2.Winning_Aircraft"
+    }
+  ],
+  "tests": {
+    "Location": [
+      "not_null"
+    ],
+    "Aircraft": [
+      "not_null"
+    ]
+  }
+}

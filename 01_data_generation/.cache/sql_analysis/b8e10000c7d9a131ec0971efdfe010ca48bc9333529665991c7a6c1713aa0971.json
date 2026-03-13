@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "stay",
+    "patient",
+    "Prescribes",
+    "Medication"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (stay)",
+      "right_table": "T2 (patient)",
+      "condition": "T1.Patient = T2.SSN"
+    },
+    {
+      "left_table": "T3 (Prescribes)",
+      "right_table": "T2 (patient)",
+      "condition": "T3.Patient = T2.SSN"
+    },
+    {
+      "left_table": "T4 (Medication)",
+      "right_table": "T3 (Prescribes)",
+      "condition": "T3.Medication = T4.Code"
+    }
+  ],
+  "filters": [
+    "room = 111"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T4.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T4.name",
+  "model_type": "report"
+}

@@ -1,0 +1,24 @@
+{
+  "tables": [
+    "student",
+    "takes",
+    "course",
+    "prereq"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "takes",
+      "condition": "T1.id = T2.id"
+    }
+  ],
+  "filters": [
+    "T3.title = 'International Finance'"
+  ],
+  "select_columns": [
+    "T1.name"
+  ],
+  "has_subquery": true,
+  "grain": "student.id",
+  "model_type": "report"
+}

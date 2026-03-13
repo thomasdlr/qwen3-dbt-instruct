@@ -1,0 +1,17 @@
+{
+  "tables": [
+    "CUSTOMER",
+    "INVOICE"
+  ],
+  "joins": [
+    {
+      "left_table": "CUSTOMER",
+      "right_table": "INVOICE",
+      "condition": "T1.CustomerId = T2.CustomerId"
+    }
+  ],
+  "filters": [
+    "T1.FirstName = \"Astrid\"",
+    "LastName = \"Gruber\""
+  ]
+}

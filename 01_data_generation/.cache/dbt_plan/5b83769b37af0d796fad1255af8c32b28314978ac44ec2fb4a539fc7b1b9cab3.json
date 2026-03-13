@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.coach",
+    "raw.player_coach",
+    "raw.player"
+  ],
+  "staging_models": [
+    "stg_coach",
+    "stg_player_coach",
+    "stg_player"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_player_coach_assignments",
+    "type": "report",
+    "grain": "1 row per Coach_ID, Player_ID"
+  },
+  "ctes": [
+    "stg_coach",
+    "stg_player_coach",
+    "stg_player"
+  ],
+  "joins": [
+    {
+      "left": "stg_player_coach",
+      "right": "stg_coach",
+      "on": "Coach_ID"
+    },
+    {
+      "left": "stg_player_coach",
+      "right": "stg_player",
+      "on": "Player_ID"
+    }
+  ],
+  "tests": {
+    "player_name": [
+      "not_null"
+    ],
+    "coach_name": [
+      "not_null"
+    ]
+  }
+}

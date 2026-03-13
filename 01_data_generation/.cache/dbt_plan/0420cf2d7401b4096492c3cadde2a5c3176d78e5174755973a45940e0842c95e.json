@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.instructor",
+    "raw.teaches",
+    "raw.course"
+  ],
+  "staging_models": [
+    "stg_instructor",
+    "stg_teaches",
+    "stg_course"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_instructor_c_programming",
+    "type": "dimension",
+    "grain": "1 row per instructor.name"
+  },
+  "ctes": [
+    "stg_instructor",
+    "stg_teaches",
+    "stg_course"
+  ],
+  "joins": [
+    {
+      "left": "stg_instructor",
+      "right": "stg_teaches",
+      "on": "instructor.id = teaches.id"
+    },
+    {
+      "left": "stg_teaches",
+      "right": "stg_course",
+      "on": "teaches.course_id = course.course_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

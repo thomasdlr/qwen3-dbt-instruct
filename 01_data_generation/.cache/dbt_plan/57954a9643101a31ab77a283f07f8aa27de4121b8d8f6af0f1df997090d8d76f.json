@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.CMI_Cross_References",
+    "raw.Council_Tax"
+  ],
+  "staging_models": [
+    "stg_CMI_Cross_References",
+    "stg_Council_Tax"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_cmi_cross_ref_count",
+    "type": "fact",
+    "grain": "1 row per cmi_cross_ref_id"
+  },
+  "ctes": [
+    "stg_CMI_Cross_References",
+    "stg_Council_Tax"
+  ],
+  "joins": [
+    {
+      "left": "stg_CMI_Cross_References",
+      "right": "stg_Council_Tax",
+      "on": "T1.cmi_cross_ref_id = T2.cmi_cross_ref_id"
+    }
+  ],
+  "tests": {
+    "cmi_cross_ref_id": [
+      "not_null",
+      "unique"
+    ],
+    "source_system_code": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "debate_people",
+    "debate",
+    "people"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Debate_ID = T2.Debate_ID"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T3",
+      "condition": "T1.Affirmative = T3.People_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.Name",
+    "T2.Date",
+    "T2.Venue"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Debate_ID, T3.People_ID",
+  "model_type": "report"
+}

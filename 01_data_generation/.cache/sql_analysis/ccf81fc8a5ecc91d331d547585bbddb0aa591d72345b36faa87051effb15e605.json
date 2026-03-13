@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "documents",
+    "document_sections"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.document_code = t2.document_code"
+    }
+  ],
+  "filters": [
+    "t1.document_name = \"David CV\""
+  ],
+  "select_columns": [
+    "t2.section_title"
+  ],
+  "grain": "t1.document_code, t2.section_title",
+  "model_type": "report"
+}

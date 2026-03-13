@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.artist",
+    "raw.song"
+  ],
+  "staging_models": [
+    "stg_artist",
+    "stg_song"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_bangla_artists",
+    "type": "report",
+    "grain": "1 row per artist_name"
+  },
+  "ctes": [
+    "stg_artist",
+    "stg_song"
+  ],
+  "joins": [
+    {
+      "left": "stg_artist",
+      "right": "stg_song",
+      "on": "stg_artist.artist_name = stg_song.artist_name"
+    }
+  ],
+  "tests": {
+    "artist_name": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

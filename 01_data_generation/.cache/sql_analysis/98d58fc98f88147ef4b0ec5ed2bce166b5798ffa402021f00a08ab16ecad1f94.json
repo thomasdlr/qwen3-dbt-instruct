@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "physician",
+    "trained_in",
+    "procedures"
+  ],
+  "joins": [
+    {
+      "left_table": "physician AS T1",
+      "right_table": "trained_in AS T2",
+      "condition": "T1.employeeid = T2.physician"
+    },
+    {
+      "left_table": "(physician AS T1 JOIN trained_in AS T2)",
+      "right_table": "procedures AS T3",
+      "condition": "T3.code = T2.treatment"
+    }
+  ],
+  "filters": [
+    "T3.cost > 5000"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "physician.name",
+  "model_type": "dimension"
+}

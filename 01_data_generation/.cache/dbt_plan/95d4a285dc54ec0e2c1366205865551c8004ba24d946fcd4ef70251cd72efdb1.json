@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.drivers",
+    "raw.driverstandings"
+  ],
+  "staging_models": [
+    "stg_drivers",
+    "stg_driverstandings"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_top_drivers",
+    "type": "report",
+    "grain": "1 row per driver with wins and points > 20"
+  },
+  "ctes": [
+    "stg_drivers",
+    "stg_driverstandings"
+  ],
+  "joins": [
+    {
+      "left": "stg_drivers",
+      "right": "stg_driverstandings",
+      "on": "driverid = driverid"
+    }
+  ],
+  "tests": {
+    "forename": [
+      "not_null"
+    ]
+  }
+}

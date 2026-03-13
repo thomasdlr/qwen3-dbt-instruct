@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "products",
+    "Manufacturers"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.manufacturer = T2.code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "MAX",
+      "column": "T1.Price",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Name",
+    "MAX(T1.Price)",
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name",
+  "model_type": "report"
+}

@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.accounts",
+    "raw.checking",
+    "raw.savings"
+  ],
+  "staging_models": [
+    "stg_accounts",
+    "stg_checking",
+    "stg_savings"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_brown_accounts_balance",
+    "type": "report",
+    "grain": "1 row per custid"
+  },
+  "ctes": [
+    "stg_accounts",
+    "stg_checking",
+    "stg_savings"
+  ],
+  "joins": [
+    {
+      "left": "stg_accounts",
+      "right": "stg_checking",
+      "on": "custid = custid"
+    },
+    {
+      "left": "stg_accounts",
+      "right": "stg_savings",
+      "on": "custid = custid"
+    }
+  ],
+  "tests": {
+    "checking_balance": [
+      "not_null"
+    ],
+    "savings_balance": [
+      "not_null"
+    ]
+  }
+}

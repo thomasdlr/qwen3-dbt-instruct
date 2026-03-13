@@ -1,0 +1,31 @@
+{
+  "tables": [
+    "tracks",
+    "playlist_tracks",
+    "playlists"
+  ],
+  "joins": [
+    {
+      "left_table": "tracks AS T1",
+      "right_table": "playlist_tracks AS T2",
+      "condition": "T1.id = T2.track_id"
+    },
+    {
+      "left_table": "playlist_tracks AS T2",
+      "right_table": "playlists AS T3",
+      "condition": "T2.playlist_id = T3.id"
+    }
+  ],
+  "filters": [
+    "T3.name = 'Movies'"
+  ],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_subquery": true,
+  "grain": "T1.name",
+  "model_type": "report"
+}

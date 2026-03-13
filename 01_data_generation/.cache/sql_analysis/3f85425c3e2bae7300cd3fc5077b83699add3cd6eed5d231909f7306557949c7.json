@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Apartment_Bookings",
+    "Apartments"
+  ],
+  "joins": [
+    {
+      "left_table": "Apartment_Bookings",
+      "right_table": "Apartments",
+      "condition": "T1.apt_id = T2.apt_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.apt_number",
+    "T1.booking_start_date"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.apt_id",
+  "model_type": "fact"
+}

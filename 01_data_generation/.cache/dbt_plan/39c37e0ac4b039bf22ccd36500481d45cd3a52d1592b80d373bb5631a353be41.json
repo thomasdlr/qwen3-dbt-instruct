@@ -1,0 +1,47 @@
+{
+  "sources": [
+    "raw.CAR_NAMES",
+    "raw.MODEL_LIST",
+    "raw.CAR_MAKERS",
+    "raw.CARS_DATA"
+  ],
+  "staging_models": [
+    "stg_CAR_NAMES",
+    "stg_MODEL_LIST",
+    "stg_CAR_MAKERS",
+    "stg_CARS_DATA"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_distinct_car_models",
+    "type": "report",
+    "grain": "1 row per T2.Model"
+  },
+  "ctes": [
+    "stg_MODEL_LIST",
+    "stg_CAR_MAKERS"
+  ],
+  "joins": [
+    {
+      "left": "stg_MODEL_LIST",
+      "right": "stg_CAR_MAKERS",
+      "on": "T2.Maker = T3.Id"
+    },
+    {
+      "left": "stg_MODEL_LIST",
+      "right": "stg_CAR_NAMES",
+      "on": "T1.Model = T2.Model"
+    },
+    {
+      "left": "stg_MODEL_LIST",
+      "right": "stg_CARS_DATA",
+      "on": "T1.MakeId = T4.Id"
+    }
+  ],
+  "tests": {
+    "Model": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

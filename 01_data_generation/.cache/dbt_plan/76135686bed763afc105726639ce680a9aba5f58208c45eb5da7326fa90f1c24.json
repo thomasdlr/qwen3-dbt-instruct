@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.list",
+    "raw.teachers"
+  ],
+  "staging_models": [
+    "stg_list",
+    "stg_teachers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_teacher_classroom_count",
+    "type": "report",
+    "grain": "1 row per teacher"
+  },
+  "ctes": [
+    "stg_list",
+    "stg_teachers"
+  ],
+  "joins": [
+    {
+      "left": "stg_list",
+      "right": "stg_teachers",
+      "on": "stg_list.classroom = stg_teachers.classroom"
+    }
+  ],
+  "tests": {
+    "firstname": [
+      "not_null"
+    ],
+    "lastname": [
+      "not_null"
+    ]
+  }
+}

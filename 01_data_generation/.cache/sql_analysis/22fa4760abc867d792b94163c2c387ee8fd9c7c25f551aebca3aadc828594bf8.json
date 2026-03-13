@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Sportsinfo",
+    "Student"
+  ],
+  "joins": [
+    {
+      "left_table": "Sportsinfo",
+      "right_table": "Student",
+      "condition": "T1.StuID = T2.StuID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.StuID"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.Fname",
+    "T2.Lname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.StuID",
+  "model_type": "report"
+}

@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "status"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT station_id IN (SELECT id FROM station WHERE city = \"Palo Alto\")"
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "bikes_available",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "AVG(bikes_available)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": null,
+  "model_type": "report"
+}

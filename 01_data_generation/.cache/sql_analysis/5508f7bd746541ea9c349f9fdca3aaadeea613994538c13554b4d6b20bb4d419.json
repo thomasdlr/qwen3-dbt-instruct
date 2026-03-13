@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "CONTINENTS",
+    "COUNTRIES",
+    "car_makers"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (CONTINENTS)",
+      "right_table": "T2 (COUNTRIES)",
+      "condition": "T1.ContId = T2.continent"
+    },
+    {
+      "left_table": "T2 (COUNTRIES)",
+      "right_table": "T3 (car_makers)",
+      "condition": "T2.CountryId = T3.Country"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Continent"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Continent",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Continent",
+  "model_type": "fact"
+}

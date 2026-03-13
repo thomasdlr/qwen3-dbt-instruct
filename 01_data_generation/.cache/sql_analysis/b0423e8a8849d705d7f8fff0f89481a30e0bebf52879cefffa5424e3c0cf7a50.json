@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Faculty",
+    "Faculty_participates_in"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "FacID"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "FacID",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.department",
+    "raw.physician"
+  ],
+  "staging_models": [
+    "stg_department",
+    "stg_physician"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_department_physician_count",
+    "type": "report",
+    "grain": "1 row per departmentID"
+  },
+  "ctes": [
+    "stg_department",
+    "stg_physician"
+  ],
+  "joins": [
+    {
+      "left": "stg_department",
+      "right": "stg_physician",
+      "on": "T1.head = T2.EmployeeID"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "position": [
+      "not_null"
+    ]
+  }
+}

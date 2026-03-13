@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "county",
+    "election"
+  ],
+  "joins": [
+    {
+      "left_table": "county",
+      "right_table": "election",
+      "condition": "T1.County_id = T2.District"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.County_id"
+  ],
+  "having": [
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "T1.County_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.County_id",
+  "model_type": "fact"
+}

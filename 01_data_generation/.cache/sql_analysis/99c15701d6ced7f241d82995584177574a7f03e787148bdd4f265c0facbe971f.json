@@ -1,0 +1,16 @@
+{
+  "tables": [
+    "Addresses",
+    "Stores"
+  ],
+  "joins": [
+    {
+      "left_table": "Addresses",
+      "right_table": "Stores",
+      "condition": "T1.Address_ID = T2.Address_ID"
+    }
+  ],
+  "filters": [
+    "T2.Marketing_Region_Code = \"CA\""
+  ]
+}

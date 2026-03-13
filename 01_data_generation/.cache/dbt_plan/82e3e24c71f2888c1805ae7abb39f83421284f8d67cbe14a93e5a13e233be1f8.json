@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.loan",
+    "raw.bank",
+    "raw.customer"
+  ],
+  "staging_models": [
+    "stg_loan",
+    "stg_bank",
+    "stg_customer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_bank_customers_low_credit",
+    "type": "report",
+    "grain": "1 row per loan.branch_id"
+  },
+  "ctes": [
+    "stg_loan",
+    "stg_bank",
+    "stg_customer"
+  ],
+  "joins": [
+    {
+      "left": "stg_loan",
+      "right": "stg_bank",
+      "on": "stg_loan.branch_id = stg_bank.branch_id"
+    },
+    {
+      "left": "stg_loan",
+      "right": "stg_customer",
+      "on": "stg_loan.cust_id = stg_customer.cust_id"
+    }
+  ],
+  "tests": {
+    "bname": [
+      "not_null"
+    ]
+  }
+}

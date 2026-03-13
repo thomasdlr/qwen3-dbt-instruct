@@ -2,4 +2,4 @@
 **/__pycache__/
 **/.env
 **/*.annotations.json
-data/
+# data/

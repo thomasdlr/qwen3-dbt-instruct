@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "Employees",
+    "Circulation_History"
+  ],
+  "joins": [
+    {
+      "left_table": "Circulation_History",
+      "right_table": "Employees",
+      "condition": "Circulation_History.employee_id = Employees.employee_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "Circulation_History.document_id",
+    "Circulation_History.draft_number",
+    "Circulation_History.copy_number"
+  ],
+  "having": [],
+  "select_columns": [
+    "Employees.employee_name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Circulation_History.document_id, Circulation_History.draft_number, Circulation_History.copy_number",
+  "model_type": "fact"
+}

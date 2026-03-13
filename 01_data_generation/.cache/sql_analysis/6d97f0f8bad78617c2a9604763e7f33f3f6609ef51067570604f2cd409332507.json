@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "screen_mode",
+    "phone"
+  ],
+  "joins": [
+    {
+      "left_table": "screen_mode",
+      "right_table": "phone",
+      "condition": "T1.Graphics_mode = T2.screen_mode"
+    }
+  ],
+  "filters": [
+    "T1.Type = \"Graphics\"",
+    "t2.Company_name = \"Nokia Corporation\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Hardware_Model_name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Hardware_Model_name",
+  "model_type": "report"
+}

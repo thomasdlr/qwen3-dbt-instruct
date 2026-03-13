@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "phone_market",
+    "phone"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Phone_ID = T2.Phone_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T1.Num_of_stock",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.Name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.Name",
+    "SUM(T1.Num_of_stock)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Name",
+  "model_type": "fact"
+}

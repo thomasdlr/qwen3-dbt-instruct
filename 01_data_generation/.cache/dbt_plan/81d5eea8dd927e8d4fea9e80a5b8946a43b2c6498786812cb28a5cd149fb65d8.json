@@ -1,0 +1,49 @@
+{
+  "sources": [
+    "raw.nomination",
+    "raw.artwork",
+    "raw.festival_detail"
+  ],
+  "staging_models": [
+    "stg_nomination",
+    "stg_artwork",
+    "stg_festival_detail"
+  ],
+  "intermediate_models": [
+    "int_program_talent_shows"
+  ],
+  "mart_model": {
+    "name": "rpt_program_talent_show_nominations",
+    "type": "report",
+    "grain": "1 row per Artwork_ID, Festival_ID"
+  },
+  "ctes": [
+    "stg_nomination",
+    "stg_artwork",
+    "stg_festival_detail"
+  ],
+  "joins": [
+    {
+      "left": "stg_nomination",
+      "right": "stg_artwork",
+      "on": "Artwork_ID = Artwork_ID"
+    },
+    {
+      "left": "stg_nomination",
+      "right": "stg_festival_detail",
+      "on": "Festival_ID = Festival_ID"
+    }
+  ],
+  "tests": {
+    "Artwork_ID": [
+      "not_null"
+    ],
+    "Festival_ID": [
+      "not_null",
+      "unique"
+    ],
+    "Festival_Name": [
+      "not_null"
+    ]
+  }
+}

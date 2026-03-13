@@ -1,0 +1,46 @@
+{
+  "sources": [
+    "raw.Scientists",
+    "raw.AssignedTo",
+    "raw.Projects"
+  ],
+  "staging_models": [
+    "stg_Scientists",
+    "stg_AssignedTo",
+    "stg_Projects"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_scientist_projects",
+    "type": "report",
+    "grain": "1 row per Scientists.Name, Projects.Name"
+  },
+  "ctes": [
+    "stg_Scientists",
+    "stg_AssignedTo",
+    "stg_Projects"
+  ],
+  "joins": [
+    {
+      "left": "stg_Scientists",
+      "right": "stg_AssignedTo",
+      "on": "SSN = Scientist"
+    },
+    {
+      "left": "stg_AssignedTo",
+      "right": "stg_Projects",
+      "on": "Project = Code"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "Projects.Name": [
+      "not_null"
+    ],
+    "Hours": [
+      "not_null"
+    ]
+  }
+}

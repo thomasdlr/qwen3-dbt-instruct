@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.drivers",
+    "raw.results",
+    "raw.races"
+  ],
+  "staging_models": [
+    "stg_drivers",
+    "stg_results",
+    "stg_races"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_driver_race_counts",
+    "type": "dimension",
+    "grain": "1 row per driverid"
+  },
+  "ctes": [
+    "stg_drivers",
+    "stg_results",
+    "stg_races"
+  ],
+  "joins": [
+    {
+      "left": "stg_drivers",
+      "right": "stg_results",
+      "on": "driverid = driverid"
+    },
+    {
+      "left": "stg_results",
+      "right": "stg_races",
+      "on": "raceid = raceid"
+    }
+  ],
+  "tests": {
+    "driverid": [
+      "not_null",
+      "unique"
+    ],
+    "surname": [
+      "not_null"
+    ]
+  }
+}

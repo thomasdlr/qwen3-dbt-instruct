@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "albums",
+    "tracks"
+  ],
+  "joins": [
+    {
+      "left_table": "albums",
+      "right_table": "tracks",
+      "condition": "T1.id = T2.genre_id"
+    }
+  ],
+  "filters": [
+    "T1.title = \"Balls to the Wall\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.exhibition",
+    "raw.artist"
+  ],
+  "staging_models": [
+    "stg_exhibition",
+    "stg_artist"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_artist_exhibitions",
+    "type": "fact",
+    "grain": "1 row per artist_id"
+  },
+  "ctes": [
+    "stg_exhibition",
+    "stg_artist"
+  ],
+  "joins": [
+    {
+      "left": "stg_exhibition",
+      "right": "stg_artist",
+      "on": "stg_exhibition.artist_id = stg_artist.artist_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "country": [
+      "not_null"
+    ]
+  }
+}

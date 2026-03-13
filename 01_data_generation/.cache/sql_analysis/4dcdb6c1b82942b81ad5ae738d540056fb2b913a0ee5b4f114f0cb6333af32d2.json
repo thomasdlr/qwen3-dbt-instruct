@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Owners",
+    "Professionals"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "state"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "state",
+  "model_type": "report"
+}

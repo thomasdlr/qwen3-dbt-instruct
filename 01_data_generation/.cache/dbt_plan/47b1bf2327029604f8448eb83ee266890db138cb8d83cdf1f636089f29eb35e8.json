@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.album",
+    "raw.artist"
+  ],
+  "staging_models": [
+    "stg_album",
+    "stg_artist"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_artist_album_count",
+    "type": "report",
+    "grain": "1 row per artist.name"
+  },
+  "ctes": [
+    "stg_album",
+    "stg_artist"
+  ],
+  "joins": [
+    {
+      "left": "stg_album",
+      "right": "stg_artist",
+      "on": "stg_album.artist_id = stg_artist.artist_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

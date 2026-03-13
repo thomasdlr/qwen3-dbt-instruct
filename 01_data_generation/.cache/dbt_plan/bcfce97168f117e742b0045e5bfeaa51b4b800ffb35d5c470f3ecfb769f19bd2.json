@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.hiring",
+    "raw.shop"
+  ],
+  "staging_models": [
+    "stg_hiring",
+    "stg_shop"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_shop_hiring",
+    "type": "report",
+    "grain": "1 row per shop_id"
+  },
+  "ctes": [
+    "stg_hiring",
+    "stg_shop"
+  ],
+  "joins": [
+    {
+      "left": "stg_hiring",
+      "right": "stg_shop",
+      "on": "stg_hiring.shop_id = stg_shop.shop_id"
+    }
+  ],
+  "tests": {
+    "shop_id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

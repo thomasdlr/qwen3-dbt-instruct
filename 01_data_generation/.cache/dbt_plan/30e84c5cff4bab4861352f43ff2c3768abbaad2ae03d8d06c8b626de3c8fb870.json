@@ -1,0 +1,42 @@
+{
+  "sources": [
+    "raw.car_makers",
+    "raw.model_list",
+    "raw.car_names"
+  ],
+  "staging_models": [
+    "stg_car_makers",
+    "stg_model_list",
+    "stg_car_names"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_car_makers_with_models",
+    "type": "report",
+    "grain": "1 row per car_makers.id"
+  },
+  "ctes": [
+    "stg_car_makers",
+    "stg_model_list"
+  ],
+  "joins": [
+    {
+      "left": "stg_car_makers",
+      "right": "stg_model_list",
+      "on": "stg_car_makers.id = stg_model_list.maker"
+    },
+    {
+      "left": "stg_model_list",
+      "right": "stg_car_names",
+      "on": "stg_model_list.model = stg_car_names.model"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "maker": [
+      "not_null"
+    ]
+  }
+}

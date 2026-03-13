@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "CLASS",
+    "enroll",
+    "student",
+    "course"
+  ],
+  "joins": [
+    {
+      "left_table": "CLASS",
+      "right_table": "enroll",
+      "condition": "T1.class_code = T2.class_code"
+    },
+    {
+      "left_table": "enroll",
+      "right_table": "student",
+      "condition": "T3.stu_num = T2.stu_num"
+    },
+    {
+      "left_table": "CLASS",
+      "right_table": "course",
+      "condition": "T4.crs_code = T1.crs_code"
+    }
+  ],
+  "filters": [
+    "T3.stu_lname = 'Smithson'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T4.crs_description",
+    "T4.crs_credit"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "CLASS.class_code, course.crs_code",
+  "model_type": "report"
+}

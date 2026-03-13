@@ -1,0 +1,17 @@
+{
+  "tables": [
+    "AIRLINES",
+    "FLIGHTS"
+  ],
+  "joins": [
+    {
+      "left_table": "AIRLINES",
+      "right_table": "FLIGHTS",
+      "condition": "T2.Airline = T1.uid"
+    }
+  ],
+  "filters": [
+    "T1.Airline = \"United Airlines\"",
+    "T2.DestAirport = \"ASY\""
+  ]
+}

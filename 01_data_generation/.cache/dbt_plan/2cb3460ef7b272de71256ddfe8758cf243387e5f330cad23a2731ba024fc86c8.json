@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.physician",
+    "raw.affiliated_with",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_physician",
+    "stg_affiliated_with",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_physician_department",
+    "type": "dimension",
+    "grain": "1 row per physician.EmployeeID, department.DepartmentID"
+  },
+  "ctes": [
+    "stg_physician",
+    "stg_affiliated_with",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_physician",
+      "right": "stg_affiliated_with",
+      "on": "stg_physician.EmployeeID = stg_affiliated_with.physician"
+    },
+    {
+      "left": "stg_affiliated_with",
+      "right": "stg_department",
+      "on": "stg_affiliated_with.department = stg_department.DepartmentID"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "dept_name": [
+      "not_null"
+    ]
+  }
+}

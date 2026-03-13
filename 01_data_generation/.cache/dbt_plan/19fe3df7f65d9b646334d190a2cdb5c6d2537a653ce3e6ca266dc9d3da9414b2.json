@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.campuses",
+    "raw.degrees"
+  ],
+  "staging_models": [
+    "stg_campuses",
+    "stg_degrees"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_campus_degrees_1998_2002",
+    "type": "fact",
+    "grain": "1 row per campus"
+  },
+  "ctes": [
+    "stg_campuses",
+    "stg_degrees"
+  ],
+  "joins": [
+    {
+      "left": "stg_campuses",
+      "right": "stg_degrees",
+      "on": "stg_campuses.id = stg_degrees.campus"
+    }
+  ],
+  "tests": {
+    "campus": [
+      "not_null"
+    ],
+    "degrees_sum": [
+      "not_null"
+    ]
+  }
+}

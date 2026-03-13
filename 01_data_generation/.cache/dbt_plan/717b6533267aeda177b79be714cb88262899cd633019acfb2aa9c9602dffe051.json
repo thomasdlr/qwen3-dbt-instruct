@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.enroll"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_enroll"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_student_enrollment_status",
+    "type": "report",
+    "grain": "1 row per student enrollment status"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_enroll"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_enroll",
+      "on": "stu_num"
+    }
+  ],
+  "tests": {
+    "stu_fname": [
+      "not_null"
+    ]
+  }
+}

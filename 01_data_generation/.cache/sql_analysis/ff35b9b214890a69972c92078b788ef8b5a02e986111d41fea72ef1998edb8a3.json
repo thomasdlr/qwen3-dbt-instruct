@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "department",
+    "management"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.department_id = T2.department_id"
+    }
+  ],
+  "filters": [
+    "T2.temporary_acting = 'Yes'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "T1.num_employees"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.department_id",
+  "model_type": "report"
+}

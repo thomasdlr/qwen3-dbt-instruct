@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Certificate",
+    "raw.Aircraft"
+  ],
+  "staging_models": [
+    "stg_Certificate",
+    "stg_Aircraft"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_aircraft_with_long_certificates",
+    "type": "report",
+    "grain": "1 row per Aircraft (aid)"
+  },
+  "ctes": [
+    "stg_Aircraft",
+    "stg_Certificate"
+  ],
+  "joins": [
+    {
+      "left": "stg_Aircraft",
+      "right": "stg_Certificate",
+      "on": "stg_Aircraft.aid = stg_Certificate.aid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

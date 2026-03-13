@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "CLASS",
+    "employee",
+    "professor",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "CLASS",
+      "right_table": "employee",
+      "condition": "T1.prof_num = T2.emp_num"
+    },
+    {
+      "left_table": "employee",
+      "right_table": "professor",
+      "condition": "T2.emp_num = T3.emp_num"
+    },
+    {
+      "left_table": "department",
+      "right_table": "professor",
+      "condition": "T4.dept_code = T3.dept_code"
+    }
+  ],
+  "filters": [
+    "T4.dept_name = 'Computer Info. Systems'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.emp_fname",
+    "T3.prof_high_degree"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.emp_fname, T3.prof_high_degree",
+  "model_type": "report"
+}

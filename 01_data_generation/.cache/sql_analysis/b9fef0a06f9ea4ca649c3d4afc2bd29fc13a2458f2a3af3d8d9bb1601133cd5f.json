@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "Staff_Roles",
+    "Project_Staff",
+    "Project_outcomes"
+  ],
+  "joins": [
+    {
+      "left_table": "Staff_Roles",
+      "right_table": "Project_Staff",
+      "condition": "T1.role_code = T2.role_code"
+    },
+    {
+      "left_table": "Project_Staff",
+      "right_table": "Project_outcomes",
+      "condition": "T2.project_id = T3.project_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.staff_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.role_description",
+    "T2.staff_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.staff_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Financial_transactions",
+    "raw.Accounts"
+  ],
+  "staging_models": [
+    "stg_Financial_transactions",
+    "stg_Accounts"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_account_transaction_counts",
+    "type": "fact",
+    "grain": "1 row per account"
+  },
+  "ctes": [
+    "stg_Financial_transactions",
+    "stg_Accounts"
+  ],
+  "joins": [
+    {
+      "left": "stg_Financial_transactions",
+      "right": "stg_Accounts",
+      "on": "T1.account_id = T2.account_id"
+    }
+  ],
+  "tests": {
+    "account_id": [
+      "not_null"
+    ],
+    "account_name": [
+      "not_null"
+    ]
+  }
+}

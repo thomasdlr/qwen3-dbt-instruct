@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "player",
+    "player_college",
+    "college"
+  ],
+  "joins": [
+    {
+      "left_table": "player",
+      "right_table": "player_college",
+      "condition": "T1.player_id = T2.player_id"
+    },
+    {
+      "left_table": "player_college",
+      "right_table": "college",
+      "condition": "T3.college_id = T2.college_id"
+    }
+  ],
+  "filters": [
+    "T3.name_full = 'Yale University'"
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "T1.height",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "AVG(T1.height)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "college_id",
+  "model_type": "report"
+}

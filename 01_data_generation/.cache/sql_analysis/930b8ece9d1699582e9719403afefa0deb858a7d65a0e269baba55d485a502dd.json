@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "COUNTRIES",
+    "CAR_MAKERS"
+  ],
+  "joins": [
+    {
+      "left_table": "COUNTRIES",
+      "right_table": "CAR_MAKERS",
+      "condition": "T1.CountryId = T2.Country"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.CountryId"
+  ],
+  "having": [
+    "COUNT(*) >= 1"
+  ],
+  "select_columns": [
+    "T1.CountryName",
+    "T1.CountryId"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.CountryId",
+  "model_type": "dimension"
+}

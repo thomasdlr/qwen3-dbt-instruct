@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "department",
+    "management",
+    "head"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (department)",
+      "right_table": "T2 (management)",
+      "condition": "T1.department_id = T2.department_id"
+    },
+    {
+      "left_table": "T2 (management)",
+      "right_table": "T3 (head)",
+      "condition": "T2.head_id = T3.head_id"
+    }
+  ],
+  "filters": [
+    "T1.name = 'Treasury'"
+  ],
+  "select_columns": [
+    "T3.born_state"
+  ],
+  "set_operations": [
+    "INTERSECT",
+    "UNION"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.born_state",
+  "model_type": "report"
+}

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.postseason",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_postseason",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_boston_red_stockings_2009_postseason",
+    "type": "report",
+    "grain": "1 row per report"
+  },
+  "ctes": [
+    "stg_postseason",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_postseason",
+      "right": "stg_team",
+      "on": "stg_postseason.team_id_loser = stg_team.team_id_br"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

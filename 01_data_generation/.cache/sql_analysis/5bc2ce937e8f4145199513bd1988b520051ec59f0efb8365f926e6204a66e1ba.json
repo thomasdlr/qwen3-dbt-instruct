@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "BLOCK",
+    "room"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (BLOCK)",
+      "right_table": "T2 (room)",
+      "condition": "T1.blockfloor = T2.blockfloor AND T1.blockcode = T2.blockcode"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.blockcode"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T1.blockcode"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.blockcode",
+  "model_type": "fact"
+}

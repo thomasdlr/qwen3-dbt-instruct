@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.movie",
+    "raw.culture_company",
+    "raw.book_club"
+  ],
+  "staging_models": [
+    "stg_movie",
+    "stg_culture_company",
+    "stg_book_club"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_movie_book_club_china",
+    "type": "report",
+    "grain": "1 row per movie.title, book_club.book_title"
+  },
+  "ctes": [
+    "stg_movie",
+    "stg_culture_company",
+    "stg_book_club"
+  ],
+  "joins": [
+    {
+      "left": "stg_movie",
+      "right": "stg_culture_company",
+      "on": "movie.movie_id = culture_company.movie_id"
+    },
+    {
+      "left": "stg_culture_company",
+      "right": "stg_book_club",
+      "on": "culture_company.book_club_id = book_club.book_club_id"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ],
+    "book_title": [
+      "not_null"
+    ]
+  }
+}

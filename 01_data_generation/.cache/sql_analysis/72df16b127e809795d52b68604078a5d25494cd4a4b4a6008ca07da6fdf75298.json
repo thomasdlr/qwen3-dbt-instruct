@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "customers",
+    "invoices"
+  ],
+  "joins": [
+    {
+      "left_table": "customers",
+      "right_table": "invoices",
+      "condition": "T1.id = T2.customer_id"
+    }
+  ],
+  "filters": [
+    "T1.first_name = \"Lucas\"",
+    "T1.last_name = \"Mancini\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "customer_id",
+  "model_type": "report"
+}

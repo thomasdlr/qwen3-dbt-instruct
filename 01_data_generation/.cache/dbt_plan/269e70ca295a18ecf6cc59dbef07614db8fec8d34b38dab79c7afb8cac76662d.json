@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.employees",
+    "raw.documents_to_be_destroyed"
+  ],
+  "staging_models": [
+    "stg_employees",
+    "stg_documents_to_be_destroyed"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employees_without_documents",
+    "type": "report",
+    "grain": "1 row per employee_id"
+  },
+  "ctes": [
+    "stg_employees",
+    "stg_documents_to_be_destroyed"
+  ],
+  "joins": [],
+  "tests": {
+    "employee_id": [
+      "not_null"
+    ]
+  }
+}

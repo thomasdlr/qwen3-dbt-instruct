@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.conductor",
+    "raw.orchestra"
+  ],
+  "staging_models": [
+    "stg_conductor",
+    "stg_orchestra"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_conductor_orchestra_agg",
+    "type": "fact",
+    "grain": "1 row per Conductor_ID"
+  },
+  "ctes": [
+    "stg_conductor",
+    "stg_orchestra"
+  ],
+  "joins": [
+    {
+      "left": "stg_conductor",
+      "right": "stg_orchestra",
+      "on": "stg_conductor.Conductor_ID = stg_orchestra.Conductor_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "Conductor_ID": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

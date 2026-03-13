@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Things",
+    "Organizations"
+  ],
+  "joins": [
+    {
+      "left_table": "Things",
+      "right_table": "Organizations",
+      "condition": "T1.organization_id = T2.organization_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.thing_id",
+    "T1.type_of_Thing_Code",
+    "T2.organization_details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.thing_id",
+  "model_type": "dimension"
+}

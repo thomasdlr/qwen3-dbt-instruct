@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Student"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT StuID IN (SELECT T1.StuID FROM Has_allergy AS T1 JOIN Allergy_Type AS T2 ON T1.Allergy = T2.Allergy WHERE T2.allergytype = \"food\")"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "fname",
+    "lname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "fname, lname",
+  "model_type": "report"
+}

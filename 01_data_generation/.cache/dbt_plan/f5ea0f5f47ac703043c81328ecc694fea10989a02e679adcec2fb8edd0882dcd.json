@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.sales",
+    "raw.transactions"
+  ],
+  "staging_models": [
+    "stg_sales",
+    "stg_transactions"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_sales_transactions",
+    "type": "fact",
+    "grain": "1 row per sales_transaction_id and transaction_id"
+  },
+  "ctes": [
+    "stg_sales",
+    "stg_transactions"
+  ],
+  "joins": [
+    {
+      "left": "stg_sales",
+      "right": "stg_transactions",
+      "on": "sales_transaction_id = transaction_id"
+    }
+  ],
+  "tests": {
+    "sales_details": [
+      "not_null"
+    ],
+    "date_of_transaction": [
+      "not_null"
+    ]
+  }
+}

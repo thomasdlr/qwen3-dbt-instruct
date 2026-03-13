@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.useracct",
+    "raw.trust"
+  ],
+  "staging_models": [
+    "stg_useracct",
+    "stg_trust"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_useracct_trust",
+    "type": "report",
+    "grain": "1 row per useracct.name"
+  },
+  "ctes": [
+    "stg_useracct",
+    "stg_trust"
+  ],
+  "joins": [
+    {
+      "left": "stg_useracct",
+      "right": "stg_trust",
+      "on": "stg_useracct.u_id = stg_trust.target_u_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

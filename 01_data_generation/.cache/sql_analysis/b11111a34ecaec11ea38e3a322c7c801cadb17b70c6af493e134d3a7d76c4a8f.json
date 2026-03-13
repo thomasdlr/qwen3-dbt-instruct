@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Rating",
+    "Movie"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.mID = T2.mID"
+    }
+  ],
+  "filters": [
+    "T1.stars = 3",
+    "T1.stars = 4"
+  ],
+  "select_columns": [
+    "T2.title"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.title",
+  "model_type": "report"
+}

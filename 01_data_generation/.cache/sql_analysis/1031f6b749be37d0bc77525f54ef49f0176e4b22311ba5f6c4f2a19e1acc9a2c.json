@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "debate_people",
+    "people"
+  ],
+  "joins": [
+    {
+      "left_table": "debate_people",
+      "right_table": "people",
+      "condition": "T1.Negative = T2.People_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.Name"
+  ],
+  "having": [
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "T2.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Name",
+  "model_type": "report"
+}

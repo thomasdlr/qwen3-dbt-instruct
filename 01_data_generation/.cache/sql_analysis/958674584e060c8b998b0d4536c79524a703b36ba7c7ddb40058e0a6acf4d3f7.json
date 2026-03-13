@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Player",
+    "Player_Attributes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.player_api_id = T2.player_api_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.player_name",
+    "T1.birthday"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Player.player_name, Player.birthday",
+  "model_type": "report"
+}

@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.Performance",
+    "raw.Band",
+    "raw.Songs"
+  ],
+  "staging_models": [
+    "stg_Performance",
+    "stg_Band",
+    "stg_Songs"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_band_performance_back_stage_badlands",
+    "type": "report",
+    "grain": "1 row per Performance.SongId, Performance.StagePosition"
+  },
+  "ctes": [
+    "stg_Performance",
+    "stg_Band",
+    "stg_Songs"
+  ],
+  "joins": [
+    {
+      "left": "stg_Performance",
+      "right": "stg_Band",
+      "on": "Performance.bandmate = Band.id"
+    },
+    {
+      "left": "stg_Performance",
+      "right": "stg_Songs",
+      "on": "Songs.SongId = Performance.SongId"
+    }
+  ],
+  "tests": {
+    "firstname": [
+      "not_null"
+    ],
+    "lastname": [
+      "not_null"
+    ]
+  }
+}

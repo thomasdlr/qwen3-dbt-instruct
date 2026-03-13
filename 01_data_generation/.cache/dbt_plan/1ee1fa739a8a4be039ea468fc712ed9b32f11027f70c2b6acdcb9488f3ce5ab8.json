@@ -1,0 +1,49 @@
+{
+  "sources": [
+    "raw.rating",
+    "raw.movie",
+    "raw.reviewer"
+  ],
+  "staging_models": [
+    "stg_rating",
+    "stg_movie",
+    "stg_reviewer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_review_details",
+    "type": "report",
+    "grain": "1 row per reviewer and movie rating"
+  },
+  "ctes": [
+    "stg_rating",
+    "stg_movie",
+    "stg_reviewer"
+  ],
+  "joins": [
+    {
+      "left": "stg_rating",
+      "right": "stg_movie",
+      "on": "stg_rating.mid = stg_movie.mid"
+    },
+    {
+      "left": "stg_rating",
+      "right": "stg_reviewer",
+      "on": "stg_rating.rid = stg_reviewer.rid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "title": [
+      "not_null"
+    ],
+    "stars": [
+      "not_null"
+    ],
+    "ratingdate": [
+      "not_null"
+    ]
+  }
+}

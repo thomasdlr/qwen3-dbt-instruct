@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.complaints",
+    "raw.customers"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_complaints",
+    "stg_customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customer_complaints",
+    "type": "report",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_complaints",
+    "stg_customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_complaints",
+      "on": "product_id = product_id"
+    },
+    {
+      "left": null,
+      "right": null,
+      "on": null
+    }
+  ],
+  "tests": {
+    "product_name": [
+      "not_null"
+    ]
+  }
+}

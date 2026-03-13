@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "student_course_registrations",
+    "student_course_attendance"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT student_id IN (SELECT student_id FROM student_course_attendance)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "*"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "student_id",
+  "model_type": "report"
+}

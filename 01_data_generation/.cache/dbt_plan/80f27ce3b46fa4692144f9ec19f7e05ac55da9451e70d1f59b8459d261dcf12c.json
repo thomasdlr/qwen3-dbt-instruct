@@ -1,0 +1,29 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Has_allergy"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Has_allergy"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_Student_except_allergy",
+    "type": "report",
+    "grain": "1 row per fname, sex combination"
+  },
+  "ctes": [
+    "stg_Student",
+    "stg_Has_allergy"
+  ],
+  "joins": [],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "sex": [
+      "not_null"
+    ]
+  }
+}

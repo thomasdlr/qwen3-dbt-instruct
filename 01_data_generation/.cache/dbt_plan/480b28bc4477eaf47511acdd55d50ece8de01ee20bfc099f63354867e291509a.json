@@ -1,0 +1,51 @@
+{
+  "sources": [
+    "raw.class",
+    "raw.employee",
+    "raw.professor",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_class",
+    "stg_employee",
+    "stg_professor",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accounting_class_professors",
+    "type": "report",
+    "grain": "1 row per employee and class"
+  },
+  "ctes": [
+    "stg_class",
+    "stg_employee",
+    "stg_professor",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_class",
+      "right": "stg_employee",
+      "on": "prof_num = emp_num"
+    },
+    {
+      "left": "stg_employee",
+      "right": "stg_professor",
+      "on": "emp_num = emp_num"
+    },
+    {
+      "left": "stg_department",
+      "right": "stg_professor",
+      "on": "dept_code = emp_num"
+    }
+  ],
+  "tests": {
+    "emp_fname": [
+      "not_null"
+    ],
+    "class_room": [
+      "not_null"
+    ]
+  }
+}

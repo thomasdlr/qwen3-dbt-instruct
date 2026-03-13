@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.game",
+    "raw.injury_accident"
+  ],
+  "staging_models": [
+    "stg_game",
+    "stg_injury_accident"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_game_injuries",
+    "type": "fact",
+    "grain": "1 row per game"
+  },
+  "ctes": [
+    "stg_game",
+    "stg_injury_accident"
+  ],
+  "joins": [
+    {
+      "left": "stg_game",
+      "right": "stg_injury_accident",
+      "on": "stg_game.id = stg_injury_accident.game_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "score": [
+      "not_null"
+    ],
+    "date": [
+      "not_null"
+    ]
+  }
+}

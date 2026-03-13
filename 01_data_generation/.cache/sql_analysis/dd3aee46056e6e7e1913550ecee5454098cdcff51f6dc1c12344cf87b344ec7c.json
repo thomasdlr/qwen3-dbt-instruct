@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "course",
+    "prereq"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.course_id = T2.course_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": null
+    }
+  ],
+  "group_by": [
+    "T2.course_id"
+  ],
+  "having": [
+    "COUNT(*) = 2"
+  ],
+  "select_columns": [
+    "T1.title"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.course_id",
+  "model_type": "fact"
+}

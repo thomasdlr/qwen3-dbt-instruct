@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "physician",
+    "prescribes",
+    "medication"
+  ],
+  "joins": [
+    {
+      "left_table": "physician",
+      "right_table": "prescribes",
+      "condition": "T1.employeeid = T2.physician"
+    },
+    {
+      "left_table": "prescribes",
+      "right_table": "medication",
+      "condition": "T3.code = T2.medication"
+    }
+  ],
+  "filters": [
+    "T3.Brand = \"X\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "T1.position"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "physician.employeeid",
+  "model_type": "dimension"
+}

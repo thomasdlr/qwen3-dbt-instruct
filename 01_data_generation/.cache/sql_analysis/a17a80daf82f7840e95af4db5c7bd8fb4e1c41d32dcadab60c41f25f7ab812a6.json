@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "Faculty",
+    "Faculty_participates_in",
+    "activity"
+  ],
+  "joins": [
+    {
+      "left_table": "Faculty",
+      "right_table": "Faculty_participates_in",
+      "condition": "T1.facID = T2.facID"
+    },
+    {
+      "left_table": "Faculty_participates_in",
+      "right_table": "activity",
+      "condition": "T2.actid = T3.actid"
+    }
+  ],
+  "filters": [
+    "T3.activity_name = 'Canoeing'",
+    "T3.activity_name = 'Kayaking'"
+  ],
+  "select_columns": [
+    "T1.lname"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_subquery": false,
+  "grain": "T1.lname",
+  "model_type": "report"
+}

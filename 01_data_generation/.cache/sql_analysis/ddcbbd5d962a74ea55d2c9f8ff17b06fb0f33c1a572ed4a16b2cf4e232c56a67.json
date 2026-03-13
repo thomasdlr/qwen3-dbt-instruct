@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Member",
+    "party"
+  ],
+  "joins": [
+    {
+      "left_table": "Member",
+      "right_table": "party",
+      "condition": "T1.party_id = T2.party_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T1.party_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.party_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.party_id",
+  "model_type": "dimension"
+}

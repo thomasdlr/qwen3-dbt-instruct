@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.area_code_state",
+    "raw.votes"
+  ],
+  "staging_models": [
+    "stg_area_code_state",
+    "stg_votes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_area_code_vote_counts",
+    "type": "report",
+    "grain": "1 row per area_code"
+  },
+  "ctes": [
+    "stg_area_code_state",
+    "stg_votes"
+  ],
+  "joins": [
+    {
+      "left": "stg_area_code_state",
+      "right": "stg_votes",
+      "on": "stg_area_code_state.state = stg_votes.state"
+    }
+  ],
+  "tests": {
+    "area_code": [
+      "not_null"
+    ]
+  }
+}

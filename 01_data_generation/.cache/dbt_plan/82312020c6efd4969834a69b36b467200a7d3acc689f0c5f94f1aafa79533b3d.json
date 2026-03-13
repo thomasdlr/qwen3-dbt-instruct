@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Documents",
+    "raw.Ref_Shipping_Agents"
+  ],
+  "staging_models": [
+    "stg_Documents",
+    "stg_Ref_Shipping_Agents"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_document_usps_paper_done",
+    "type": "report",
+    "grain": "1 row per document_id"
+  },
+  "ctes": [
+    "stg_Documents",
+    "stg_Ref_Shipping_Agents"
+  ],
+  "joins": [
+    {
+      "left": "stg_Documents",
+      "right": "stg_Ref_Shipping_Agents",
+      "on": "stg_Documents.shipping_agent_code = stg_Ref_Shipping_Agents.shipping_agent_code"
+    }
+  ],
+  "tests": {
+    "document_id": [
+      "not_null"
+    ]
+  }
+}

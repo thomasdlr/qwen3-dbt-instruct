@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "Addresses",
+    "Students"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.address_id = T2.address_id"
+    }
+  ],
+  "filters": [
+    "T1.state_province_county = \"Wisconsin\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.first_name",
+    "T2.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.first_name, T2.last_name",
+  "model_type": "report"
+}

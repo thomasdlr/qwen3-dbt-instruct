@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "routes",
+    "airports",
+    "airlines"
+  ],
+  "joins": [
+    {
+      "left_table": "routes",
+      "right_table": "airports",
+      "condition": "T1.dst_apid = T2.apid"
+    },
+    {
+      "left_table": "routes",
+      "right_table": "airlines",
+      "condition": "T1.alid = T3.alid"
+    }
+  ],
+  "filters": [
+    "T2.country = 'Italy'",
+    "T3.name = 'American Airlines'"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "routes.alid, routes.dst_apid",
+  "model_type": "report"
+}

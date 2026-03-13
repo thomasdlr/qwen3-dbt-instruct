@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Addresses",
+    "Stores"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (Addresses)",
+      "right_table": "T2 (Stores)",
+      "condition": "T1.Address_ID = T2.Address_ID"
+    }
+  ],
+  "filters": [
+    "T2.Store_Name = \"FJA Filming\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.City_Town"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Address_ID (via JOIN to Stores)",
+  "model_type": "dimension"
+}

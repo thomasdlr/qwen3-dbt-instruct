@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.Apartment_Bookings",
+    "raw.Apartments"
+  ],
+  "staging_models": [
+    "stg_Apartment_Bookings",
+    "stg_Apartments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_confirmed_provisional_apt_numbers",
+    "type": "report",
+    "grain": "1 row per apt_number"
+  },
+  "ctes": [
+    "stg_Apartment_Bookings",
+    "stg_Apartments"
+  ],
+  "joins": [
+    {
+      "left": "stg_Apartment_Bookings",
+      "right": "stg_Apartments",
+      "on": "apt_id = apt_id"
+    }
+  ],
+  "tests": {
+    "apt_number": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "music_festival",
+    "volume"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Volume = T2.Volume_ID"
+    }
+  ],
+  "filters": [
+    "T1.Result = \"Nominated\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Song"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Song",
+  "model_type": "report"
+}

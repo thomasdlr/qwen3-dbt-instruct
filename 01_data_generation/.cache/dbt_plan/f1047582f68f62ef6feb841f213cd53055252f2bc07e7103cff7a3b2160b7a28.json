@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.county",
+    "raw.election"
+  ],
+  "staging_models": [
+    "stg_county",
+    "stg_election"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_delegate_county",
+    "type": "report",
+    "grain": "1 row per Delegate, County_name"
+  },
+  "ctes": [
+    "stg_county",
+    "stg_election"
+  ],
+  "joins": [
+    {
+      "left": "stg_county",
+      "right": "stg_election",
+      "on": "County_id = District"
+    }
+  ],
+  "tests": {
+    "Delegate": [
+      "not_null"
+    ],
+    "County_name": [
+      "not_null"
+    ]
+  }
+}

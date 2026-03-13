@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "Orders",
+    "Customers"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (Orders)",
+      "right_table": "T2 (Customers)",
+      "condition": "T1.customer_id = T2.customer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.customer_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.customer_last_name",
+    "T1.customer_id",
+    "T2.phone_number"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.customer_id",
+  "model_type": "fact"
+}

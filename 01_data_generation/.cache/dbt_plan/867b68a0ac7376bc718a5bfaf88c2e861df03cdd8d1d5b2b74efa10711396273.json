@@ -1,0 +1,58 @@
+{
+  "sources": [
+    "raw.employees",
+    "raw.departments",
+    "raw.locations",
+    "raw.countries"
+  ],
+  "staging_models": [
+    "stg_employees",
+    "stg_departments",
+    "stg_locations",
+    "stg_countries"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_employees",
+    "type": "dimension",
+    "grain": "1 row per employee_id"
+  },
+  "ctes": [
+    "stg_employees",
+    "stg_departments",
+    "stg_locations",
+    "stg_countries"
+  ],
+  "joins": [
+    {
+      "left": "stg_employees",
+      "right": "stg_departments",
+      "on": "employee.department_id = department.department_id"
+    },
+    {
+      "left": "stg_departments",
+      "right": "stg_locations",
+      "on": "department.location_id = location.location_id"
+    },
+    {
+      "left": "stg_locations",
+      "right": "stg_countries",
+      "on": "location.country_id = country.country_id"
+    }
+  ],
+  "tests": {
+    "employee_id": [
+      "not_null",
+      "unique"
+    ],
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ],
+    "country_name": [
+      "not_null"
+    ]
+  }
+}

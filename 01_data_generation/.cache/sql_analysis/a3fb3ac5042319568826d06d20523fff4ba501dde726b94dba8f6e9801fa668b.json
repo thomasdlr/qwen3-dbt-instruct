@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "student",
+    "has_pet",
+    "pets"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "has_pet",
+      "condition": "T1.stuid = T2.stuid"
+    },
+    {
+      "left_table": "has_pet",
+      "right_table": "pets",
+      "condition": "T2.petid = T3.petid"
+    }
+  ],
+  "filters": [
+    "T1.sex = 'F'",
+    "T3.pettype = 'dog'"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

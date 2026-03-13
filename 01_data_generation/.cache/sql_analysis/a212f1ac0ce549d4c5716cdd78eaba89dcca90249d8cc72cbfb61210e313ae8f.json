@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "Documents",
+    "Templates"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.template_id = T2.template_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T1.template_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.template_id",
+    "T2.Template_Type_Code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.template_id",
+  "model_type": "report"
+}

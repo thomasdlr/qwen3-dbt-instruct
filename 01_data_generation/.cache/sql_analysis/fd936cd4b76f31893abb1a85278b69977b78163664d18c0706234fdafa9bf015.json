@@ -1,0 +1,49 @@
+{
+  "tables": [
+    "student",
+    "enroll",
+    "CLASS",
+    "course",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "enroll",
+      "condition": "T1.stu_num = T2.stu_num"
+    },
+    {
+      "left_table": "enroll",
+      "right_table": "CLASS",
+      "condition": "T2.class_code = T3.class_code"
+    },
+    {
+      "left_table": "CLASS",
+      "right_table": "course",
+      "condition": "T3.crs_code = T4.crs_code"
+    },
+    {
+      "left_table": "course",
+      "right_table": "department",
+      "condition": "T5.dept_code = T4.dept_code"
+    }
+  ],
+  "filters": [
+    "T5.dept_name = 'Accounting'",
+    "T5.dept_name = 'Computer Info. Systems'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.stu_fname"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "student.stu_fname",
+  "model_type": "report"
+}

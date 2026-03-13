@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.home_game",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_boston_red_stockings_attendance_2000_to_2010",
+    "type": "report",
+    "grain": "1 row per filtered team-year combination"
+  },
+  "ctes": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_home_game",
+      "right": "stg_team",
+      "on": "stg_home_game.team_id = stg_team.team_id_br"
+    }
+  ],
+  "tests": {
+    "sum_attendance": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.Ref_Service_Types",
+    "raw.Services"
+  ],
+  "staging_models": [
+    "stg_Ref_Service_Types",
+    "stg_Services"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_service_type_counts",
+    "type": "fact",
+    "grain": "1 row per Service_Type_Code"
+  },
+  "ctes": [
+    "stg_Ref_Service_Types",
+    "stg_Services"
+  ],
+  "joins": [
+    {
+      "left": "stg_Ref_Service_Types",
+      "right": "stg_Services",
+      "on": "T1.Service_Type_Code = T2.Service_Type_Code"
+    }
+  ],
+  "tests": {
+    "Service_Type_Description": [
+      "not_null"
+    ],
+    "Service_Type_Code": [
+      "not_null",
+      "unique"
+    ],
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

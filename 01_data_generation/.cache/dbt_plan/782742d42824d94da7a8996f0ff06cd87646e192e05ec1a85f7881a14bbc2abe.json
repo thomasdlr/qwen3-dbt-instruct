@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.lives_in",
+    "raw.dorm"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_dorm_avg_age",
+    "type": "fact",
+    "grain": "1 row per dorm_name"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_lives_in",
+      "on": "stg_student.stuid = stg_lives_in.stuid"
+    },
+    {
+      "left": "stg_lives_in",
+      "right": "stg_dorm",
+      "on": "stg_dorm.dormid = stg_lives_in.dormid"
+    }
+  ],
+  "tests": {
+    "dorm_name": [
+      "not_null",
+      "unique"
+    ],
+    "avg_age": [
+      "not_null"
+    ]
+  }
+}

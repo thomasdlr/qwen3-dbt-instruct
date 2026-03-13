@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "professor",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "professor",
+      "right_table": "department",
+      "condition": "T1.dept_code = T2.dept_code"
+    }
+  ],
+  "filters": [
+    "T2.dept_name = 'Accounting'",
+    "T2.dept_name = 'Biology'"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "dept_code",
+  "model_type": "fact"
+}

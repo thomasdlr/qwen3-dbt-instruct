@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "customer_addresses",
+    "addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.address_id = t2.address_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.state_province_county"
+  ],
+  "having": [],
+  "select_columns": [
+    "t2.state_province_county",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.state_province_county",
+  "model_type": "fact"
+}

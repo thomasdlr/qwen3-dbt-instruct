@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "GRAPES",
+    "WINE"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.GRAPE = T2.GRAPE"
+    }
+  ],
+  "filters": [
+    "T1.Color = \"White\""
+  ],
+  "aggregations": [],
+  "group_by": [
+    "T2.Winery"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.Winery"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Winery",
+  "model_type": "report"
+}

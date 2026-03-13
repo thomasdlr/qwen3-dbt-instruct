@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "employees",
+    "departments",
+    "locations"
+  ],
+  "joins": [
+    {
+      "left_table": "employees",
+      "right_table": "departments",
+      "condition": "T1.department_id = T2.department_id"
+    },
+    {
+      "left_table": "departments",
+      "right_table": "locations",
+      "condition": "T2.location_id = T3.location_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.first_name",
+    "T1.last_name",
+    "T2.department_name",
+    "T3.city",
+    "T3.state_province"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "employees.first_name, employees.last_name",
+  "model_type": "report"
+}

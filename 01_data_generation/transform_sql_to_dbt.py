@@ -117,14 +117,65 @@ models/
    - Prepare joins, reshape data, or change the grain.
    - No heavy aggregations (save those for marts).
 
-3. MARTS (models/marts/core/fct_*.sql or models/marts/core/dim_*.sql)
+3. MARTS (models/marts/core/{prefix}_*.sql)
    - This is ALWAYS the final model answering the business question.
    - Reference {{ ref('stg_...') }} or {{ ref('int_...') }} — NEVER {{ source() }}.
    - Include {{ config(materialized='table') }}.
-   - fct_ for fact tables: events, transactions, metrics, aggregated data.
-     Must define a clear grain (e.g., "1 row per participant").
-   - dim_ for dimension tables: descriptive attributes, entity lookups.
    - Use CTEs to organize logic: import CTE → transform CTE → final SELECT.
+
+   PREFIX DECISION TREE — ask these questions in order:
+
+   1. Does the model represent a core business entity?
+      (customer, product, user, artist, driver, school…)
+      → dim_   Entity table. May include attribute enrichment and even
+               filtered sub-populations (dim_active_users is still a dim).
+              Grain: one row per entity instance.
+
+   2. Does the model represent events or individual measurable facts?
+      (orders, clicks, payments, visits, race results…)
+      → fct_   Row-level event table. Does NOT require GROUP BY — the grain
+               is the event itself.
+              Grain: one row per event/occurrence.
+
+   3. Does the model produce derived metrics or aggregated measures?
+      (revenue by customer, count of races per driver, avg score per team…)
+      → fct_   Aggregated fact. Requires GROUP BY + aggregate functions.
+              Grain: one row per entity/period being measured.
+
+   4. None of the above — the query answers a specific ad-hoc question:
+      filtered subsets, top-N, set operations (INTERSECT/EXCEPT), rankings.
+      → rpt_   Report model. Not a reusable entity or metric table.
+              Grain: one row per result of the specific question.
+
+   QUICK EXAMPLES:
+      dim_artist              — all artists with attributes
+      dim_active_users        — filtered entity, still a dim
+      fct_orders              — one row per order (no GROUP BY needed)
+      fct_revenue_by_customer — aggregated metric (GROUP BY)
+      rpt_top_chart_artists   — filtered/ranked answer to a question
+      rpt_visitors_both_eras  — INTERSECT query, not a reusable entity
+
+   MODEL TYPE — always set meta.model_type in the YAML:
+      dim_  → meta: {model_type: dimension}
+      fct_  → meta: {model_type: fact}
+      rpt_  → meta: {model_type: report}
+
+   GRAIN — derive it from the SQL structure, then set meta.grain:
+
+      The grain = the set of columns that UNIQUELY IDENTIFIES each output row.
+      Reason from the SQL, not from the business question wording:
+
+      • GROUP BY col            → "1 row per {col}"
+      • JOIN without DISTINCT   → "1 row per {left_pk}-{right_pk} pair"
+        (e.g. artist JOIN volume → "1 row per artist-volume pair")
+      • SELECT DISTINCT col     → "1 row per distinct {col}"
+      • INTERSECT / EXCEPT      → "1 row per distinct {col} in result set"
+      • ORDER BY … LIMIT 1      → "1 row (top result)"
+
+      meta:
+        model_type: fact
+        grain: "1 row per customer"   ← always derived from the SQL above
+      description: "Total revenue aggregated by customer name."
 
 ═══════════════════════════════════════════════════════════════════
  SQL CONVENTIONS (MANDATORY)
@@ -156,8 +207,13 @@ Always generate these YAML files alongside the SQL files:
    - Declares ALL int_* models.
 
 7. models/marts/core/_core_models.yml
-   - Declares ALL fct_* and dim_* models with columns and tests.
+   - Declares ALL fct_*, dim_*, and rpt_* models with columns and tests.
    - Add not_null + unique tests on grain/primary-key columns.
+   - Every model MUST have:
+       description: plain English description of what the model contains.
+       meta:
+         model_type: dimension   # or: fact | report
+         grain: "1 row per <entity>"
 
 ═══════════════════════════════════════════════════════════════════
  OUTPUT FORMAT — CRITICAL
@@ -176,8 +232,9 @@ Always generate these YAML files alongside the SQL files:
 
 - staging SQL:      stg_{source_table_snake_case}.sql
 - intermediate SQL: int_{descriptive_name}.sql
-- fact SQL:         fct_{metric_name}.sql
-- dimension SQL:    dim_{entity_name}.sql
+- fact SQL:         fct_{event_or_metric_name}.sql      ← events OR aggregated metrics
+- dimension SQL:    dim_{entity_name}.sql               ← core business entity
+- report SQL:       rpt_{question_name}.sql             ← filtered/ranked/set ops
 - staging YAML:     models/staging/_staging_sources.yml
                     models/staging/_staging_models.yml
 - intermediate YAML: models/intermediate/_intermediate_models.yml
@@ -279,6 +336,9 @@ version: 2
 models:
   - name: fct_revenue_by_customer
     description: "Total revenue aggregated by customer name."
+    meta:
+      model_type: fact
+      grain: "1 row per customer"
     columns:
       - name: name
         tests:
@@ -299,7 +359,12 @@ models:
 - Mixing staging logic (source) with business logic (joins/aggs).
 - Using GROUP BY 1, 2 instead of explicit column names.
 - Putting marts directly in models/marts/ instead of models/marts/core/.
-- Not defining a clear grain for fact tables.
+- Missing meta.model_type in the _core_models.yml (must be: dimension, fact, or report).
+- Missing meta.grain in the _core_models.yml (e.g. "1 row per customer").
+- Embedding grain in the description instead of in meta.grain.
+- Using dim_ only for unfiltered entities — filtered entity subsets are still dim_.
+- Using fct_ only when there is a GROUP BY — event tables without aggregation are also fct_.
+- Using dim_ for ad-hoc filtered query results — use rpt_ instead.
 - Missing YAML files — they are REQUIRED in every output.
 - Combining sources and models in one YAML file.
 """

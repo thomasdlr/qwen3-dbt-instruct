@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Activity",
+    "raw.Faculty_participates_in"
+  ],
+  "staging_models": [
+    "stg_Activity",
+    "stg_Faculty_participates_in"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_activity_participation",
+    "type": "report",
+    "grain": "1 row per Activity"
+  },
+  "ctes": [
+    "stg_Activity",
+    "stg_Faculty_participates_in"
+  ],
+  "joins": [
+    {
+      "left": "stg_Activity",
+      "right": "stg_Faculty_participates_in",
+      "on": "actID = actID"
+    }
+  ],
+  "tests": {
+    "activity_name": [
+      "not_null"
+    ],
+    "actID": [
+      "not_null"
+    ]
+  }
+}

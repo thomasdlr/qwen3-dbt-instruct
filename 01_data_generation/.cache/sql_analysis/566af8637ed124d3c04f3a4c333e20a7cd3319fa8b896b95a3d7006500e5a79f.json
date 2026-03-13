@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "battle",
+    "ship"
+  ],
+  "joins": [
+    {
+      "left_table": "battle",
+      "right_table": "ship",
+      "condition": "T1.id = T2.lost_in_battle"
+    }
+  ],
+  "filters": [
+    "T2.ship_type = 'Brig'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.id",
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "battle.id, battle.name",
+  "model_type": "report"
+}

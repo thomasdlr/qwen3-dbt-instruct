@@ -1,0 +1,46 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.lives_in",
+    "raw.has_amenity",
+    "raw.dorm_amenity"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_student_without_tv_lounge",
+    "type": "report",
+    "grain": "1 row per student"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_lives_in",
+      "on": "stuid"
+    },
+    {
+      "left": "stg_has_amenity",
+      "right": "stg_dorm_amenity",
+      "on": "amenid"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "age": [
+      "not_null"
+    ]
+  }
+}

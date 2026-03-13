@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "patient",
+    "prescribes",
+    "physician"
+  ],
+  "joins": [
+    {
+      "left_table": "patient AS T1",
+      "right_table": "prescribes AS T2",
+      "condition": "T1.SSN = T2.patient"
+    },
+    {
+      "left_table": "prescribes AS T2",
+      "right_table": "physician AS T3",
+      "condition": "T2.physician = T3.employeeid"
+    }
+  ],
+  "filters": [
+    "T3.name = \"John Dorian\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "T1.SSN",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(T1.SSN)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

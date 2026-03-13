@@ -1,0 +1,37 @@
+{
+  "sources": [
+    "raw.college",
+    "raw.tryout"
+  ],
+  "staging_models": [
+    "stg_college",
+    "stg_tryout"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_tryout_positions",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_college",
+    "stg_tryout"
+  ],
+  "joins": [
+    {
+      "left": "stg_college",
+      "right": "stg_tryout",
+      "on": "cName"
+    },
+    {
+      "left": "stg_college",
+      "right": "stg_tryout",
+      "on": "cName"
+    }
+  ],
+  "tests": {
+    "*": [
+      "not_null"
+    ]
+  }
+}

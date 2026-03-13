@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.ALBUM",
+    "raw.ARTIST"
+  ],
+  "staging_models": [
+    "stg_ALBUM",
+    "stg_ARTIST"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_artist_album_count",
+    "type": "fact",
+    "grain": "1 row per ArtistId"
+  },
+  "ctes": [
+    "stg_ALBUM",
+    "stg_ARTIST"
+  ],
+  "joins": [
+    {
+      "left": "stg_ALBUM",
+      "right": "stg_ARTIST",
+      "on": "stg_ALBUM.ArtistId = stg_ARTIST.ArtistID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "ArtistId": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

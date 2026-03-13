@@ -1,0 +1,47 @@
+{
+  "tables": [
+    "products",
+    "product_characteristics",
+    "CHARACTERISTICS",
+    "ref_colors"
+  ],
+  "joins": [
+    {
+      "left_table": "products",
+      "right_table": "product_characteristics",
+      "condition": "t1.product_id = t2.product_id"
+    },
+    {
+      "left_table": "product_characteristics",
+      "right_table": "CHARACTERISTICS",
+      "condition": "t2.characteristic_id = t3.characteristic_id"
+    },
+    {
+      "left_table": "products",
+      "right_table": "ref_colors",
+      "condition": "t1.color_code = t4.color_code"
+    }
+  ],
+  "filters": [
+    "t4.color_description = \"red\"",
+    "t3.characteristic_name = \"slow\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

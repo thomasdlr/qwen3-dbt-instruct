@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "ship"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT Ship_ID IN (SELECT Ship_ID FROM mission)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "Name",
+  "model_type": "dimension"
+}

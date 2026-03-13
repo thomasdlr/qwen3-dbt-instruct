@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.Projects",
+    "raw.Project_outcomes",
+    "raw.Research_outcomes"
+  ],
+  "staging_models": [
+    "stg_Projects",
+    "stg_Project_outcomes",
+    "stg_Research_outcomes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_Project_outcomes_published",
+    "type": "fact",
+    "grain": "1 row per Project_outcomes"
+  },
+  "ctes": [
+    "stg_Projects",
+    "stg_Project_outcomes",
+    "stg_Research_outcomes"
+  ],
+  "joins": [
+    {
+      "left": "stg_Projects",
+      "right": "stg_Project_outcomes",
+      "on": "Projects.project_id = Project_outcomes.project_id"
+    },
+    {
+      "left": "stg_Project_outcomes",
+      "right": "stg_Research_outcomes",
+      "on": "Project_outcomes.outcome_code = Research_outcomes.outcome_code"
+    }
+  ],
+  "tests": {
+    "project_details": [
+      "not_null"
+    ]
+  }
+}

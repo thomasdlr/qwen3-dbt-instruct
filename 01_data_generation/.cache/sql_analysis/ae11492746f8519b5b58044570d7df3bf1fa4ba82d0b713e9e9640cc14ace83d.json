@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Customer_Master_Index",
+    "CMI_Cross_References"
+  ],
+  "joins": [
+    {
+      "left_table": "Customer_Master_Index",
+      "right_table": "CMI_Cross_References",
+      "condition": "T1.master_customer_id = T2.master_customer_id"
+    }
+  ],
+  "filters": [
+    "T2.source_system_code = 'Tax'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.cmi_details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Customer_Master_Index.cmi_details",
+  "model_type": "dimension"
+}

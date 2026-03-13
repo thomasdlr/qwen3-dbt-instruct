@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.club",
+    "raw.member_of_club",
+    "raw.student"
+  ],
+  "staging_models": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_eric_clubs",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "joins": [
+    {
+      "left": "stg_club",
+      "right": "stg_member_of_club",
+      "on": "club.clubid = member_of_club.clubid"
+    },
+    {
+      "left": "stg_member_of_club",
+      "right": "stg_student",
+      "on": "member_of_club.stuid = student.stuid"
+    }
+  ],
+  "tests": {
+    "count_distinct_clubname": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Assets",
+    "Fault_Log"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT asset_id IN (SELECT asset_id FROM Fault_Log)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "asset_model"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "asset_model",
+  "model_type": "dimension"
+}

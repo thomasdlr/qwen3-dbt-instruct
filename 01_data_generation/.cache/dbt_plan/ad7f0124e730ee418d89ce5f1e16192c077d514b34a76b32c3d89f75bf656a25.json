@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.instructor",
+    "raw.advisor"
+  ],
+  "staging_models": [
+    "stg_instructor",
+    "stg_advisor"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_instructors_with_multiple_advisees",
+    "type": "report",
+    "grain": "1 row per instructor_id"
+  },
+  "ctes": [
+    "stg_instructor",
+    "stg_advisor"
+  ],
+  "joins": [
+    {
+      "left": "stg_instructor",
+      "right": "stg_advisor",
+      "on": "stg_instructor.id = stg_advisor.i_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

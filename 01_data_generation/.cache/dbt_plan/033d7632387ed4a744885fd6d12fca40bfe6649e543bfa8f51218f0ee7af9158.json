@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.templates",
+    "raw.documents"
+  ],
+  "staging_models": [
+    "stg_templates",
+    "stg_documents"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_template_type_counts",
+    "type": "fact",
+    "grain": "1 row per template_type_code"
+  },
+  "ctes": [
+    "stg_templates",
+    "stg_documents"
+  ],
+  "joins": [
+    {
+      "left": "stg_templates",
+      "right": "stg_documents",
+      "on": "stg_templates.template_id = stg_documents.template_id"
+    }
+  ],
+  "tests": {
+    "template_type_code": [
+      "not_null",
+      "unique"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "sources": [
+    "raw.patient",
+    "raw.Prescribes",
+    "raw.Medication"
+  ],
+  "staging_models": [
+    "stg_patient",
+    "stg_Prescribes",
+    "stg_Medication"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_patient_medication_exclusions",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_Prescribes",
+    "stg_Medication"
+  ],
+  "joins": [
+    {
+      "left": "stg_Prescribes",
+      "right": "stg_Medication",
+      "on": "T1.Medication = T2.Code"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

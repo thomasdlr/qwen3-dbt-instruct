@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.customer_addresses",
+    "raw.addresses"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_customer_addresses",
+    "stg_addresses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_customers_colorado",
+    "type": "dimension",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_customer_addresses",
+    "stg_addresses"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_customer_addresses",
+      "on": "customer_id = customer_id"
+    },
+    {
+      "left": "stg_customer_addresses",
+      "right": "stg_addresses",
+      "on": "address_id = address_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ],
+    "customer_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

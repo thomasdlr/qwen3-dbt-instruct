@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "party"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT party_id IN (SELECT party_id FROM Member)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "party_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "party.party_name",
+  "model_type": "dimension"
+}

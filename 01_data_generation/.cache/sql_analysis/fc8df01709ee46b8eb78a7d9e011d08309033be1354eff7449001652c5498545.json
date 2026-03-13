@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "body_builder",
+    "people"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.people_id = T2.people_id"
+    }
+  ],
+  "filters": [
+    "T2.Birth_Date LIKE \"%January%\""
+  ],
+  "select_columns": [
+    "T1.total"
+  ],
+  "grain": "people_id",
+  "model_type": "report"
+}

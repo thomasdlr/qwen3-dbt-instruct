@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.manufacturer",
+    "raw.furniture_manufacte"
+  ],
+  "staging_models": [
+    "stg_manufacturer",
+    "stg_furniture_manufacte"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_manufacturer_shops",
+    "type": "dimension",
+    "grain": "1 row per manufacturer_id"
+  },
+  "ctes": [
+    "stg_manufacturer",
+    "stg_furniture_manufacte"
+  ],
+  "joins": [
+    {
+      "left": "stg_manufacturer",
+      "right": "stg_furniture_manufacte",
+      "on": "t1.manufacturer_id = t2.manufacturer_id"
+    }
+  ],
+  "tests": {
+    "manufacturer_id": [
+      "not_null",
+      "unique"
+    ],
+    "num_of_shops": [
+      "not_null"
+    ]
+  }
+}

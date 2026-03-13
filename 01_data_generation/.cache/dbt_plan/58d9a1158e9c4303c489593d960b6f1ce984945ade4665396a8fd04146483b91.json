@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.CLASS",
+    "raw.enroll",
+    "raw.course",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_CLASS",
+    "stg_enroll",
+    "stg_course",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accounting_enrollments",
+    "type": "report",
+    "grain": "1 row per department"
+  },
+  "ctes": [
+    "stg_CLASS",
+    "stg_enroll",
+    "stg_course",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_CLASS",
+      "right": "stg_enroll",
+      "on": "class_code = class_code"
+    },
+    {
+      "left": "stg_CLASS",
+      "right": "stg_course",
+      "on": "crs_code = crs_code"
+    },
+    {
+      "left": "stg_course",
+      "right": "stg_department",
+      "on": "dept_code = dept_code"
+    }
+  ],
+  "tests": {
+    "count": [
+      "not_null"
+    ]
+  }
+}

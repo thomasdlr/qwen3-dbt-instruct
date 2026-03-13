@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "affected_region",
+    "region",
+    "storm"
+  ],
+  "joins": [
+    {
+      "left_table": "affected_region",
+      "right_table": "region",
+      "condition": "T1.region_id = T2.region_id"
+    },
+    {
+      "left_table": "affected_region",
+      "right_table": "storm",
+      "condition": "T1.storm_id = T3.storm_id"
+    }
+  ],
+  "filters": [
+    "T2.region_name = 'Denmark'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "storm.storm_id",
+  "model_type": "report"
+}

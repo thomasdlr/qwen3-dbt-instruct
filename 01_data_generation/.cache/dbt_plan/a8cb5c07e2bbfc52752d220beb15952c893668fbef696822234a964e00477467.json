@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.news_report",
+    "raw.event",
+    "raw.journalist"
+  ],
+  "staging_models": [
+    "stg_news_report",
+    "stg_event",
+    "stg_journalist"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_journalist_event_count",
+    "type": "report",
+    "grain": "1 row per journalist"
+  },
+  "ctes": [
+    "stg_news_report",
+    "stg_event",
+    "stg_journalist"
+  ],
+  "joins": [
+    {
+      "left": "stg_news_report",
+      "right": "stg_event",
+      "on": "Event_ID = Event_ID"
+    },
+    {
+      "left": "stg_news_report",
+      "right": "stg_journalist",
+      "on": "journalist_ID = journalist_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

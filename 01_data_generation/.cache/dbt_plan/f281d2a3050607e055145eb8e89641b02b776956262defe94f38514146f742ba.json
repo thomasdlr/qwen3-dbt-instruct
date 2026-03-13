@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Rating",
+    "raw.Movie"
+  ],
+  "staging_models": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_movie_ratings",
+    "type": "fact",
+    "grain": "1 row per movie (T1.mID)"
+  },
+  "ctes": [
+    "stg_Rating",
+    "stg_Movie"
+  ],
+  "joins": [
+    {
+      "left": "stg_Rating",
+      "right": "stg_Movie",
+      "on": "stg_Rating.mID = stg_Movie.mID"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ],
+    "stars_avg": [
+      "not_null"
+    ]
+  }
+}

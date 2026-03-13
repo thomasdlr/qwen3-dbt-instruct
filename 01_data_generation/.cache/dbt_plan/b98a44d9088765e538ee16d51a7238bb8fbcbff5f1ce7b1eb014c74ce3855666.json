@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.death",
+    "raw.ship"
+  ],
+  "staging_models": [
+    "stg_death",
+    "stg_ship"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_ship_death_counts",
+    "type": "report",
+    "grain": "1 row per ship"
+  },
+  "ctes": [
+    "stg_ship",
+    "stg_death"
+  ],
+  "joins": [
+    {
+      "left": "stg_ship",
+      "right": "stg_death",
+      "on": "stg_ship.id = stg_death.caused_by_ship_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

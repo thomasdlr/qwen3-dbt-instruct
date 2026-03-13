@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.apartments",
+    "raw.apartment_facilities"
+  ],
+  "staging_models": [
+    "stg_apartments",
+    "stg_apartment_facilities"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_apt_without_facilities_count",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_apartments",
+    "stg_apartment_facilities"
+  ],
+  "joins": [],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

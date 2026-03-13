@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.employee",
+    "raw.CLASS"
+  ],
+  "staging_models": [
+    "stg_employee",
+    "stg_CLASS"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employee_class_count",
+    "type": "report",
+    "grain": "1 row per filtered employee"
+  },
+  "ctes": [
+    "stg_employee",
+    "stg_CLASS"
+  ],
+  "joins": [
+    {
+      "left": "stg_employee",
+      "right": "stg_CLASS",
+      "on": "EMP_NUM = PROF_NUM"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

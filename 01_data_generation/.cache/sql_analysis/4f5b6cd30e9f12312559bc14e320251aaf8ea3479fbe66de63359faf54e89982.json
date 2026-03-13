@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "albums",
+    "tracklists",
+    "songs"
+  ],
+  "joins": [
+    {
+      "left_table": "albums",
+      "right_table": "tracklists",
+      "condition": "T1.aid = T2.albumid"
+    },
+    {
+      "left_table": "tracklists",
+      "right_table": "songs",
+      "condition": "T2.songid = T3.songid"
+    }
+  ],
+  "filters": [
+    "t1.label = \"Universal Music Group\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.title"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.songid",
+  "model_type": "report"
+}

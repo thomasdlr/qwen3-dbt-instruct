@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.lives_in",
+    "raw.dorm"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_dorm_gender_count",
+    "type": "report",
+    "grain": "1 row per dorm_name, sex"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_lives_in",
+      "on": "stuid = stuid"
+    },
+    {
+      "left": "stg_dorm",
+      "right": "stg_lives_in",
+      "on": "dormid = dormid"
+    }
+  ],
+  "tests": {
+    "count_students": [
+      "not_null"
+    ]
+  }
+}

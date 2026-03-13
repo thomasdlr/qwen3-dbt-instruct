@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "artist",
+    "volume"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Artist_ID = T2.Artist_ID"
+    }
+  ],
+  "filters": [
+    "T2.Weeks_on_Top > 2",
+    "T2.Weeks_on_Top < 2"
+  ],
+  "select_columns": [
+    "T1.Famous_Title",
+    "T1.Famous_Title"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Famous_Title",
+  "model_type": "report"
+}

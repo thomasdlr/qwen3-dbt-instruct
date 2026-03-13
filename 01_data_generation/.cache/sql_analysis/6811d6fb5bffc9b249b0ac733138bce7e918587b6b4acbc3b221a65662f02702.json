@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "employee",
+    "CLASS"
+  ],
+  "joins": [
+    {
+      "left_table": "employee",
+      "right_table": "CLASS",
+      "condition": "T1.EMP_NUM = T2.PROF_NUM"
+    }
+  ],
+  "filters": [
+    "T1.EMP_LNAME = 'Graztevski'"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

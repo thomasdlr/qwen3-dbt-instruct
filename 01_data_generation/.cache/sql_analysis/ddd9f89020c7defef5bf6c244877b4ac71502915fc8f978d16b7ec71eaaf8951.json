@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "furniture",
+    "furniture_manufacte",
+    "manufacturer"
+  ],
+  "joins": [
+    {
+      "left_table": "furniture",
+      "right_table": "furniture_manufacte",
+      "condition": "t1.Furniture_ID = t2.Furniture_ID"
+    },
+    {
+      "left_table": "furniture_manufacte",
+      "right_table": "manufacturer",
+      "condition": "t2.manufacturer_id = t3.manufacturer_id"
+    }
+  ],
+  "filters": [
+    "t1.num_of_component < 6",
+    "t1.num_of_component > 10"
+  ],
+  "select_columns": [
+    "t3.name",
+    "t3.name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_subquery": true,
+  "grain": "t3.name",
+  "model_type": "report"
+}

@@ -1,0 +1,42 @@
+{
+  "sources": [
+    "raw.customer",
+    "raw.invoice"
+  ],
+  "staging_models": [
+    "stg_customer",
+    "stg_invoice"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_astrid_gruber_invoices",
+    "type": "fact",
+    "grain": "1 row per invoice"
+  },
+  "ctes": [
+    "stg_customer",
+    "stg_invoice"
+  ],
+  "joins": [
+    {
+      "left": "stg_customer",
+      "right": "stg_invoice",
+      "on": "customer.customer_id = invoice.customer_id"
+    }
+  ],
+  "tests": {
+    "invoice_id": [
+      "not_null",
+      "unique"
+    ],
+    "customer_id": [
+      "not_null"
+    ],
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

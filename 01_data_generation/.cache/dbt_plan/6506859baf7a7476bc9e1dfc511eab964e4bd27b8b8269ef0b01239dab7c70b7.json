@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.aircraft",
+    "raw.MATCH"
+  ],
+  "staging_models": [
+    "stg_aircraft",
+    "stg_MATCH"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_aircraft_match_wins",
+    "type": "fact",
+    "grain": "1 row per Winning_Aircraft"
+  },
+  "ctes": [
+    "stg_aircraft",
+    "stg_MATCH"
+  ],
+  "joins": [
+    {
+      "left": "stg_aircraft",
+      "right": "stg_MATCH",
+      "on": "Aircraft_ID = Winning_Aircraft"
+    }
+  ],
+  "tests": {
+    "Aircraft": [
+      "not_null"
+    ],
+    "Winning_Aircraft": [
+      "not_null"
+    ]
+  }
+}

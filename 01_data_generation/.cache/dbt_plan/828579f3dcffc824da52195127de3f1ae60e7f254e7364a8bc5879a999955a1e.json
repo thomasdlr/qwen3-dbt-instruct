@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.journalist",
+    "raw.news_report"
+  ],
+  "staging_models": [
+    "stg_journalist",
+    "stg_news_report"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_journalist_work_type_averages",
+    "type": "report",
+    "grain": "1 row per work_type"
+  },
+  "ctes": [
+    "stg_journalist",
+    "stg_news_report"
+  ],
+  "joins": [
+    {
+      "left": "stg_journalist",
+      "right": "stg_news_report",
+      "on": "journalist_id = journalist_id"
+    }
+  ],
+  "tests": {
+    "avg_age": [
+      "not_null"
+    ],
+    "avg_years_working": [
+      "not_null"
+    ],
+    "work_type": [
+      "not_null"
+    ]
+  }
+}

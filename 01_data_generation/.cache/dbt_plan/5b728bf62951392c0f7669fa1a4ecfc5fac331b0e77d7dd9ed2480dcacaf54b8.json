@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.architect",
+    "raw.mill"
+  ],
+  "staging_models": [
+    "stg_architect",
+    "stg_mill"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_architect",
+    "type": "dimension",
+    "grain": "1 row per architect"
+  },
+  "ctes": [
+    "stg_architect",
+    "stg_mill"
+  ],
+  "joins": [
+    {
+      "left": "stg_architect",
+      "right": "stg_mill",
+      "on": "stg_architect.id = stg_mill.architect_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ],
+    "nationality": [
+      "not_null"
+    ]
+  }
+}

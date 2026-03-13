@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.templates",
+    "raw.documents"
+  ],
+  "staging_models": [
+    "stg_templates",
+    "stg_documents"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_template_counts",
+    "type": "report",
+    "grain": "1 row per template_type_code"
+  },
+  "ctes": [
+    "stg_templates",
+    "stg_documents"
+  ],
+  "joins": [
+    {
+      "left": "stg_templates",
+      "right": "stg_documents",
+      "on": "template_id = template_id"
+    }
+  ],
+  "tests": {
+    "template_type_code": [
+      "not_null"
+    ]
+  }
+}

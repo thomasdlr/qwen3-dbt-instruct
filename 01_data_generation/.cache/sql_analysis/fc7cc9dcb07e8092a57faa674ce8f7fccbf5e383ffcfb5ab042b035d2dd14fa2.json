@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "category",
+    "film_category",
+    "film"
+  ],
+  "joins": [
+    {
+      "left_table": "category",
+      "right_table": "film_category",
+      "condition": "T1.category_id = T2.category_id"
+    },
+    {
+      "left_table": "film_category",
+      "right_table": "film",
+      "condition": "T2.film_id = T3.film_id"
+    }
+  ],
+  "filters": [
+    "T3.title = 'HUNGER ROOF'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "category.name",
+  "model_type": "dimension"
+}

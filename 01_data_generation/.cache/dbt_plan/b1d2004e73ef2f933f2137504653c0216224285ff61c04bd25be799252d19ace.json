@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Participates_in"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Participates_in"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_StudentSetOp",
+    "type": "report",
+    "grain": "1 row per Student.StuID"
+  },
+  "ctes": [
+    "stg_Student",
+    "stg_Participates_in"
+  ],
+  "joins": [],
+  "tests": {
+    "StuID": [
+      "not_null"
+    ]
+  }
+}

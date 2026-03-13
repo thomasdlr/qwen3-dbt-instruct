@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.royal_family",
+    "raw.tourist_attractions"
+  ],
+  "staging_models": [
+    "stg_royal_family",
+    "stg_tourist_attractions"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_royal_family_attractions",
+    "type": "report",
+    "grain": "1 row per royal_family"
+  },
+  "ctes": [
+    "stg_royal_family",
+    "stg_tourist_attractions"
+  ],
+  "joins": [
+    {
+      "left": "stg_royal_family",
+      "right": "stg_tourist_attractions",
+      "on": "royal_family_id = tourist_attraction_id"
+    }
+  ],
+  "tests": {
+    "royal_family_details": [
+      "not_null"
+    ],
+    "how_to_get_there": [
+      "not_null"
+    ]
+  }
+}

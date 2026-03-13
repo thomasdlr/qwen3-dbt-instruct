@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.vocals",
+    "raw.songs"
+  ],
+  "staging_models": [
+    "stg_vocals",
+    "stg_songs"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_lead_vocal_performance",
+    "type": "fact",
+    "grain": "1 row per vocals record"
+  },
+  "ctes": [
+    "stg_vocals",
+    "stg_songs"
+  ],
+  "joins": [
+    {
+      "left": "stg_vocals",
+      "right": "stg_songs",
+      "on": "stg_vocals.songid = stg_songs.songid"
+    }
+  ],
+  "tests": {
+    "<all_columns>": [
+      "not_null"
+    ]
+  }
+}

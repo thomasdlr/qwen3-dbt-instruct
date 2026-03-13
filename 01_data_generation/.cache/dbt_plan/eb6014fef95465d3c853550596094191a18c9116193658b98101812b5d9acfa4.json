@@ -1,0 +1,41 @@
+{
+  "sources": [
+    "raw.pilot_record",
+    "raw.aircraft",
+    "raw.pilot"
+  ],
+  "staging_models": [
+    "stg_pilot_record",
+    "stg_aircraft",
+    "stg_pilot"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_fleet_series",
+    "type": "report",
+    "grain": "1 row per Fleet_Series"
+  },
+  "ctes": [
+    "stg_pilot_record",
+    "stg_aircraft",
+    "stg_pilot"
+  ],
+  "joins": [
+    {
+      "left": "stg_pilot_record",
+      "right": "stg_aircraft",
+      "on": "Aircraft_ID = Aircraft_ID"
+    },
+    {
+      "left": "stg_pilot_record",
+      "right": "stg_pilot",
+      "on": "Pilot_ID = Pilot_ID"
+    }
+  ],
+  "tests": {
+    "Fleet_Series": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

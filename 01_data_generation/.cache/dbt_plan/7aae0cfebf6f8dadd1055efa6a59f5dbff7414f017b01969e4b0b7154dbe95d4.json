@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.race",
+    "raw.track"
+  ],
+  "staging_models": [
+    "stg_race",
+    "stg_track"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_race_track",
+    "type": "report",
+    "grain": "1 row per date, track"
+  },
+  "ctes": [
+    "stg_race",
+    "stg_track"
+  ],
+  "joins": [
+    {
+      "left": "stg_race",
+      "right": "stg_track",
+      "on": "stg_race.track_id = stg_track.track_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "date": [
+      "not_null"
+    ],
+    "name_2": [
+      "not_null"
+    ]
+  }
+}

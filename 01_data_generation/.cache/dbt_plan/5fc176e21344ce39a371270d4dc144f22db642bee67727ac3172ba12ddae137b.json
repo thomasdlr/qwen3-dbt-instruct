@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.races",
+    "raw.results"
+  ],
+  "staging_models": [
+    "stg_races",
+    "stg_results"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_race_stats",
+    "type": "fact",
+    "grain": "1 row per race.name"
+  },
+  "ctes": [
+    "stg_races",
+    "stg_results"
+  ],
+  "joins": [
+    {
+      "left": "stg_races",
+      "right": "stg_results",
+      "on": "raceid"
+    }
+  ],
+  "tests": {
+    "avg_fastestlapspeed": [
+      "not_null"
+    ],
+    "name": [
+      "not_null",
+      "unique"
+    ],
+    "year": [
+      "not_null"
+    ]
+  }
+}

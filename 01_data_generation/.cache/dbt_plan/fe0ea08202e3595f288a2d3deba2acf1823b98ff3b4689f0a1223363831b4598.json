@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.sportsinfo",
+    "raw.student"
+  ],
+  "staging_models": [
+    "stg_sportsinfo",
+    "stg_student"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_student_sports_count",
+    "type": "report",
+    "grain": "1 row per student"
+  },
+  "ctes": [
+    "stg_sportsinfo",
+    "stg_student"
+  ],
+  "joins": [
+    {
+      "left": "stg_sportsinfo",
+      "right": "stg_student",
+      "on": "stg_sportsinfo.stuid = stg_student.stuid"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "lname": [
+      "not_null"
+    ]
+  }
+}

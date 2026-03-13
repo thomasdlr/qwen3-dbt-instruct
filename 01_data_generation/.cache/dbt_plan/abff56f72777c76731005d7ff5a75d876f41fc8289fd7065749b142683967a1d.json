@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.Office_locations",
+    "raw.buildings",
+    "raw.Companies"
+  ],
+  "staging_models": [
+    "stg_Office_locations",
+    "stg_buildings",
+    "stg_Companies"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_building_office_count",
+    "type": "dimension",
+    "grain": "1 row per building_id"
+  },
+  "ctes": [
+    "stg_Office_locations",
+    "stg_buildings",
+    "stg_Companies"
+  ],
+  "joins": [
+    {
+      "left": "stg_Office_locations",
+      "right": "stg_buildings",
+      "on": "T1.building_id = T2.id"
+    },
+    {
+      "left": "stg_Office_locations",
+      "right": "stg_Companies",
+      "on": "T1.company_id = T3.id"
+    }
+  ],
+  "tests": {
+    "building_id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

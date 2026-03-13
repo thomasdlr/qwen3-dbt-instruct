@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.races",
+    "raw.results",
+    "raw.drivers"
+  ],
+  "staging_models": [
+    "stg_races",
+    "stg_results",
+    "stg_drivers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_aus_china_gp_results",
+    "type": "fact",
+    "grain": "1 row per result"
+  },
+  "ctes": [
+    "stg_races",
+    "stg_results",
+    "stg_drivers"
+  ],
+  "joins": [
+    {
+      "left": "stg_races",
+      "right": "stg_results",
+      "on": "stg_races.raceid = stg_results.raceid"
+    },
+    {
+      "left": "stg_results",
+      "right": "stg_drivers",
+      "on": "stg_results.driverid = stg_drivers.driverid"
+    }
+  ],
+  "tests": {
+    "<column_name>": [
+      "not_null"
+    ]
+  }
+}

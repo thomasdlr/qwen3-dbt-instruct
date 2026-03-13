@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "files",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.f_id = T2.f_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "MAX",
+      "column": "T1.duration",
+      "alias": ""
+    },
+    {
+      "function": "MAX",
+      "column": "T2.resolution",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.languages"
+  ],
+  "having": [],
+  "select_columns": [
+    "MAX(T1.duration)",
+    "MAX(T2.resolution)",
+    "T2.languages"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.languages",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.web_client_accelerator",
+    "raw.accelerator_compatible_browser",
+    "raw.browser"
+  ],
+  "staging_models": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser",
+    "stg_browser"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_browser_intersect",
+    "type": "report",
+    "grain": "1 row per browser.name"
+  },
+  "ctes": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser",
+    "stg_browser"
+  ],
+  "joins": [
+    {
+      "left": "stg_web_client_accelerator",
+      "right": "stg_accelerator_compatible_browser",
+      "on": "T2.accelerator_id = T1.id"
+    },
+    {
+      "left": "stg_accelerator_compatible_browser",
+      "right": "stg_browser",
+      "on": "T2.browser_id = T3.id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.physician",
+    "raw.prescribes",
+    "raw.medication"
+  ],
+  "staging_models": [
+    "stg_physician",
+    "stg_prescribes",
+    "stg_medication"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_physicians_prescribing_thesisin",
+    "type": "report",
+    "grain": "1 row per physician.name"
+  },
+  "ctes": [
+    "stg_physician",
+    "stg_prescribes",
+    "stg_medication"
+  ],
+  "joins": [
+    {
+      "left": "stg_physician",
+      "right": "stg_prescribes",
+      "on": "employeeid = physician"
+    },
+    {
+      "left": "stg_prescribes",
+      "right": "stg_medication",
+      "on": "code = medication"
+    }
+  ],
+  "tests": {
+    "physician_name": [
+      "not_null"
+    ]
+  }
+}

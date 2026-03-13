@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.train_station",
+    "raw.station",
+    "raw.train"
+  ],
+  "staging_models": [
+    "stg_train_station",
+    "stg_station",
+    "stg_train"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_station_intersect",
+    "type": "report",
+    "grain": "1 row per station.name"
+  },
+  "ctes": [
+    "stg_train_station",
+    "stg_station",
+    "stg_train"
+  ],
+  "joins": [
+    {
+      "left": "stg_train_station",
+      "right": "stg_station",
+      "on": "station_id"
+    },
+    {
+      "left": "stg_train",
+      "right": "stg_train_station",
+      "on": "train_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "physician",
+    "affiliated_with",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "physician",
+      "right_table": "affiliated_with",
+      "condition": "T1.EmployeeID = T2.physician"
+    },
+    {
+      "left_table": "affiliated_with",
+      "right_table": "department",
+      "condition": "T2.department = T3.DepartmentID"
+    }
+  ],
+  "filters": [
+    "T3.name = 'Surgery'",
+    "T3.name = 'Psychiatry'"
+  ],
+  "select_columns": [
+    "T1.name"
+  ],
+  "grain": "physician.EmployeeID",
+  "model_type": "report"
+}

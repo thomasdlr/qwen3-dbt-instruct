@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.genre",
+    "raw.track"
+  ],
+  "staging_models": [
+    "stg_genre",
+    "stg_track"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_rock_genre_counts",
+    "type": "report",
+    "grain": "1 row per genre"
+  },
+  "ctes": [
+    "stg_genre",
+    "stg_track"
+  ],
+  "joins": [
+    {
+      "left": "stg_genre",
+      "right": "stg_track",
+      "on": "stg_genre.genre_id = stg_track.genre_id"
+    }
+  ],
+  "tests": {
+    "rock_genre_counts": [
+      "not_null"
+    ]
+  }
+}

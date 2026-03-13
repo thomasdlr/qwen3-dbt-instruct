@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "COURSE",
+    "DEPARTMENT"
+  ],
+  "joins": [
+    {
+      "left_table": "COURSE",
+      "right_table": "DEPARTMENT",
+      "condition": "T1.DNO = T2.DNO"
+    }
+  ],
+  "filters": [
+    "T1.CName = \"INTRODUCTION TO COMPUTER SCIENCE\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Dname",
+    "T2.Room"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Dname, T2.Room",
+  "model_type": "report"
+}

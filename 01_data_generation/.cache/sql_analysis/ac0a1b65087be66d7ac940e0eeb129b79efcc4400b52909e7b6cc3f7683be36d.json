@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "services",
+    "EVENTS"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.service_id = T2.service_id"
+    }
+  ],
+  "filters": [
+    "T2.event_details = 'Success'",
+    "T2.event_details = 'Fail'"
+  ],
+  "select_columns": [
+    "T1.service_type_code",
+    "T1.service_type_code"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "grain": "T1.service_type_code",
+  "model_type": "report"
+}

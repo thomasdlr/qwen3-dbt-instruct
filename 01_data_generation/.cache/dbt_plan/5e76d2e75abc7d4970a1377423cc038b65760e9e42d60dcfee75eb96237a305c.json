@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.nomination",
+    "raw.artwork",
+    "raw.festival_detail"
+  ],
+  "staging_models": [
+    "stg_nomination",
+    "stg_artwork",
+    "stg_festival_detail"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_nomination_artwork_festival",
+    "type": "report",
+    "grain": "1 row per nomination.Artwork_ID, nomination.Festival_ID"
+  },
+  "ctes": [
+    "stg_nomination",
+    "stg_artwork",
+    "stg_festival_detail"
+  ],
+  "joins": [
+    {
+      "left": "stg_nomination",
+      "right": "stg_artwork",
+      "on": "stg_nomination.Artwork_ID = stg_artwork.Artwork_ID"
+    },
+    {
+      "left": "stg_nomination",
+      "right": "stg_festival_detail",
+      "on": "stg_nomination.Festival_ID = stg_festival_detail.Festival_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

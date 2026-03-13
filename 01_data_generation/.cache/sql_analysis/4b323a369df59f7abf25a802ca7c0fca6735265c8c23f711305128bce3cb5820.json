@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "match_season",
+    "team"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Team = T2.Team_id"
+    }
+  ],
+  "filters": [
+    "T2.Name = \"Columbus Crew\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "DISTINCT T1.College",
+      "alias": ""
+    }
+  ],
+  "select_columns": [
+    "COUNT(DISTINCT T1.College)"
+  ],
+  "has_distinct": true,
+  "grain": "T2.Name = \"Columbus Crew\"",
+  "model_type": "report"
+}

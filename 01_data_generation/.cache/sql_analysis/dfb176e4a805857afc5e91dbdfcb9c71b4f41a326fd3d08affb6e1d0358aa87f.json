@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Apartments",
+    "Apartment_Facilities"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT apt_id IN (SELECT apt_id FROM Apartment_Facilities)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

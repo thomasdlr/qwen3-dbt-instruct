@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "weather",
+    "trip"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "mean_humidity",
+      "alias": ""
+    },
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "zip_code",
+    "zip_code"
+  ],
+  "having": [
+    "AVG(mean_humidity) < 70",
+    "COUNT(*) >= 100"
+  ],
+  "select_columns": [
+    "zip_code",
+    "zip_code"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "zip_code",
+  "model_type": "report"
+}

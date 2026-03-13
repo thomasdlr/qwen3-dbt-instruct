@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.institution",
+    "raw.protein"
+  ],
+  "staging_models": [
+    "stg_institution",
+    "stg_protein"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_protein_institution",
+    "type": "dimension",
+    "grain": "1 row per protein_name, institution"
+  },
+  "ctes": [
+    "stg_institution",
+    "stg_protein"
+  ],
+  "joins": [
+    {
+      "left": "stg_institution",
+      "right": "stg_protein",
+      "on": "stg_institution.institution_id = stg_protein.institution_id"
+    }
+  ],
+  "tests": {
+    "protein_name": [
+      "not_null"
+    ],
+    "institution": [
+      "not_null"
+    ]
+  }
+}

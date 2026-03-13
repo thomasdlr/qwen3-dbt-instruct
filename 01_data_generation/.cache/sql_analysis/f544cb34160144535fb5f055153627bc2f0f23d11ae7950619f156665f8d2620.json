@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Dogs",
+    "Treatments"
+  ],
+  "joins": [
+    {
+      "left_table": "Dogs",
+      "right_table": "Treatments",
+      "condition": "T1.dog_id = T2.dog_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.date_arrived",
+    "T1.date_departed"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.dog_id",
+  "model_type": "dimension"
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "addresses",
+    "customer_addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.address_id = T2.address_id"
+    }
+  ],
+  "filters": [
+    "T2.customer_id = 10"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.address_details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.address_details",
+  "model_type": "dimension"
+}

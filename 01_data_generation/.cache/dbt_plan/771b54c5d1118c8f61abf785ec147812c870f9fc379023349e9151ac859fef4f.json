@@ -1,0 +1,34 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Has_allergy",
+    "raw.Allergy_Type"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_student_allergy_avg_age",
+    "type": "report",
+    "grain": "1 row per allergy type (food, animal) average"
+  },
+  "ctes": [
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Has_allergy",
+      "right": "stg_Allergy_Type",
+      "on": "T1.Allergy = T2.Allergy"
+    }
+  ],
+  "tests": {
+    "avg_age": [
+      "not_null"
+    ]
+  }
+}

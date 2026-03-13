@@ -1,0 +1,24 @@
+{
+  "tables": [
+    "Participates_in",
+    "Student"
+  ],
+  "joins": [],
+  "filters": [
+    "age < 20"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "StuID"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "StuID",
+  "model_type": "report"
+}

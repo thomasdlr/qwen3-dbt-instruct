@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "camera_lens",
+    "photos"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.id = T2.camera_lens_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.id",
+  "model_type": "fact"
+}

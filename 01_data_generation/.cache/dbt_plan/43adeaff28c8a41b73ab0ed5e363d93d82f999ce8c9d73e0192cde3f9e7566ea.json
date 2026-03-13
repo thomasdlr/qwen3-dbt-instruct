@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.Restaurant",
+    "raw.Type_Of_Restaurant",
+    "raw.Restaurant_Type"
+  ],
+  "staging_models": [
+    "stg_Restaurant",
+    "stg_Type_Of_Restaurant",
+    "stg_Restaurant_Type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_restaurant_type_sandwich_count",
+    "type": "fact",
+    "grain": "1 row per Type_Of_Restaurant.ResTypeID"
+  },
+  "ctes": [
+    "stg_Restaurant",
+    "stg_Type_Of_Restaurant",
+    "stg_Restaurant_Type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Restaurant",
+      "right": "stg_Type_Of_Restaurant",
+      "on": "Restaurant.ResID = Type_Of_Restaurant.ResID"
+    },
+    {
+      "left": "stg_Type_Of_Restaurant",
+      "right": "stg_Restaurant_Type",
+      "on": "Type_Of_Restaurant.ResTypeID = Restaurant_Type.ResTypeID"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

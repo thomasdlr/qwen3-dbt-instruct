@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.flights",
+    "raw.airlines"
+  ],
+  "staging_models": [
+    "stg_flights",
+    "stg_airlines"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_jetblue_airways_flights",
+    "type": "report",
+    "grain": "1 row per JetBlue Airways"
+  },
+  "ctes": [
+    "stg_flights",
+    "stg_airlines"
+  ],
+  "joins": [
+    {
+      "left": "stg_flights",
+      "right": "stg_airlines",
+      "on": "T1.airline = T2.uid"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

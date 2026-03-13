@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "university",
+    "basketball_match"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT school_id IN (SELECT school_id FROM basketball_match)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "aggregate count of university.school_id not in basketball_match",
+  "model_type": "report"
+}

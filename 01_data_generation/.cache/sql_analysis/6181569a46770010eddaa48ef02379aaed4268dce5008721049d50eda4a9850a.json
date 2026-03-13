@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "Reservations",
+    "Rooms"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Room = T2.RoomId"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Room"
+  ],
+  "having": [
+    "COUNT(*) > 60"
+  ],
+  "select_columns": [
+    "T2.roomName"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Room",
+  "model_type": "report"
+}

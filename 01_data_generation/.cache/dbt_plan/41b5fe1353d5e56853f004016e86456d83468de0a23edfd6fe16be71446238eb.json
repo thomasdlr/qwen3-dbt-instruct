@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.train_station",
+    "raw.station"
+  ],
+  "staging_models": [
+    "stg_train_station",
+    "stg_station"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_station",
+    "type": "dimension",
+    "grain": "1 row per station_id"
+  },
+  "ctes": [
+    "stg_train_station",
+    "stg_station"
+  ],
+  "joins": [
+    {
+      "left": "stg_train_station",
+      "right": "stg_station",
+      "on": "stg_train_station.station_id = stg_station.station_id"
+    }
+  ],
+  "tests": {
+    "station_id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

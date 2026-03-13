@@ -1,0 +1,24 @@
+{
+  "tables": [
+    "products",
+    "ref_product_categories"
+  ],
+  "joins": [
+    {
+      "left_table": "t1 (products)",
+      "right_table": "t2 (ref_product_categories)",
+      "condition": "t1.product_category_code = t2.product_category_code"
+    }
+  ],
+  "filters": [
+    "t1.product_name = \"cumin\""
+  ],
+  "select_columns": [
+    "t2.unit_of_measure"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.product_category_code",
+  "model_type": "dimension"
+}

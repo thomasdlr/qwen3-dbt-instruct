@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "wedding",
+    "people",
+    "church"
+  ],
+  "joins": [
+    {
+      "left_table": "wedding",
+      "right_table": "people",
+      "condition": "T1.male_id = T2.people_id"
+    },
+    {
+      "left_table": "wedding",
+      "right_table": "people",
+      "condition": "T1.female_id = T3.people_id"
+    },
+    {
+      "left_table": "church",
+      "right_table": "wedding",
+      "condition": "T4.church_id = T1.church_id"
+    }
+  ],
+  "filters": [
+    "T2.age > 30",
+    "T3.age > 30"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T4.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "wedding.church_id",
+  "model_type": "report"
+}

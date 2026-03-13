@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.class",
+    "raw.employee"
+  ],
+  "staging_models": [
+    "stg_class",
+    "stg_employee"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_employee_profession_counts",
+    "type": "report",
+    "grain": "1 row per profession"
+  },
+  "ctes": [
+    "stg_class",
+    "stg_employee"
+  ],
+  "joins": [
+    {
+      "left": "stg_class",
+      "right": "stg_employee",
+      "on": "stg_class.prof_num = stg_employee.emp_num"
+    }
+  ],
+  "tests": {
+    "prof_num": [
+      "not_null",
+      "unique"
+    ],
+    "emp_fname": [
+      "not_null"
+    ]
+  }
+}

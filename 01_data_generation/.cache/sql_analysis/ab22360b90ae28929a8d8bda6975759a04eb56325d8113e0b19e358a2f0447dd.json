@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "inst",
+    "authorship",
+    "papers"
+  ],
+  "joins": [
+    {
+      "left_table": "inst",
+      "right_table": "authorship",
+      "condition": "t1.instid = t2.instid"
+    },
+    {
+      "left_table": "authorship",
+      "right_table": "papers",
+      "condition": "t2.paperid = t3.paperid"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.name"
+  ],
+  "having": [],
+  "select_columns": [
+    "t1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.name",
+  "model_type": "report"
+}

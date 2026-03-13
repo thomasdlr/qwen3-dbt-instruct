@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.course_arrange",
+    "raw.course",
+    "raw.teacher"
+  ],
+  "staging_models": [
+    "stg_course_arrange",
+    "stg_course",
+    "stg_teacher"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_course_teacher",
+    "type": "report",
+    "grain": "1 row per course_arrange.Course_ID, course_arrange.Teacher_ID"
+  },
+  "ctes": [
+    "stg_course_arrange",
+    "stg_course",
+    "stg_teacher"
+  ],
+  "joins": [
+    {
+      "left": "stg_course_arrange",
+      "right": "stg_course",
+      "on": "course_arrange.Course_ID = course.Course_ID"
+    },
+    {
+      "left": "stg_course_arrange",
+      "right": "stg_teacher",
+      "on": "course_arrange.Teacher_ID = teacher.Teacher_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "Course": [
+      "not_null"
+    ]
+  }
+}

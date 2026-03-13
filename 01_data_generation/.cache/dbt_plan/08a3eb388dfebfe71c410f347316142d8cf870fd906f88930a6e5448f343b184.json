@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "raw.musical"
+  ],
+  "staging_models": [
+    "stg_musical"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_musical_names",
+    "type": "report",
+    "grain": "1 row per musical.Name"
+  },
+  "ctes": [
+    "stg_musical"
+  ],
+  "joins": [],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

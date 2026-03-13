@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.customer",
+    "raw.loan"
+  ],
+  "staging_models": [
+    "stg_customer",
+    "stg_loan"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customer_loan_summary",
+    "type": "report",
+    "grain": "1 row per cust_name"
+  },
+  "ctes": [
+    "stg_customer",
+    "stg_loan"
+  ],
+  "joins": [
+    {
+      "left": "stg_customer",
+      "right": "stg_loan",
+      "on": "stg_customer.cust_id = stg_loan.cust_id"
+    }
+  ],
+  "tests": {
+    "cust_name": [
+      "not_null"
+    ]
+  }
+}

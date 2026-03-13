@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Products",
+    "Products_in_Events"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Product_ID = T2.Product_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Product_Name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Product_Name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Product_Name",
+  "model_type": "fact"
+}

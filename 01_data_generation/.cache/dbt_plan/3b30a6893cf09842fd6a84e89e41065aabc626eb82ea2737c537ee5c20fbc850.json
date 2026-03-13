@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.orders",
+    "raw.order_items"
+  ],
+  "staging_models": [
+    "stg_orders",
+    "stg_order_items"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_order_items",
+    "type": "fact",
+    "grain": "1 row per order_id"
+  },
+  "ctes": [
+    "stg_orders",
+    "stg_order_items"
+  ],
+  "joins": [
+    {
+      "left": "stg_orders",
+      "right": "stg_order_items",
+      "on": "stg_orders.order_id = stg_order_items.order_id"
+    }
+  ],
+  "tests": {
+    "order_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

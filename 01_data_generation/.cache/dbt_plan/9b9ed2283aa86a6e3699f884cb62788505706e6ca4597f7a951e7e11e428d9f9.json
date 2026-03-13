@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.home_game",
+    "raw.park"
+  ],
+  "staging_models": [
+    "stg_home_game",
+    "stg_park"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_2008_parks_with_games",
+    "type": "report",
+    "grain": "1 row per park_name"
+  },
+  "ctes": [
+    "stg_home_game",
+    "stg_park"
+  ],
+  "joins": [
+    {
+      "left": "stg_home_game",
+      "right": "stg_park",
+      "on": "T1.park_id = T2.park_id"
+    }
+  ],
+  "tests": {
+    "park_name": [
+      "not_null"
+    ]
+  }
+}

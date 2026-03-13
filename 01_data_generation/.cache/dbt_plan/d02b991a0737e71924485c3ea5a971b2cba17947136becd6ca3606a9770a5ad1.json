@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.salary",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_salary",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_avg_salary_boston_red_stockings",
+    "type": "report",
+    "grain": "1 row per average salary for Boston Red Stockings"
+  },
+  "ctes": [
+    "stg_salary",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_salary",
+      "right": "stg_team",
+      "on": "stg_salary.team_id = stg_team.team_id_br"
+    }
+  ],
+  "tests": {
+    "avg_salary": [
+      "not_null"
+    ]
+  }
+}

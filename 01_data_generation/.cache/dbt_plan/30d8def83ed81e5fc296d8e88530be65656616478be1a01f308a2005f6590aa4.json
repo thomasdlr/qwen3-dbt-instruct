@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Document_locations",
+    "raw.Ref_locations"
+  ],
+  "staging_models": [
+    "stg_Document_locations",
+    "stg_Ref_locations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_location",
+    "type": "dimension",
+    "grain": "1 row per location_code"
+  },
+  "ctes": [
+    "stg_Document_locations",
+    "stg_Ref_locations"
+  ],
+  "joins": [
+    {
+      "left": "T1",
+      "right": "T2",
+      "on": "T1.location_code = T2.location_code"
+    }
+  ],
+  "tests": {
+    "location_name": [
+      "not_null"
+    ],
+    "location_code": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

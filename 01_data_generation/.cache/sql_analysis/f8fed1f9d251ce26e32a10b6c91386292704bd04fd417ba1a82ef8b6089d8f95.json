@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "record",
+    "event",
+    "stadium"
+  ],
+  "joins": [
+    {
+      "left_table": "record",
+      "right_table": "event",
+      "condition": "t1.event_id = t2.id"
+    },
+    {
+      "left_table": "event",
+      "right_table": "stadium",
+      "condition": "t3.id = t2.stadium_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.stadium_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "t3.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.stadium_id",
+  "model_type": "report"
+}

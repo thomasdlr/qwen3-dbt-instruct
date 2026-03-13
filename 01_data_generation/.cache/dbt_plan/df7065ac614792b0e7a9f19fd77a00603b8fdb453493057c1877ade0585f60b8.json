@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.customer_orders",
+    "raw.order_items",
+    "raw.products"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_customer_orders",
+    "stg_order_items",
+    "stg_products"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_keyboard_customers",
+    "type": "report",
+    "grain": "1 row per customer_name"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_customer_orders",
+    "stg_order_items",
+    "stg_products"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_customer_orders",
+      "on": "customer_id = customer_id"
+    },
+    {
+      "left": "stg_customer_orders",
+      "right": "stg_order_items",
+      "on": "order_id = order_id"
+    },
+    {
+      "left": "stg_order_items",
+      "right": "stg_products",
+      "on": "product_id = product_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ]
+  }
+}

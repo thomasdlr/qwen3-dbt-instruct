@@ -1,0 +1,17 @@
+{
+  "tables": [
+    "Sportsinfo",
+    "Student"
+  ],
+  "joins": [
+    {
+      "left_table": "Sportsinfo",
+      "right_table": "Student",
+      "condition": "T1.StuID = T2.StuID"
+    }
+  ],
+  "filters": [
+    "T2.Fname = \"David\"",
+    "T2.Lname = \"Shieber\""
+  ]
+}

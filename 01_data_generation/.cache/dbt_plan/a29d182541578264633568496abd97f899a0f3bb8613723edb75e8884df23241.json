@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.trip",
+    "raw.weather"
+  ],
+  "staging_models": [
+    "stg_trip",
+    "stg_weather"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_avg_temp_by_zip",
+    "type": "report",
+    "grain": "1 row per zip_code"
+  },
+  "ctes": [
+    "stg_trip",
+    "stg_weather"
+  ],
+  "joins": [
+    {
+      "left": "stg_trip",
+      "right": "stg_weather",
+      "on": "trip.zip_code = weather.zip_code"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "zip_code": [
+      "not_null"
+    ]
+  }
+}

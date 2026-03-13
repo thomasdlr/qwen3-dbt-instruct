@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "VISITORS",
+    "VISITS"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Tourist_ID = T2.Tourist_ID"
+    }
+  ],
+  "filters": [
+    "T1.Tourist_Details = \"Vincent\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Visit_Date",
+    "T2.Visit_Details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Tourist_ID",
+  "model_type": "fact"
+}

@@ -1,0 +1,25 @@
+{
+  "tables": [
+    "Student",
+    "Sportsinfo"
+  ],
+  "joins": [],
+  "filters": [
+    "major = 600",
+    "onscholarship = 'Y'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "StuID"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "StuID",
+  "model_type": "report"
+}

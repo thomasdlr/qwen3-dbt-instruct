@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.Addresses",
+    "raw.Students"
+  ],
+  "staging_models": [
+    "stg_Addresses",
+    "stg_Students"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_student_address_count",
+    "type": "fact",
+    "grain": "1 row per address_id"
+  },
+  "ctes": [
+    "stg_Addresses",
+    "stg_Students"
+  ],
+  "joins": [
+    {
+      "left": "stg_Addresses",
+      "right": "stg_Students",
+      "on": "stg_Addresses.address_id = stg_Students.current_address_id"
+    }
+  ],
+  "tests": {
+    "address_id": [
+      "not_null",
+      "unique"
+    ],
+    "line_1": [
+      "not_null"
+    ],
+    "line_2": [
+      "not_null"
+    ]
+  }
+}

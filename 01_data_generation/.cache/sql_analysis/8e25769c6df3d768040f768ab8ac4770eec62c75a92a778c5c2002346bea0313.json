@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "authors",
+    "authorship",
+    "papers",
+    "inst"
+  ],
+  "joins": [
+    {
+      "left_table": "authors",
+      "right_table": "authorship",
+      "condition": "t1.authid = t2.authid"
+    },
+    {
+      "left_table": "authorship",
+      "right_table": "papers",
+      "condition": "t2.paperid = t3.paperid"
+    },
+    {
+      "left_table": "authorship",
+      "right_table": "inst",
+      "condition": "t2.instid = t4.instid"
+    }
+  ],
+  "filters": [
+    "t4.country = \"USA\"",
+    "t2.authorder = 2",
+    "t1.lname = \"Turon\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t3.title"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t3.paperid",
+  "model_type": "report"
+}

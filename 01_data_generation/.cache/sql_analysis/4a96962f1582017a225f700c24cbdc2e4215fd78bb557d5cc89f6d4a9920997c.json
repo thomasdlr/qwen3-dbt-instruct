@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "country",
+    "roller_coaster"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Country_ID = T2.Country_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Name"
+  ],
+  "having": [
+    "COUNT(*) > 1"
+  ],
+  "select_columns": [
+    "T1.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Name",
+  "model_type": "fact"
+}

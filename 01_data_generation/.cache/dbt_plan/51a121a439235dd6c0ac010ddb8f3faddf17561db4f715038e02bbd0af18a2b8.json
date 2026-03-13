@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.store",
+    "raw.store_district",
+    "raw.district"
+  ],
+  "staging_models": [
+    "stg_store",
+    "stg_store_district",
+    "stg_district"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_district_headquarters",
+    "type": "report",
+    "grain": "1 row per headquartered_city"
+  },
+  "ctes": [
+    "stg_store",
+    "stg_store_district",
+    "stg_district"
+  ],
+  "joins": [
+    {
+      "left": "stg_store",
+      "right": "stg_store_district",
+      "on": "store_id = store_id"
+    },
+    {
+      "left": "stg_store_district",
+      "right": "stg_district",
+      "on": "district_id = district_id"
+    }
+  ],
+  "tests": {
+    "headquartered_city": [
+      "not_null"
+    ]
+  }
+}

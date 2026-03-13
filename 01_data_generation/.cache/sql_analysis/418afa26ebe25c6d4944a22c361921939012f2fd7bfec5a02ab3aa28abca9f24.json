@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "people",
+    "poker_player"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (people)",
+      "right_table": "T2 (poker_player)",
+      "condition": "T1.People_ID = T2.People_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Money_Rank"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Money_Rank",
+  "model_type": "report"
+}

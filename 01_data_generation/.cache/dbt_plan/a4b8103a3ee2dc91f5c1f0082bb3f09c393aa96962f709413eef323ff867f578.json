@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.product_characteristics",
+    "raw.CHARACTERISTICS"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_CHARACTERISTICS"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_sesame_product_characteristics",
+    "type": "report",
+    "grain": "1 row per product_id"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_CHARACTERISTICS"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_product_characteristics",
+      "on": "product_id = product_id"
+    },
+    {
+      "left": "stg_product_characteristics",
+      "right": "stg_CHARACTERISTICS",
+      "on": "characteristic_id = characteristic_id"
+    }
+  ],
+  "tests": {
+    "count_distinct_characteristic_name": [
+      "not_null"
+    ]
+  }
+}

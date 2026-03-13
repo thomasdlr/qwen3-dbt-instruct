@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.order_items",
+    "raw.products"
+  ],
+  "staging_models": [
+    "stg_order_items",
+    "stg_products"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_order_items_by_product",
+    "type": "fact",
+    "grain": "1 row per product_id"
+  },
+  "ctes": [
+    "stg_order_items",
+    "stg_products"
+  ],
+  "joins": [
+    {
+      "left": "stg_order_items",
+      "right": "stg_products",
+      "on": "stg_order_items.product_id = stg_products.product_id"
+    }
+  ],
+  "tests": {
+    "product_details": [
+      "not_null"
+    ],
+    "product_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

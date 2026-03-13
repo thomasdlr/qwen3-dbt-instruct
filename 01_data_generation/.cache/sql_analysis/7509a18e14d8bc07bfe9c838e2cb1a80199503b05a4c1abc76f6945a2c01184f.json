@@ -1,0 +1,39 @@
+{
+  "tables": [
+    "employees",
+    "departments",
+    "locations",
+    "countries"
+  ],
+  "joins": [
+    {
+      "left_table": "employees",
+      "right_table": "departments",
+      "condition": "T1.department_id = T2.department_id"
+    },
+    {
+      "left_table": "departments",
+      "right_table": "locations",
+      "condition": "T2.location_id = T3.location_id"
+    },
+    {
+      "left_table": "locations",
+      "right_table": "countries",
+      "condition": "T3.country_id = T4.country_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.employee_id",
+    "T4.country_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "employees.employee_id",
+  "model_type": "fact"
+}

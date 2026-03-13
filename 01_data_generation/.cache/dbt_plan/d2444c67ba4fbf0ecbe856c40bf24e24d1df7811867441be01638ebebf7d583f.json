@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.user_profiles",
+    "raw.tweets"
+  ],
+  "staging_models": [
+    "stg_user_profiles",
+    "stg_tweets"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_user_tweet_counts",
+    "type": "fact",
+    "grain": "1 row per tweet author"
+  },
+  "ctes": [
+    "stg_user_profiles",
+    "stg_tweets"
+  ],
+  "joins": [
+    {
+      "left": "stg_user_profiles",
+      "right": "stg_tweets",
+      "on": "uid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "patient",
+    "Prescribes",
+    "Medication"
+  ],
+  "joins": [
+    {
+      "left_table": "Prescribes",
+      "right_table": "Medication",
+      "condition": "T1.Medication = T2.Code"
+    }
+  ],
+  "filters": [
+    "NOT SSN IN (SELECT T1.patient FROM Prescribes AS T1 JOIN Medication AS T2 ON T1.Medication = T2.Code WHERE T2.name = 'Procrastin-X')"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

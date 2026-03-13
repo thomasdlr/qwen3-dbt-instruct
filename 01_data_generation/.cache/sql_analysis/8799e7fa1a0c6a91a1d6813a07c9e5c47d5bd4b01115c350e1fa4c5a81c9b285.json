@@ -1,0 +1,23 @@
+{
+  "tables": [
+    "Tourist_Attractions",
+    "VISITORS",
+    "VISITS"
+  ],
+  "joins": [
+    {
+      "left_table": "Tourist_Attractions",
+      "right_table": "VISITS",
+      "condition": "T1.Tourist_Attraction_ID = T3.Tourist_Attraction_ID"
+    },
+    {
+      "left_table": "VISITORS",
+      "right_table": "VISITS",
+      "condition": "T2.Tourist_ID = T3.Tourist_ID"
+    }
+  ],
+  "filters": [
+    "T2.Tourist_Details = \"Alison\"",
+    "T2.Tourist_Details = \"Rosalind\""
+  ]
+}

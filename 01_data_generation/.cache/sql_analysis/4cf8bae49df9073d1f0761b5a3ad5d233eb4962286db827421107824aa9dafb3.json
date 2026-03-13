@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "weekly_weather",
+    "station"
+  ],
+  "joins": [
+    {
+      "left_table": "weekly_weather",
+      "right_table": "station",
+      "condition": "t1.station_id = t2.id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "high_temperature",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t1.station_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "t2.id",
+    "t2.local_authority"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.station_id",
+  "model_type": "report"
+}

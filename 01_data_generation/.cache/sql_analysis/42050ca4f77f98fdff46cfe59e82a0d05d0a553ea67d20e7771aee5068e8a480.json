@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "trip",
+    "station"
+  ],
+  "joins": [
+    {
+      "left_table": "trip",
+      "right_table": "station",
+      "condition": "T1.end_station_id = T2.id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.id",
+    "T2.installation_date"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "trip.id, station.installation_date",
+  "model_type": "report"
+}

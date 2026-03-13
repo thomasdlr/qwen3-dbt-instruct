@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.station",
+    "raw.trip"
+  ],
+  "staging_models": [
+    "stg_station",
+    "stg_trip"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_station_min_duration",
+    "type": "report",
+    "grain": "1 row per end_station_id"
+  },
+  "ctes": [
+    "stg_station",
+    "stg_trip"
+  ],
+  "joins": [
+    {
+      "left": "stg_station",
+      "right": "stg_trip",
+      "on": "station.id = trip.end_station_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "lat": [
+      "not_null"
+    ],
+    "min_duration": [
+      "not_null"
+    ]
+  }
+}

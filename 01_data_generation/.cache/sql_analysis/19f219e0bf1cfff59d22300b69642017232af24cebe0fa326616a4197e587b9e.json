@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "institution",
+    "protein",
+    "building"
+  ],
+  "joins": [
+    {
+      "left_table": "institution",
+      "right_table": "protein",
+      "condition": "T1.institution_id = T2.institution_id"
+    },
+    {
+      "left_table": "institution",
+      "right_table": "building",
+      "condition": "T3.building_id = T1.building_id"
+    }
+  ],
+  "filters": [
+    "T3.floors >= 20"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

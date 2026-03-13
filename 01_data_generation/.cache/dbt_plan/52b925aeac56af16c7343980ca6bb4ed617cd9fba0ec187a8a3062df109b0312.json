@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.trip",
+    "raw.station"
+  ],
+  "staging_models": [
+    "stg_trip",
+    "stg_station"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_trip_station_installation",
+    "type": "report",
+    "grain": "1 row per trip.id, station.installation_date"
+  },
+  "ctes": [
+    "stg_trip",
+    "stg_station"
+  ],
+  "joins": [
+    {
+      "left": "stg_trip",
+      "right": "stg_station",
+      "on": "T1.end_station_id = T2.id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "installation_date": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "phone_market",
+    "market",
+    "phone"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Market_ID = T2.Market_ID"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T3",
+      "condition": "T1.Phone_ID = T3.Phone_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.Name",
+    "T2.District"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Phone_ID, T1.Market_ID",
+  "model_type": "report"
+}

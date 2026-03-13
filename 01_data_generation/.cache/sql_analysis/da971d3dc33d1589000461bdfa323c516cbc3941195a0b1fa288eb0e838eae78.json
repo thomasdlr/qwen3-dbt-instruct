@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "ship",
+    "captain"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.ship_id = t2.ship_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.ship_id"
+  ],
+  "having": [
+    "COUNT(*) > 1"
+  ],
+  "select_columns": [
+    "t1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.ship_id",
+  "model_type": "report"
+}

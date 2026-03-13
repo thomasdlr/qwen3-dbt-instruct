@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.mailshot_customers"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_mailshot_customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_mailshot_non_responses",
+    "type": "dimension",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_mailshot_customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_mailshot_customers",
+      "on": "customer_id = customer_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ],
+    "customer_phone": [
+      "not_null"
+    ]
+  }
+}

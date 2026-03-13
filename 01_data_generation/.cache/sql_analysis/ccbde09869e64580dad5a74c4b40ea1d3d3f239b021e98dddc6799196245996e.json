@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "web_client_accelerator",
+    "accelerator_compatible_browser"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT id IN (SELECT accelerator_id FROM accelerator_compatible_browser)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

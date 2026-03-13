@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "student",
+    "lives_in",
+    "has_amenity",
+    "dorm_amenity"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "lives_in",
+      "condition": "T1.stuid = T2.stuid"
+    },
+    {
+      "left_table": "has_amenity",
+      "right_table": "dorm_amenity",
+      "condition": "T3.amenid = T4.amenid"
+    }
+  ],
+  "filters": [
+    "T2.dormid IN (SELECT T3.dormid FROM has_amenity AS T3 JOIN dorm_amenity AS T4 ON T3.amenid = T4.amenid WHERE T4.amenity_name = 'TV Lounge')"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.fname",
+    "T1.lname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "T1.stuid",
+  "model_type": "report"
+}

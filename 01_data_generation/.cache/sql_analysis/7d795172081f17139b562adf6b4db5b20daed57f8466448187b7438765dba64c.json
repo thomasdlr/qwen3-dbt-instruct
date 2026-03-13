@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "Employees",
+    "Documents_to_be_destroyed"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "employee_id"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "employee_id",
+  "model_type": "report"
+}

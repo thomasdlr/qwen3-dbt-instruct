@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Owners"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT owner_id IN (SELECT owner_id FROM Dogs)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "aggregated count",
+  "model_type": "report"
+}

@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "staff",
+    "rental",
+    "customer"
+  ],
+  "joins": [
+    {
+      "left_table": "staff",
+      "right_table": "rental",
+      "condition": "T1.staff_id = T2.staff_id"
+    },
+    {
+      "left_table": "rental",
+      "right_table": "customer",
+      "condition": "T2.customer_id = T3.customer_id"
+    }
+  ],
+  "filters": [
+    "T3.first_name = 'APRIL'",
+    "T3.last_name = 'BURNS'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.first_name",
+    "T1.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "staff.staff_id",
+  "model_type": "report"
+}

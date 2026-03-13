@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.customer",
+    "raw.payment"
+  ],
+  "staging_models": [
+    "stg_customer",
+    "stg_payment"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_customer_payments",
+    "type": "fact",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customer",
+    "stg_payment"
+  ],
+  "joins": [
+    {
+      "left": "stg_customer",
+      "right": "stg_payment",
+      "on": "stg_customer.customer_id = stg_payment.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_id": [
+      "not_null",
+      "unique"
+    ],
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

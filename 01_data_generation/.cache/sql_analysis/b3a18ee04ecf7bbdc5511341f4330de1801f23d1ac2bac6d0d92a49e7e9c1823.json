@@ -1,0 +1,46 @@
+{
+  "tables": [
+    "dorm",
+    "has_amenity",
+    "dorm_amenity",
+    "lives_in",
+    "student"
+  ],
+  "joins": [
+    {
+      "left_table": "dorm",
+      "right_table": "has_amenity",
+      "condition": "T1.dormid = T2.dormid"
+    },
+    {
+      "left_table": "has_amenity",
+      "right_table": "dorm_amenity",
+      "condition": "T2.amenid = T3.amenid"
+    },
+    {
+      "left_table": "dorm",
+      "right_table": "lives_in",
+      "condition": "T4.dormid = T1.dormid"
+    },
+    {
+      "left_table": "lives_in",
+      "right_table": "student",
+      "condition": "T5.stuid = T4.stuid"
+    }
+  ],
+  "filters": [
+    "T5.lname = 'Smith'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.amenity_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "dorm_amenity.amenid",
+  "model_type": "report"
+}

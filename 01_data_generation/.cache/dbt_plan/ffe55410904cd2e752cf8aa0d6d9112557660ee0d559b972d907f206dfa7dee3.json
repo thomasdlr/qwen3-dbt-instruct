@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Projects",
+    "raw.Documents"
+  ],
+  "staging_models": [
+    "stg_Projects",
+    "stg_Documents"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_project_documents",
+    "type": "fact",
+    "grain": "1 row per project_id"
+  },
+  "ctes": [
+    "stg_Projects",
+    "stg_Documents"
+  ],
+  "joins": [
+    {
+      "left": "stg_Projects",
+      "right": "stg_Documents",
+      "on": "stg_Projects.project_id = stg_Documents.project_id"
+    }
+  ],
+  "tests": {
+    "project_id": [
+      "not_null",
+      "unique"
+    ],
+    "project_details": [
+      "not_null"
+    ]
+  }
+}

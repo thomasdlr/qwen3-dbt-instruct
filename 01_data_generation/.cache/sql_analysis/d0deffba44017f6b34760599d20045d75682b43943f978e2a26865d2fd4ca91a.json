@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "Fault_Log",
+    "Fault_Log_Parts"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.fault_log_entry_id = T2.fault_log_entry_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.fault_description",
+    "T2.fault_status"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "fault_log_entry_id",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.club",
+    "raw.member_of_club",
+    "raw.student"
+  ],
+  "staging_models": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_clubs_by_hou_students",
+    "type": "report",
+    "grain": "1 row per clubname"
+  },
+  "ctes": [
+    "stg_club",
+    "stg_member_of_club",
+    "stg_student"
+  ],
+  "joins": [
+    {
+      "left": "stg_club",
+      "right": "stg_member_of_club",
+      "on": "t1.clubid = t2.clubid"
+    },
+    {
+      "left": "stg_member_of_club",
+      "right": "stg_student",
+      "on": "t2.stuid = t3.stuid"
+    }
+  ],
+  "tests": {
+    "clubname": [
+      "not_null"
+    ]
+  }
+}

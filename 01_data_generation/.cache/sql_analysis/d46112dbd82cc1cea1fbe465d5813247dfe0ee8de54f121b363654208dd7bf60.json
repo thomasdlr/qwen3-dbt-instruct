@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "news_report",
+    "event",
+    "journalist"
+  ],
+  "joins": [
+    {
+      "left_table": "news_report",
+      "right_table": "event",
+      "condition": "T1.Event_ID = T2.Event_ID"
+    },
+    {
+      "left_table": "news_report",
+      "right_table": "journalist",
+      "condition": "T1.journalist_ID = T3.journalist_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.Name"
+  ],
+  "having": [
+    "COUNT(*) > 1"
+  ],
+  "select_columns": [
+    "T3.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.Name",
+  "model_type": "report"
+}

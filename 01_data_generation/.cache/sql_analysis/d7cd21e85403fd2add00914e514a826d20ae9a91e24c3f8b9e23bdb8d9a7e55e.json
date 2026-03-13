@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "student",
+    "has_pet"
+  ],
+  "joins": [
+    {
+      "left_table": "student",
+      "right_table": "has_pet",
+      "condition": "T1.stuid = T2.stuid"
+    }
+  ],
+  "filters": [
+    "T1.Lname = 'Smith'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.petid"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.petid",
+  "model_type": "report"
+}

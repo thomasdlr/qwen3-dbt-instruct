@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "nurse",
+    "on_call"
+  ],
+  "joins": [
+    {
+      "left_table": "nurse",
+      "right_table": "on_call",
+      "condition": "T1.EmployeeID = T2.nurse"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "nurse.name",
+  "model_type": "dimension"
+}

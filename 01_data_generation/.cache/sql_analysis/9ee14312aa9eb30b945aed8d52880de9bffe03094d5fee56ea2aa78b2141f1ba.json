@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "CONTINENTS",
+    "COUNTRIES"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.ContId = T2.Continent"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.ContId"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.ContId",
+    "T1.Continent",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.ContId",
+  "model_type": "fact"
+}

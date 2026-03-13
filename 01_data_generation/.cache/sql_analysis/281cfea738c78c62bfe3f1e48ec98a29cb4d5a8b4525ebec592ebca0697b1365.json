@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "files",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "files",
+      "right_table": "song",
+      "condition": "T1.f_id = T2.f_id"
+    }
+  ],
+  "filters": [
+    "T1.duration LIKE \"3:%\""
+  ],
+  "aggregations": [
+    {
+      "function": "MAX",
+      "column": "T2.resolution",
+      "alias": ""
+    },
+    {
+      "function": "MIN",
+      "column": "T2.resolution",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "MAX(T2.resolution)",
+    "MIN(T2.resolution)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

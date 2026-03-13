@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.gymnast",
+    "raw.people"
+  ],
+  "staging_models": [
+    "stg_gymnast",
+    "stg_people"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_gymnast_hometown_counts",
+    "type": "fact",
+    "grain": "1 row per Hometown"
+  },
+  "ctes": [
+    "stg_gymnast",
+    "stg_people"
+  ],
+  "joins": [
+    {
+      "left": "stg_gymnast",
+      "right": "stg_people",
+      "on": "stg_gymnast.Gymnast_ID = stg_people.People_ID"
+    }
+  ],
+  "tests": {
+    "Hometown": [
+      "not_null",
+      "unique"
+    ],
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.driver",
+    "raw.school_bus"
+  ],
+  "staging_models": [
+    "stg_driver",
+    "stg_school_bus"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_driver_no_bus",
+    "type": "dimension",
+    "grain": "1 row per driver.name"
+  },
+  "ctes": [
+    "stg_driver",
+    "stg_school_bus"
+  ],
+  "joins": [],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

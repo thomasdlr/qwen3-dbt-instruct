@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.contestants",
+    "raw.votes"
+  ],
+  "staging_models": [
+    "stg_contestants",
+    "stg_votes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_tabatha_votes",
+    "type": "report",
+    "grain": "1 row per vote by Tabatha Gehling"
+  },
+  "ctes": [
+    "stg_contestants",
+    "stg_votes"
+  ],
+  "joins": [
+    {
+      "left": "stg_contestants",
+      "right": "stg_votes",
+      "on": "contestant_number"
+    }
+  ],
+  "tests": {
+    "created": [
+      "not_null"
+    ],
+    "state": [
+      "not_null"
+    ],
+    "phone_number": [
+      "not_null"
+    ]
+  }
+}

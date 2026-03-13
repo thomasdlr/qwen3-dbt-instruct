@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Bookings",
+    "Payments"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.booking_id = T2.booking_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.booking_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.booking_id",
+    "T1.amount_of_refund"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.booking_id",
+  "model_type": "fact"
+}

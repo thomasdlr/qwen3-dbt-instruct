@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "products",
+    "product_characteristics",
+    "CHARACTERISTICS"
+  ],
+  "joins": [
+    {
+      "left_table": "products",
+      "right_table": "product_characteristics",
+      "condition": "t1.product_id = t2.product_id"
+    },
+    {
+      "left_table": "product_characteristics",
+      "right_table": "CHARACTERISTICS",
+      "condition": "t2.characteristic_id = t3.characteristic_id"
+    }
+  ],
+  "filters": [
+    "t1.product_name = \"sesame\""
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "DISTINCT t3.characteristic_name",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(DISTINCT t3.characteristic_name)"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.product_id",
+  "model_type": "report"
+}

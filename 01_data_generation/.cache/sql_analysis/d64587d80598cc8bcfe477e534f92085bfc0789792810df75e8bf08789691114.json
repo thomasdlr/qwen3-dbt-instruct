@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "campuses",
+    "degrees"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "t1.id = t2.campus"
+    }
+  ],
+  "filters": [
+    "t1.campus = \"San Jose State University\"",
+    "t2.year = 2000"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "degrees"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.id = t2.campus AND t1.campus = \"San Jose State University\" AND t2.year = 2000",
+  "model_type": "report"
+}

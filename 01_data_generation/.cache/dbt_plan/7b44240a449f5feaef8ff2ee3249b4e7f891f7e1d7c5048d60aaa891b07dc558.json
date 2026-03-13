@@ -1,0 +1,44 @@
+{
+  "sources": [
+    "raw.Staff_Roles",
+    "raw.Project_Staff",
+    "raw.Project_outcomes"
+  ],
+  "staging_models": [
+    "stg_Staff_Roles",
+    "stg_Project_Staff",
+    "stg_Project_outcomes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_staff_project_outcomes",
+    "type": "fact",
+    "grain": "1 row per staff_id"
+  },
+  "ctes": [
+    "stg_Staff_Roles",
+    "stg_Project_Staff",
+    "stg_Project_outcomes"
+  ],
+  "joins": [
+    {
+      "left": "stg_Staff_Roles",
+      "right": "stg_Project_Staff",
+      "on": "role_code = role_code"
+    },
+    {
+      "left": "stg_Project_Staff",
+      "right": "stg_Project_outcomes",
+      "on": "project_id = project_id"
+    }
+  ],
+  "tests": {
+    "role_description": [
+      "not_null"
+    ],
+    "staff_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

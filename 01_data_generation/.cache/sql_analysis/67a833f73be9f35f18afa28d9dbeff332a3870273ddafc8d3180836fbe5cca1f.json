@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "Maintenance_Engineers",
+    "Engineer_Visits"
+  ],
+  "joins": [
+    {
+      "left_table": "Maintenance_Engineers",
+      "right_table": "Engineer_Visits",
+      "condition": "T1.engineer_id = T2.engineer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.engineer_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.engineer_id",
+    "T1.first_name",
+    "T1.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.engineer_id",
+  "model_type": "dimension"
+}

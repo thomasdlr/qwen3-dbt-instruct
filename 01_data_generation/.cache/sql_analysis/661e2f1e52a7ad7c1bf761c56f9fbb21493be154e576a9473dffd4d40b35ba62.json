@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "film_actor",
+    "actor"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.actor_id = T2.actor_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.actor_id"
+  ],
+  "having": [
+    "COUNT(*) > 30"
+  ],
+  "select_columns": [
+    "T2.first_name",
+    "T2.last_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.actor_id",
+  "model_type": "dimension"
+}

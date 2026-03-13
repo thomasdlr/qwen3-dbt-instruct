@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.races",
+    "raw.results"
+  ],
+  "staging_models": [
+    "stg_races",
+    "stg_results"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_monaco_2008_max_speed",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_races",
+    "stg_results"
+  ],
+  "joins": [
+    {
+      "left": "stg_races",
+      "right": "stg_results",
+      "on": "raceid"
+    }
+  ],
+  "tests": {
+    "max_fastestlapspeed": [
+      "not_null"
+    ]
+  }
+}

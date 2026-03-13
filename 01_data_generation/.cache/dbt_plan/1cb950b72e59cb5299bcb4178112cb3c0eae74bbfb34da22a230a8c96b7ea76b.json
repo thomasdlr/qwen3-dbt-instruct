@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.city",
+    "raw.hosting_city",
+    "raw.MATCH"
+  ],
+  "staging_models": [
+    "stg_city",
+    "stg_hosting_city",
+    "stg_MATCH"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_nanjing_1994_world_cup_venues",
+    "type": "report",
+    "grain": "1 row per venue"
+  },
+  "ctes": [
+    "stg_city",
+    "stg_hosting_city",
+    "stg_MATCH"
+  ],
+  "joins": [
+    {
+      "left": "stg_city",
+      "right": "stg_hosting_city",
+      "on": "city_id = host_city"
+    },
+    {
+      "left": "stg_hosting_city",
+      "right": "stg_MATCH",
+      "on": "match_id = match_id"
+    }
+  ],
+  "tests": {
+    "venue": [
+      "not_null"
+    ]
+  }
+}

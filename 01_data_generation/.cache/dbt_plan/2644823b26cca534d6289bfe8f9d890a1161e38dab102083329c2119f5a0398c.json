@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.research_outcomes",
+    "raw.project_outcomes"
+  ],
+  "staging_models": [
+    "stg_research_outcomes",
+    "stg_project_outcomes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_outcome_description",
+    "type": "dimension",
+    "grain": "1 row per outcome_description"
+  },
+  "ctes": [
+    "stg_research_outcomes",
+    "stg_project_outcomes"
+  ],
+  "joins": [
+    {
+      "left": "stg_research_outcomes",
+      "right": "stg_project_outcomes",
+      "on": "outcome_code = outcome_code"
+    }
+  ],
+  "tests": {
+    "outcome_description": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.departments",
+    "raw.locations"
+  ],
+  "staging_models": [
+    "stg_departments",
+    "stg_locations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_department_locations",
+    "type": "dimension",
+    "grain": "1 row per department_name, city, state_province"
+  },
+  "ctes": [
+    "stg_departments",
+    "stg_locations"
+  ],
+  "joins": [
+    {
+      "left": "stg_departments",
+      "right": "stg_locations",
+      "on": "stg_locations.location_id = stg_departments.location_id"
+    }
+  ],
+  "tests": {
+    "department_name": [
+      "not_null"
+    ],
+    "city": [
+      "not_null"
+    ],
+    "state_province": [
+      "not_null"
+    ]
+  }
+}

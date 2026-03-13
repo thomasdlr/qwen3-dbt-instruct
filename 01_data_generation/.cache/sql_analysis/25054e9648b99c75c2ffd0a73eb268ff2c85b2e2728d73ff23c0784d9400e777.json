@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "DEPARTMENT",
+    "MINOR_IN"
+  ],
+  "joins": [
+    {
+      "left_table": "DEPARTMENT",
+      "right_table": "MINOR_IN",
+      "condition": "T1.DNO = T2.DNO"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.DNO"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.DName"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.DNO",
+  "model_type": "dimension"
+}

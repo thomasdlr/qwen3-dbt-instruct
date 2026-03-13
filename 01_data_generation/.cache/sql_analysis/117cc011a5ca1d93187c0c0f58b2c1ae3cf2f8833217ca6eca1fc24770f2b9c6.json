@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "student",
+    "has_pet",
+    "pets"
+  ],
+  "joins": [
+    {
+      "left_table": "student AS T1",
+      "right_table": "has_pet AS T2",
+      "condition": "T1.stuid = T2.stuid"
+    },
+    {
+      "left_table": "pets AS T3",
+      "right_table": "has_pet AS T2",
+      "condition": "T3.petid = T2.petid"
+    }
+  ],
+  "filters": [
+    "T3.pet_age = 3",
+    "T3.pettype = 'cat'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.lname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "student.lname",
+  "model_type": "report"
+}

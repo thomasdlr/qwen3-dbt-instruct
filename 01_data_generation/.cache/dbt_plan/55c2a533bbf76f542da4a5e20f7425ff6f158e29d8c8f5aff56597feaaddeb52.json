@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Accounts",
+    "raw.Customers"
+  ],
+  "staging_models": [
+    "stg_Accounts",
+    "stg_Customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_Art_Turcotte_customers",
+    "type": "report",
+    "grain": "1 row per customer filter"
+  },
+  "ctes": [
+    "stg_Accounts",
+    "stg_Customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_Accounts",
+      "right": "stg_Customers",
+      "on": "stg_Accounts.customer_id = stg_Customers.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_id": [
+      "not_null"
+    ]
+  }
+}

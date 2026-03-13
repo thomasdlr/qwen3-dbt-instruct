@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.CAR_NAMES",
+    "raw.CARS_DATA"
+  ],
+  "staging_models": [
+    "stg_CAR_NAMES",
+    "stg_CARS_DATA"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_car_names",
+    "type": "report",
+    "grain": "1 row per Model"
+  },
+  "ctes": [
+    "stg_CAR_NAMES",
+    "stg_CARS_DATA"
+  ],
+  "joins": [
+    {
+      "left": "stg_CAR_NAMES",
+      "right": "stg_CARS_DATA",
+      "on": "MakeId = Id"
+    }
+  ],
+  "tests": {
+    "Model": [
+      "not_null"
+    ]
+  }
+}

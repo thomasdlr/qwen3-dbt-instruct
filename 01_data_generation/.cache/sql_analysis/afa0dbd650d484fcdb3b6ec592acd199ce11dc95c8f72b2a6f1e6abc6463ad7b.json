@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "medication",
+    "prescribes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (medication)",
+      "right_table": "T2 (prescribes)",
+      "condition": "T1.code = T2.medication"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.brand"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.brand",
+  "model_type": "fact"
+}

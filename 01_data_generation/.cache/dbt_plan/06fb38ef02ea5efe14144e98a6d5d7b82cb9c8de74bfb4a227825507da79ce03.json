@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.ROLES",
+    "raw.Employees"
+  ],
+  "staging_models": [
+    "stg_ROLES",
+    "stg_Employees"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_role_employee_counts",
+    "type": "fact",
+    "grain": "1 row per role_code"
+  },
+  "ctes": [
+    "stg_Employees",
+    "stg_ROLES"
+  ],
+  "joins": [
+    {
+      "left": "stg_Employees",
+      "right": "stg_ROLES",
+      "on": "Employees.role_code = Roles.role_code"
+    }
+  ],
+  "tests": {
+    "role_description": [
+      "not_null"
+    ],
+    "count_Employees_employee_id": [
+      "not_null"
+    ]
+  }
+}

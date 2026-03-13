@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "Invoices",
+    "Orders"
+  ],
+  "joins": [
+    {
+      "left_table": "Invoices",
+      "right_table": "Orders",
+      "condition": "T1.order_id = T2.order_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.order_id"
+  ],
+  "having": [
+    "COUNT(*) > 2"
+  ],
+  "select_columns": [
+    "T2.order_id",
+    "T2.order_details"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.order_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "railway",
+    "train"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Railway_ID = T2.Railway_ID"
+    }
+  ],
+  "filters": [
+    "T2.Name = \"Andaman Exp\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.Builder"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "railway.Railway_ID",
+  "model_type": "dimension"
+}

@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "membership_register_branch",
+    "branch"
+  ],
+  "joins": [
+    {
+      "left_table": "membership_register_branch",
+      "right_table": "branch",
+      "condition": "T1.branch_id = T2.branch_id"
+    }
+  ],
+  "filters": [
+    "T1.register_year > 2015"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.branch_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.branch_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "SportsInfo",
+    "Student"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.StuID = T2.StuID"
+    }
+  ],
+  "filters": [
+    "T1.SportName = \"Football\"",
+    "T1.SportName = \"Lacrosse\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.lname",
+    "T2.fname"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.lname, T2.fname",
+  "model_type": "report"
+}

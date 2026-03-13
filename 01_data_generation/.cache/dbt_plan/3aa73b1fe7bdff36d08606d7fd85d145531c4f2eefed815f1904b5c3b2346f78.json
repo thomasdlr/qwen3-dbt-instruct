@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.home_game",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_boston_red_stockings_games_1990_2000",
+    "type": "fact",
+    "grain": "1 row per team name and year range"
+  },
+  "ctes": [
+    "stg_home_game",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_home_game",
+      "right": "stg_team",
+      "on": "home_game.team_id = team.team_id_br"
+    }
+  ],
+  "tests": {
+    "games_sum": [
+      "not_null"
+    ]
+  }
+}

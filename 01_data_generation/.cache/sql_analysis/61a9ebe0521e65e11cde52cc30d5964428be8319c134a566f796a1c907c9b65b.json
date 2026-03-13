@@ -1,0 +1,23 @@
+{
+  "tables": [
+    "campuses",
+    "enrollments"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.id = t2.campus"
+    }
+  ],
+  "filters": [
+    "t2.year = 1956",
+    "totalenrollment_ay > 400",
+    "FTE_AY > 200"
+  ],
+  "select_columns": [
+    "T1.campus"
+  ],
+  "grain": "t1.id",
+  "model_type": "dimension"
+}

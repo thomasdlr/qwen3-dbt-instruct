@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "Professionals",
+    "Owners",
+    "Dogs"
+  ],
+  "joins": [],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "first_name",
+    "first_name",
+    "name"
+  ],
+  "set_operations": [
+    "UNION",
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "first_name from Professionals, Owners or name from Dogs",
+  "model_type": "report"
+}

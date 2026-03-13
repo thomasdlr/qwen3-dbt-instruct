@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.has_pet"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_has_pet"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_smith_pets",
+    "type": "report",
+    "grain": "1 row per petid"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_has_pet"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_has_pet",
+      "on": "stg_student.stuid = stg_has_pet.stuid"
+    }
+  ],
+  "tests": {
+    "petid": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

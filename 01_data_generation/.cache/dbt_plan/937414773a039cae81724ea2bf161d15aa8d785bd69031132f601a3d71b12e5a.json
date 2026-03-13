@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.city",
+    "raw.farm_competition"
+  ],
+  "staging_models": [
+    "stg_city",
+    "stg_farm_competition"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_theme_by_city",
+    "type": "report",
+    "grain": "1 row per Theme"
+  },
+  "ctes": [
+    "stg_city",
+    "stg_farm_competition"
+  ],
+  "joins": [
+    {
+      "left": "stg_city",
+      "right": "stg_farm_competition",
+      "on": "City_ID = Host_city_ID"
+    }
+  ],
+  "tests": {
+    "Theme": [
+      "not_null"
+    ]
+  }
+}

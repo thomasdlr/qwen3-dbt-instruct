@@ -1,0 +1,46 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Has_allergy",
+    "raw.Allergy_Type"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_student_food_allergies",
+    "type": "fact",
+    "grain": "1 row per male student with food allergy"
+  },
+  "ctes": [
+    "stg_Has_allergy",
+    "stg_Allergy_Type"
+  ],
+  "joins": [
+    {
+      "left": "stg_Has_allergy",
+      "right": "stg_Allergy_Type",
+      "on": "T1.Allergy = T2.Allergy"
+    },
+    {
+      "left": "stg_Student",
+      "right": "stg_Has_allergy",
+      "on": "T1.Student_id = T2.Student_id"
+    }
+  ],
+  "tests": {
+    "student_id": [
+      "not_null",
+      "unique"
+    ],
+    "sex": [
+      "not_null"
+    ],
+    "allergytype": [
+      "not_null"
+    ]
+  }
+}

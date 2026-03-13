@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "Rating",
+    "Movie",
+    "Reviewer"
+  ],
+  "joins": [
+    {
+      "left_table": "Rating",
+      "right_table": "Movie",
+      "condition": "T1.mID = T2.mID"
+    },
+    {
+      "left_table": "Rating",
+      "right_table": "Reviewer",
+      "condition": "T1.rID = T3.rID"
+    }
+  ],
+  "filters": [
+    "T2.director = T3.name"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.name",
+    "T2.title",
+    "T1.stars"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.name, T2.title",
+  "model_type": "report"
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "department",
+    "professor"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.dept_code = T2.dept_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.school_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T1.school_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.school_code",
+  "model_type": "fact"
+}

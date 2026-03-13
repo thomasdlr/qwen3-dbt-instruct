@@ -1,0 +1,47 @@
+{
+  "sources": [
+    "raw.employment",
+    "raw.people",
+    "raw.company"
+  ],
+  "staging_models": [
+    "stg_employment",
+    "stg_people",
+    "stg_company"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_people_companies",
+    "type": "fact",
+    "grain": "1 row per People_ID, Company_ID"
+  },
+  "ctes": [
+    "stg_employment",
+    "stg_people",
+    "stg_company"
+  ],
+  "joins": [
+    {
+      "left": "stg_employment",
+      "right": "stg_people",
+      "on": "stg_employment.People_ID = stg_people.People_ID"
+    },
+    {
+      "left": "stg_employment",
+      "right": "stg_company",
+      "on": "stg_employment.Company_ID = stg_company.Company_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ],
+    "People_ID": [
+      "not_null",
+      "unique"
+    ],
+    "Company_ID": [
+      "not_null"
+    ]
+  }
+}

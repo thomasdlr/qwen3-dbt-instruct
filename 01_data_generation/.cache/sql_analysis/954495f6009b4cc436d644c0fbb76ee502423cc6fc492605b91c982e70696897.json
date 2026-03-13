@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "product",
+    "problems"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.product_id = T2.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.product_name"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T1.product_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.product_name",
+  "model_type": "report"
+}

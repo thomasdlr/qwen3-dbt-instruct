@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.flights",
+    "raw.airports"
+  ],
+  "staging_models": [
+    "stg_flights",
+    "stg_airports"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_flights_to_aberdeen",
+    "type": "fact",
+    "grain": "1 row per flight"
+  },
+  "ctes": [
+    "stg_flights",
+    "stg_airports"
+  ],
+  "joins": [
+    {
+      "left": "stg_flights",
+      "right": "stg_airports",
+      "on": "T1.DestAirport = T2.AirportCode"
+    }
+  ],
+  "tests": {
+    "FlightNo": [
+      "not_null"
+    ]
+  }
+}

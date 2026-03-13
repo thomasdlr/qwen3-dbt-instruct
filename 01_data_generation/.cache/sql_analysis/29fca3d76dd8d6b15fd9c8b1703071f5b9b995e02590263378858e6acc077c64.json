@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "TV_Channel",
+    "Cartoon"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.id = T2.Channel"
+    }
+  ],
+  "filters": [
+    "T2.Title = \"The Rise of the Blue Beetle!\""
+  ],
+  "select_columns": [
+    "T1.series_name"
+  ],
+  "grain": "T1.id",
+  "model_type": "dimension"
+}

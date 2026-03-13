@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "addresses",
+    "people_addresses",
+    "students"
+  ],
+  "joins": [
+    {
+      "left_table": "addresses",
+      "right_table": "people_addresses",
+      "condition": "T1.address_id = T2.address_id"
+    },
+    {
+      "left_table": "people_addresses",
+      "right_table": "students",
+      "condition": "T2.person_id = T3.student_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.city"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "addresses.city",
+  "model_type": "dimension"
+}

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.member",
+    "raw.membership_register_branch"
+  ],
+  "staging_models": [
+    "stg_member",
+    "stg_membership_register_branch"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_member_not_in_branch",
+    "type": "report",
+    "grain": "1 row per name"
+  },
+  "ctes": [
+    "stg_member",
+    "stg_membership_register_branch"
+  ],
+  "joins": [
+    {
+      "left": "stg_member",
+      "right": "stg_membership_register_branch",
+      "on": "member.member_id = membership_register_branch.member_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

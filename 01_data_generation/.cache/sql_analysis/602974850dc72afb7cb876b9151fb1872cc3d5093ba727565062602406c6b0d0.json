@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "photos",
+    "camera_lens"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.camera_lens_id = T2.id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T2.id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.id",
+  "model_type": "report"
+}

@@ -1,0 +1,27 @@
+{
+  "sources": [
+    "raw.Player",
+    "raw.Player_Attributes"
+  ],
+  "staging_models": [
+    "stg_Player",
+    "stg_Player_Attributes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_player_filtered",
+    "type": "report",
+    "grain": "1 row per player_api_id"
+  },
+  "ctes": [
+    "stg_Player",
+    "stg_Player_Attributes"
+  ],
+  "joins": [],
+  "tests": {
+    "player_api_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

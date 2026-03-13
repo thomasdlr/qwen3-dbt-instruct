@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.documents",
+    "raw.Grants",
+    "raw.Organisations",
+    "raw.organisation_Types"
+  ],
+  "staging_models": [
+    "stg_documents",
+    "stg_Grants",
+    "stg_Organisations",
+    "stg_organisation_Types"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_grants_research_documents",
+    "type": "report",
+    "grain": "1 row per sent_date"
+  },
+  "ctes": [
+    "stg_documents",
+    "stg_Grants",
+    "stg_Organisations",
+    "stg_organisation_Types"
+  ],
+  "joins": [
+    {
+      "left": "stg_documents",
+      "right": "stg_Grants",
+      "on": "sent.grant_id = grants.grant_id"
+    },
+    {
+      "left": "stg_Grants",
+      "right": "stg_Organisations",
+      "on": "grants.organisation_id = organisations.organisation_id"
+    },
+    {
+      "left": "stg_Organisations",
+      "right": "stg_organisation_Types",
+      "on": "organisations.organisation_type = organisation_types.organisation_type"
+    }
+  ],
+  "tests": {
+    "sent_date": [
+      "not_null"
+    ]
+  }
+}

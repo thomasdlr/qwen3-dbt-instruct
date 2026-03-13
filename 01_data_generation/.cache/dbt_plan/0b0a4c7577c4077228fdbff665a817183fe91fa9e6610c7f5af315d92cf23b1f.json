@@ -1,0 +1,37 @@
+{
+  "sources": [
+    "raw.Apartments",
+    "raw.View_Unit_Status"
+  ],
+  "staging_models": [
+    "stg_Apartments",
+    "stg_View_Unit_Status"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_available_apartments",
+    "type": "report",
+    "grain": "1 row per apt_number"
+  },
+  "ctes": [
+    "stg_Apartments",
+    "stg_View_Unit_Status"
+  ],
+  "joins": [
+    {
+      "left": "stg_Apartments",
+      "right": "stg_View_Unit_Status",
+      "on": "apt_id = apt_id"
+    },
+    {
+      "left": "stg_Apartments",
+      "right": "stg_View_Unit_Status",
+      "on": "apt_id = apt_id"
+    }
+  ],
+  "tests": {
+    "apt_number": [
+      "not_null"
+    ]
+  }
+}

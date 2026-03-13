@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.orders"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_customers",
+    "type": "dimension",
+    "grain": "1 row per customer"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_orders"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_orders",
+      "on": "stg_customers.customer_id = stg_orders.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ]
+  }
+}

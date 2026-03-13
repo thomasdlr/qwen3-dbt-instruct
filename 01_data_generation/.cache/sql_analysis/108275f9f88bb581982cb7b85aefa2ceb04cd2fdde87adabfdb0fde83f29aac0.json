@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "people",
+    "poker_player"
+  ],
+  "joins": [
+    {
+      "left_table": "T1 (people)",
+      "right_table": "T2 (poker_player)",
+      "condition": "T1.People_ID = T2.People_ID"
+    }
+  ],
+  "filters": [
+    "T2.Earnings > 300000"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "people.People_ID",
+  "model_type": "dimension"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.college",
+    "raw.member"
+  ],
+  "staging_models": [
+    "stg_college",
+    "stg_member"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_college_member",
+    "type": "report",
+    "grain": "1 row per college_id, member_id"
+  },
+  "ctes": [
+    "stg_college",
+    "stg_member"
+  ],
+  "joins": [
+    {
+      "left": "stg_college",
+      "right": "stg_member",
+      "on": "stg_college.college_id = stg_member.college_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "college_name": [
+      "not_null"
+    ]
+  }
+}

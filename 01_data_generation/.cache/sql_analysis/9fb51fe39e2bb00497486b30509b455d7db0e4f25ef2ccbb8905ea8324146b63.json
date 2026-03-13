@@ -1,0 +1,54 @@
+{
+  "tables": [
+    "Third_Party_Companies",
+    "Maintenance_Engineers",
+    "Maintenance_Contracts"
+  ],
+  "joins": [
+    {
+      "left_table": "Third_Party_Companies",
+      "right_table": "Maintenance_Engineers",
+      "condition": "T1.company_id = T2.company_id"
+    },
+    {
+      "left_table": "Third_Party_Companies",
+      "right_table": "Maintenance_Contracts",
+      "condition": "T3.company_id = T4.maintenance_contract_company_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    },
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.company_id",
+    "T3.company_id"
+  ],
+  "having": [
+    "COUNT(*) >= 2",
+    "COUNT(*) >= 2"
+  ],
+  "select_columns": [
+    "T1.company_id",
+    "T1.company_name",
+    "T3.company_id",
+    "T3.company_name"
+  ],
+  "set_operations": [
+    "UNION"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "company_id",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.patient",
+    "raw.prescribes",
+    "raw.physician"
+  ],
+  "staging_models": [
+    "stg_patient",
+    "stg_prescribes",
+    "stg_physician"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_john_dorian_patients",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_patient",
+    "stg_prescribes",
+    "stg_physician"
+  ],
+  "joins": [
+    {
+      "left": "stg_patient",
+      "right": "stg_prescribes",
+      "on": "patient.ssn = prescribes.patient"
+    },
+    {
+      "left": "stg_prescribes",
+      "right": "stg_physician",
+      "on": "prescribes.physician = physician.employeeid"
+    }
+  ],
+  "tests": {
+    "count_patient_ssn": [
+      "not_null"
+    ]
+  }
+}

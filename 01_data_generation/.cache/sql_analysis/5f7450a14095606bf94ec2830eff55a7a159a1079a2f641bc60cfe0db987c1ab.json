@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "exhibition_record",
+    "exhibition"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.exhibition_id = T2.exhibition_id"
+    }
+  ],
+  "filters": [
+    "T1.attendance < 100",
+    "T1.attendance > 500"
+  ],
+  "select_columns": [
+    "T2.theme"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_subquery": false,
+  "grain": "T2.theme",
+  "model_type": "report"
+}

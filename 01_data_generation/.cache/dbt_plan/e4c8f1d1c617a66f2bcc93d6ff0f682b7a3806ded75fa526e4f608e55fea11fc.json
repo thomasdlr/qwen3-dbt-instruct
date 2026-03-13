@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.concert",
+    "raw.stadium"
+  ],
+  "staging_models": [
+    "stg_concert",
+    "stg_stadium"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_top_stadium_concerts",
+    "type": "report",
+    "grain": "1 row per top capacity stadium"
+  },
+  "ctes": [
+    "stg_concert",
+    "stg_stadium"
+  ],
+  "joins": [
+    {
+      "left": "stg_concert",
+      "right": "stg_stadium",
+      "on": "concert.stadium_id = stadium.stadium_id"
+    }
+  ],
+  "tests": {
+    "count_stars": [
+      "not_null"
+    ]
+  }
+}

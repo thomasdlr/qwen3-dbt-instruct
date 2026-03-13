@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "employees",
+    "departments"
+  ],
+  "joins": [
+    {
+      "left_table": "employees",
+      "right_table": "departments",
+      "condition": "T1.department_id = T2.department_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.department_name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.department_name",
+  "model_type": "dimension"
+}

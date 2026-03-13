@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.screen_mode",
+    "raw.phone"
+  ],
+  "staging_models": [
+    "stg_screen_mode",
+    "stg_phone"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_provisional_full_phone_modes",
+    "type": "report",
+    "grain": "1 row per phone screen mode with Provisional or Full accreditation"
+  },
+  "ctes": [
+    "stg_screen_mode",
+    "stg_phone"
+  ],
+  "joins": [
+    {
+      "left": "stg_screen_mode",
+      "right": "stg_phone",
+      "on": "stg_screen_mode.Graphics_mode = stg_phone.screen_mode"
+    }
+  ],
+  "tests": {
+    "pixels": [
+      "not_null"
+    ]
+  }
+}

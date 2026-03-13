@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "Students",
+    "Student_Addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "Student_Addresses",
+      "right_table": "Students",
+      "condition": "T1.student_id = T2.student_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.cell_mobile_number"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.student_id",
+  "model_type": "report"
+}

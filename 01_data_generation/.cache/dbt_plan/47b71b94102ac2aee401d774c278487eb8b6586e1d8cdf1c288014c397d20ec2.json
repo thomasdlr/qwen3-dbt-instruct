@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.complaints"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_complaints"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_product_complaints",
+    "type": "fact",
+    "grain": "1 row per product_name"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_complaints"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_complaints",
+      "on": "product_id"
+    }
+  ],
+  "tests": {
+    "product_name": [
+      "not_null",
+      "unique"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "ALBUM",
+    "ARTIST"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.ArtistId = T2.ArtistId"
+    }
+  ],
+  "filters": [
+    "T1.Title = \"Balls to the Wall\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Name",
+  "model_type": "report"
+}

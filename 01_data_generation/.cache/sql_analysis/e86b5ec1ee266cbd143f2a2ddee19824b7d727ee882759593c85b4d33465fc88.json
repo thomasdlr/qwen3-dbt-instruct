@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "Ref_Service_Types",
+    "Services"
+  ],
+  "joins": [
+    {
+      "left_table": "Ref_Service_Types",
+      "right_table": "Services",
+      "condition": "T1.Service_Type_Code = T2.Service_Type_Code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.Service_Type_Code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Service_Type_Description",
+    "T2.Service_Type_Code",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Service_Type_Code",
+  "model_type": "fact"
+}

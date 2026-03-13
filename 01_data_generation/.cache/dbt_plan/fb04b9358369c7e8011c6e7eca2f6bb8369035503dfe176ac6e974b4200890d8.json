@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.airlines",
+    "raw.flights"
+  ],
+  "staging_models": [
+    "stg_airlines",
+    "stg_flights"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_airlines_from_ahd",
+    "type": "dimension",
+    "grain": "1 row per AIRLINES.Airline"
+  },
+  "ctes": [
+    "stg_airlines",
+    "stg_flights"
+  ],
+  "joins": [
+    {
+      "left": "stg_airlines",
+      "right": "stg_flights",
+      "on": "T1.uid = T2.Airline"
+    }
+  ],
+  "tests": {
+    "airline": [
+      "not_null"
+    ]
+  }
+}

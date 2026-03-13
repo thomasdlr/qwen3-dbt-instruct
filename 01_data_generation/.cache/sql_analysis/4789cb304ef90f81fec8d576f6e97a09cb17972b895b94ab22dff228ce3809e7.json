@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Documents",
+    "Documents_with_expenses"
+  ],
+  "joins": [
+    {
+      "left_table": "Documents",
+      "right_table": "Documents_with_expenses",
+      "condition": "T1.document_id = T2.document_id"
+    }
+  ],
+  "filters": [
+    "T1.document_name LIKE '%s%'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.document_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.document_id",
+  "model_type": "report"
+}

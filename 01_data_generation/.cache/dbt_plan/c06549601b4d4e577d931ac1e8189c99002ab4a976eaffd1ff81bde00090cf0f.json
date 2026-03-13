@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.tryout",
+    "raw.player"
+  ],
+  "staging_models": [
+    "stg_tryout",
+    "stg_player"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_player_tryout",
+    "type": "report",
+    "grain": "1 row per player.pID"
+  },
+  "ctes": [
+    "stg_tryout",
+    "stg_player"
+  ],
+  "joins": [
+    {
+      "left": "stg_tryout",
+      "right": "stg_player",
+      "on": "T1.pID = T2.pID"
+    }
+  ],
+  "tests": {
+    "pName": [
+      "not_null"
+    ]
+  }
+}

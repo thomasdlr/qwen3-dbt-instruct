@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "products",
+    "ref_product_categories"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.product_category_code = t2.product_category_code"
+    }
+  ],
+  "filters": [
+    "t1.product_name = \"chervil\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t2.unit_of_measure",
+    "t2.product_category_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.product_id (inferred)",
+  "model_type": "report"
+}

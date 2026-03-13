@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Apartment_Facilities",
+    "raw.Apartments"
+  ],
+  "staging_models": [
+    "stg_Apartment_Facilities",
+    "stg_Apartments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_apt_facilities_luxury",
+    "type": "report",
+    "grain": "1 row per facility in luxury apartments"
+  },
+  "ctes": [
+    "stg_Apartment_Facilities",
+    "stg_Apartments"
+  ],
+  "joins": [
+    {
+      "left": "stg_Apartment_Facilities",
+      "right": "stg_Apartments",
+      "on": "stg_Apartment_Facilities.apt_id = stg_Apartments.apt_id"
+    }
+  ],
+  "tests": {
+    "facility_code": [
+      "not_null"
+    ]
+  }
+}

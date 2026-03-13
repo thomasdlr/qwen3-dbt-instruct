@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.product_characteristics",
+    "raw.characteristics"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_characteristics"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_flax_product_characteristics_count",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_characteristics"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_product_characteristics",
+      "on": "product_id = product_id"
+    },
+    {
+      "left": "stg_product_characteristics",
+      "right": "stg_characteristics",
+      "on": "characteristic_id = characteristic_id"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

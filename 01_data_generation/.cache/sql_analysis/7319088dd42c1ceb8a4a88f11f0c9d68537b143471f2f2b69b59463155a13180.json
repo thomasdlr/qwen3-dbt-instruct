@@ -1,0 +1,40 @@
+{
+  "tables": [
+    "CLASS",
+    "enroll",
+    "course",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "CLASS",
+      "right_table": "enroll",
+      "condition": "T1.class_code = T2.class_code"
+    },
+    {
+      "left_table": "CLASS",
+      "right_table": "course",
+      "condition": "T1.crs_code = T3.crs_code"
+    },
+    {
+      "left_table": "course",
+      "right_table": "department",
+      "condition": "T3.dept_code = T4.dept_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T3.dept_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T4.dept_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.dept_code",
+  "model_type": "report"
+}

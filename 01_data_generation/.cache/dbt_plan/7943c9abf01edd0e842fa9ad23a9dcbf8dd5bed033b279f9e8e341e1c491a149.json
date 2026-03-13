@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.financial_transactions",
+    "raw.invoices"
+  ],
+  "staging_models": [
+    "stg_financial_transactions",
+    "stg_invoices"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_invoice_transactions",
+    "type": "fact",
+    "grain": "1 row per invoice_number"
+  },
+  "ctes": [
+    "stg_financial_transactions",
+    "stg_invoices"
+  ],
+  "joins": [
+    {
+      "left": "stg_financial_transactions",
+      "right": "stg_invoices",
+      "on": "T1.invoice_number = T2.invoice_number"
+    }
+  ],
+  "tests": {
+    "invoice_number": [
+      "not_null",
+      "unique"
+    ],
+    "invoice_date": [
+      "not_null"
+    ]
+  }
+}

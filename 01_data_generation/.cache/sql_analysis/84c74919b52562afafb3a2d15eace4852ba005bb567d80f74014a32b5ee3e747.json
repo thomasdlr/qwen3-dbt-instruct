@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "train_station",
+    "station",
+    "train"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.station_id = T2.station_id"
+    },
+    {
+      "left_table": "T3",
+      "right_table": "T1",
+      "condition": "T3.train_id = T1.train_id"
+    }
+  ],
+  "filters": [
+    "T3.Name = \"Ananthapuri Express\"",
+    "T3.Name = \"Guruvayur Express\""
+  ],
+  "select_columns": [
+    "T2.name",
+    "T2.name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_subquery": false,
+  "grain": "station.name",
+  "model_type": "report"
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "CMI_Cross_References",
+    "Parking_Fines"
+  ],
+  "joins": [
+    {
+      "left_table": "CMI_Cross_References",
+      "right_table": "Parking_Fines",
+      "condition": "T1.cmi_cross_ref_id = T2.cmi_cross_ref_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.source_system_code",
+    "T1.master_customer_id",
+    "T2.council_tax_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "cmi_cross_ref_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.Courses",
+    "raw.Student_Enrolment_Courses"
+  ],
+  "staging_models": [
+    "stg_Courses",
+    "stg_Student_Enrolment_Courses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_course_enrollment_counts",
+    "type": "report",
+    "grain": "1 row per course_name"
+  },
+  "ctes": [
+    "stg_Courses",
+    "stg_Student_Enrolment_Courses"
+  ],
+  "joins": [
+    {
+      "left": "stg_Courses",
+      "right": "stg_Student_Enrolment_Courses",
+      "on": "course_id"
+    }
+  ],
+  "tests": {
+    "course_name": [
+      "not_null"
+    ]
+  }
+}

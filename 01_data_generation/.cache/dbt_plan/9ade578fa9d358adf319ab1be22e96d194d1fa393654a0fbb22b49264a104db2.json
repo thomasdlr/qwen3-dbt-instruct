@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.albums",
+    "raw.tracklists",
+    "raw.songs"
+  ],
+  "staging_models": [
+    "stg_albums",
+    "stg_tracklists",
+    "stg_songs"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_universal_music_songs",
+    "type": "report",
+    "grain": "1 row per songid"
+  },
+  "ctes": [
+    "stg_albums",
+    "stg_tracklists",
+    "stg_songs"
+  ],
+  "joins": [
+    {
+      "left": "stg_albums",
+      "right": "stg_tracklists",
+      "on": "aid = albumid"
+    },
+    {
+      "left": "stg_tracklists",
+      "right": "stg_songs",
+      "on": "songid = songid"
+    }
+  ],
+  "tests": {
+    "title": [
+      "not_null"
+    ]
+  }
+}

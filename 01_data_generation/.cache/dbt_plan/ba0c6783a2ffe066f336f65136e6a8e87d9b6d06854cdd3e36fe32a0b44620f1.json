@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.results",
+    "raw.races",
+    "raw.drivers"
+  ],
+  "staging_models": [
+    "stg_results",
+    "stg_races",
+    "stg_drivers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_lewis_races",
+    "type": "report",
+    "grain": "1 row per race"
+  },
+  "ctes": [
+    "stg_results",
+    "stg_races",
+    "stg_drivers"
+  ],
+  "joins": [
+    {
+      "left": "stg_results",
+      "right": "stg_races",
+      "on": "raceid"
+    },
+    {
+      "left": "stg_results",
+      "right": "stg_drivers",
+      "on": "driverid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "year": [
+      "not_null"
+    ]
+  }
+}

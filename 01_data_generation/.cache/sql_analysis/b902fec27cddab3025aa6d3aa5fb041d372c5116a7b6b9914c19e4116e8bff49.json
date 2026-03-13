@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "employee",
+    "professor",
+    "department"
+  ],
+  "joins": [
+    {
+      "left_table": "employee",
+      "right_table": "professor",
+      "condition": "T1.emp_num = T2.emp_num"
+    },
+    {
+      "left_table": "professor",
+      "right_table": "department",
+      "condition": "T2.dept_code = T3.dept_code"
+    }
+  ],
+  "filters": [
+    "T1.emp_lname = 'Heffington'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T3.dept_name",
+    "T2.prof_office"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.emp_num",
+  "model_type": "fact"
+}

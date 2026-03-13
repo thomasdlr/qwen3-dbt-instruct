@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.airports",
+    "raw.flights"
+  ],
+  "staging_models": [
+    "stg_airports",
+    "stg_flights"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_airport",
+    "type": "dimension",
+    "grain": "1 row per airport_code"
+  },
+  "ctes": [
+    "stg_airports",
+    "stg_flights"
+  ],
+  "joins": [
+    {
+      "left": "stg_airports",
+      "right": "stg_flights",
+      "on": "stg_airports.airport_code = stg_flights.dest_airport OR stg_airports.airport_code = stg_flights.source_airport"
+    }
+  ],
+  "tests": {
+    "airport_code": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

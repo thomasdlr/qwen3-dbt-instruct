@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.nurse",
+    "raw.appointment"
+  ],
+  "staging_models": [
+    "stg_nurse",
+    "stg_appointment"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_nurse_appointments",
+    "type": "report",
+    "grain": "1 row per employeeid"
+  },
+  "ctes": [
+    "stg_nurse",
+    "stg_appointment"
+  ],
+  "joins": [
+    {
+      "left": "stg_nurse",
+      "right": "stg_appointment",
+      "on": "stg_nurse.employeeid = stg_appointment.prepnurse"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

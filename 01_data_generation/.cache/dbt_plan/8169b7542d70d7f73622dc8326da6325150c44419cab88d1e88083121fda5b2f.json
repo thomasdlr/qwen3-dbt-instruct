@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.forms",
+    "raw.party_forms"
+  ],
+  "staging_models": [
+    "stg_forms",
+    "stg_party_forms"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_form_counts",
+    "type": "report",
+    "grain": "1 row per form_id"
+  },
+  "ctes": [
+    "stg_forms",
+    "stg_party_forms"
+  ],
+  "joins": [
+    {
+      "left": "stg_forms",
+      "right": "stg_party_forms",
+      "on": "stg_forms.form_id = stg_party_forms.form_id"
+    }
+  ],
+  "tests": {
+    "form_name": [
+      "not_null"
+    ],
+    "form_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Claims",
+    "raw.Settlements"
+  ],
+  "staging_models": [
+    "stg_Claims",
+    "stg_Settlements"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_claim_settlement_counts",
+    "type": "fact",
+    "grain": "1 row per claim_id"
+  },
+  "ctes": [
+    "stg_Claims",
+    "stg_Settlements"
+  ],
+  "joins": [
+    {
+      "left": "stg_Claims",
+      "right": "stg_Settlements",
+      "on": "T1.claim_id = T2.claim_id"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ],
+    "claim_id": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

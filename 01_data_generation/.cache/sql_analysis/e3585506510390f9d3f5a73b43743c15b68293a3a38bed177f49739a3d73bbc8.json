@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Faculty",
+    "Student"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.FacID = T2.advisor"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.FacID"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.FacID",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.FacID",
+  "model_type": "fact"
+}

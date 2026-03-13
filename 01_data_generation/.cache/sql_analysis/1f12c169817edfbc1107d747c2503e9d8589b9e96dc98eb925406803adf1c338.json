@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "GENRE",
+    "TRACK"
+  ],
+  "joins": [
+    {
+      "left_table": "GENRE",
+      "right_table": "TRACK",
+      "condition": "T1.GenreId = T2.GenreId"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.GenreId"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.GenreId",
+  "model_type": "report"
+}

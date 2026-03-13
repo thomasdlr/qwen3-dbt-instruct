@@ -1,0 +1,37 @@
+{
+  "sources": [
+    "raw.country",
+    "raw.countrylanguage"
+  ],
+  "staging_models": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_english_dutch_countries",
+    "type": "report",
+    "grain": "1 row per country with both English and Dutch"
+  },
+  "ctes": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "joins": [
+    {
+      "left": "stg_country",
+      "right": "stg_countrylanguage",
+      "on": "country.code = countrylanguage.countrycode"
+    },
+    {
+      "left": "stg_country",
+      "right": "stg_countrylanguage",
+      "on": "country.code = countrylanguage.countrycode"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

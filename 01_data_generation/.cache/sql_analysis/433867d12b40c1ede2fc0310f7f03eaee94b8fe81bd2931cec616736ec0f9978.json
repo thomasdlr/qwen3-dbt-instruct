@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "dorm",
+    "has_amenity",
+    "dorm_amenity"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.dormid = T2.dormid"
+    },
+    {
+      "left_table": "T2",
+      "right_table": "T3",
+      "condition": "T2.amenid = T3.amenid"
+    }
+  ],
+  "filters": [
+    "T3.amenity_name = 'TV Lounge'"
+  ],
+  "select_columns": [
+    "T1.dorm_name"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "T1.dorm_name",
+  "model_type": "report"
+}

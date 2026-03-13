@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.mission",
+    "raw.ship"
+  ],
+  "staging_models": [
+    "stg_mission",
+    "stg_ship"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_mission_fate",
+    "type": "report",
+    "grain": "1 row per T1.Fate"
+  },
+  "ctes": [
+    "stg_mission",
+    "stg_ship"
+  ],
+  "joins": [
+    {
+      "left": "stg_mission",
+      "right": "stg_ship",
+      "on": "mission.Ship_ID = ship.Ship_ID"
+    }
+  ],
+  "tests": {
+    "Fate": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.Courses",
+    "raw.Subjects"
+  ],
+  "staging_models": [
+    "stg_Courses",
+    "stg_Subjects"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_subject_course_count",
+    "type": "fact",
+    "grain": "1 row per subject"
+  },
+  "ctes": [
+    "stg_Courses",
+    "stg_Subjects"
+  ],
+  "joins": [
+    {
+      "left": "stg_Courses",
+      "right": "stg_Subjects",
+      "on": "stg_Courses.subject_id = stg_Subjects.subject_id"
+    }
+  ],
+  "tests": {
+    "subject_id": [
+      "not_null"
+    ],
+    "subject_name": [
+      "not_null"
+    ],
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

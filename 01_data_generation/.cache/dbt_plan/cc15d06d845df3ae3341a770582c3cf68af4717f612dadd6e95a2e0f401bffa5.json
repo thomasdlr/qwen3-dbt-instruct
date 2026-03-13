@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.course",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_course",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_statistics_departments",
+    "type": "report",
+    "grain": "1 row per department with statistics courses"
+  },
+  "ctes": [
+    "stg_course",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_course",
+      "right": "stg_department",
+      "on": "stg_course.dept_code = stg_department.dept_code"
+    }
+  ],
+  "tests": {
+    "dept_name": [
+      "not_null"
+    ]
+  }
+}

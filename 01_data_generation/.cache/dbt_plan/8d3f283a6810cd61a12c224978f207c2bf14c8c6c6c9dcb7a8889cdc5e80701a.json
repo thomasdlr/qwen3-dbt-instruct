@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.Addresses",
+    "raw.Customers",
+    "raw.Performers"
+  ],
+  "staging_models": [
+    "stg_Addresses",
+    "stg_Customers",
+    "stg_Performers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_addresses_except",
+    "type": "report",
+    "grain": "1 row per city_town"
+  },
+  "ctes": [
+    "stg_Addresses",
+    "stg_Customers",
+    "stg_Performers"
+  ],
+  "joins": [
+    {
+      "left": "stg_Addresses",
+      "right": "stg_Customers",
+      "on": "Address_ID = Address_ID"
+    },
+    {
+      "left": "stg_Addresses",
+      "right": "stg_Performers",
+      "on": "Address_ID = Address_ID"
+    }
+  ],
+  "tests": {
+    "City_Town": [
+      "not_null"
+    ]
+  }
+}

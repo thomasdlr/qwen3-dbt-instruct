@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.category",
+    "raw.film_category",
+    "raw.film"
+  ],
+  "staging_models": [
+    "stg_category",
+    "stg_film_category",
+    "stg_film"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_film_category",
+    "type": "dimension",
+    "grain": "1 row per category.name"
+  },
+  "ctes": [
+    "stg_category",
+    "stg_film_category",
+    "stg_film"
+  ],
+  "joins": [
+    {
+      "left": "stg_category",
+      "right": "stg_film_category",
+      "on": "category_id = category_id"
+    },
+    {
+      "left": "stg_film_category",
+      "right": "stg_film",
+      "on": "film_id = film_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

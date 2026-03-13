@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "hiring",
+    "shop"
+  ],
+  "joins": [
+    {
+      "left_table": "hiring",
+      "right_table": "shop",
+      "condition": "t1.shop_id = t2.shop_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "t1.shop_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "t2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.shop_id",
+  "model_type": "report"
+}

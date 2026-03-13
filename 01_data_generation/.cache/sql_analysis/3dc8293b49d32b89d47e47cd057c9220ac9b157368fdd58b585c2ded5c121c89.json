@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "CMI_Cross_References",
+    "Council_Tax"
+  ],
+  "joins": [
+    {
+      "left_table": "CMI_Cross_References",
+      "right_table": "Council_Tax",
+      "condition": "T1.cmi_cross_ref_id = T2.cmi_cross_ref_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.cmi_cross_ref_id"
+  ],
+  "having": [
+    "COUNT(*) >= 1"
+  ],
+  "select_columns": [
+    "T1.cmi_cross_ref_id",
+    "T1.source_system_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.cmi_cross_ref_id",
+  "model_type": "fact"
+}

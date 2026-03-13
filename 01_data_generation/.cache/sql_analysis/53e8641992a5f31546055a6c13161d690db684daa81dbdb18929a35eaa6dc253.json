@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "aircraft",
+    "MATCH"
+  ],
+  "joins": [
+    {
+      "left_table": "aircraft",
+      "right_table": "MATCH",
+      "condition": "T1.Aircraft_ID = T2.Winning_Aircraft"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T2.Winning_Aircraft"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Aircraft"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Winning_Aircraft",
+  "model_type": "report"
+}

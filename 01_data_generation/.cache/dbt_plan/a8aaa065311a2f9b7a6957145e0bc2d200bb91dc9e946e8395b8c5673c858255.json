@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.ship",
+    "raw.captain"
+  ],
+  "staging_models": [
+    "stg_ship",
+    "stg_captain"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_ship_captain_count",
+    "type": "report",
+    "grain": "1 row per ship_id"
+  },
+  "ctes": [
+    "stg_ship",
+    "stg_captain"
+  ],
+  "joins": [
+    {
+      "left": "stg_ship",
+      "right": "stg_captain",
+      "on": "stg_ship.ship_id = stg_captain.ship_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "ship_id": [
+      "not_null"
+    ]
+  }
+}

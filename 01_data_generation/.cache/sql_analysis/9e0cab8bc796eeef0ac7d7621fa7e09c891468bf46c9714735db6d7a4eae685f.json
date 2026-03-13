@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "country",
+    "countrylanguage"
+  ],
+  "joins": [
+    {
+      "left_table": "country",
+      "right_table": "countrylanguage",
+      "condition": "T1.Code = T2.CountryCode"
+    },
+    {
+      "left_table": "country",
+      "right_table": "countrylanguage",
+      "condition": "T1.Code = T2.CountryCode"
+    }
+  ],
+  "filters": [
+    "T2.Language = \"English\"",
+    "T2.Language = \"French\""
+  ],
+  "select_columns": [
+    "T1.Name",
+    "T1.Name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "country.Name",
+  "model_type": "report"
+}

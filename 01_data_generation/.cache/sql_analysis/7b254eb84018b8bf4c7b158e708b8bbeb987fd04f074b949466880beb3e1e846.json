@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Friend",
+    "Highschooler"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.student_id = T2.id"
+    }
+  ],
+  "filters": [
+    "T2.name = \"Kyle\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

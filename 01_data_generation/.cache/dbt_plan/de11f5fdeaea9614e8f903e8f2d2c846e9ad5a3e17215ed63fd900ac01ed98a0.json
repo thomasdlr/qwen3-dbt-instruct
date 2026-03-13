@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.airports",
+    "raw.routes"
+  ],
+  "staging_models": [
+    "stg_airports",
+    "stg_routes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_canada_routes_count",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_airports",
+    "stg_routes"
+  ],
+  "joins": [
+    {
+      "left": "stg_airports",
+      "right": "stg_routes",
+      "on": "stg_airports.apid = stg_routes.dst_apid"
+    }
+  ],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

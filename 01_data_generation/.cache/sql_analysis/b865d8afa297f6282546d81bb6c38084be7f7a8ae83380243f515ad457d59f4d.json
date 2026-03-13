@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "customer_orders",
+    "order_items",
+    "products"
+  ],
+  "joins": [
+    {
+      "left_table": "customer_orders",
+      "right_table": "order_items",
+      "condition": "T1.order_id = T2.order_id"
+    },
+    {
+      "left_table": "order_items",
+      "right_table": "products",
+      "condition": "T2.product_id = T3.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "DISTINCT T1.customer_id",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T3.product_id"
+  ],
+  "having": [
+    "COUNT(DISTINCT T1.customer_id) >= 2"
+  ],
+  "select_columns": [
+    "DISTINCT T3.product_name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.product_id",
+  "model_type": "fact"
+}

@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.singer",
+    "raw.song"
+  ],
+  "staging_models": [
+    "stg_singer",
+    "stg_song"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_singer_sales",
+    "type": "fact",
+    "grain": "1 row per singer"
+  },
+  "ctes": [
+    "stg_singer",
+    "stg_song"
+  ],
+  "joins": [
+    {
+      "left": "stg_singer",
+      "right": "stg_song",
+      "on": "singer_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "sales": [
+      "not_null"
+    ]
+  }
+}

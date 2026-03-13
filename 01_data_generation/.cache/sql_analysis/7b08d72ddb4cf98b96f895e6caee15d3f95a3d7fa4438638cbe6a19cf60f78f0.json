@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "Courses",
+    "Student_Enrolment_Courses"
+  ],
+  "joins": [
+    {
+      "left_table": "Courses",
+      "right_table": "Student_Enrolment_Courses",
+      "condition": "T1.course_id = T2.course_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.course_name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.course_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.course_name",
+  "model_type": "report"
+}

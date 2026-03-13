@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.singer_in_concert",
+    "raw.singer"
+  ],
+  "staging_models": [
+    "stg_singer_in_concert",
+    "stg_singer"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_singer_concert_counts",
+    "type": "fact",
+    "grain": "1 row per singer_id"
+  },
+  "ctes": [
+    "stg_singer_in_concert",
+    "stg_singer"
+  ],
+  "joins": [
+    {
+      "left": "stg_singer_in_concert",
+      "right": "stg_singer",
+      "on": "singer_id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.stock",
+    "raw.shop"
+  ],
+  "staging_models": [
+    "stg_stock",
+    "stg_shop"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_shop_stock_count",
+    "type": "fact",
+    "grain": "1 row per shop"
+  },
+  "ctes": [
+    "stg_stock",
+    "stg_shop"
+  ],
+  "joins": [
+    {
+      "left": "stg_stock",
+      "right": "stg_shop",
+      "on": "stg_stock.shop_id = stg_shop.shop_id"
+    }
+  ],
+  "tests": {
+    "shop_name": [
+      "not_null"
+    ]
+  }
+}

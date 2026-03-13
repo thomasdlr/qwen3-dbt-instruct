@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "artist",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.artist_name = T2.artist_name"
+    }
+  ],
+  "filters": [
+    "T2.languages = \"bangla\""
+  ],
+  "aggregations": [],
+  "group_by": [
+    "T2.artist_name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.artist_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.artist_name",
+  "model_type": "report"
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.stock",
+    "raw.device"
+  ],
+  "staging_models": [
+    "stg_stock",
+    "stg_device"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_device_carrier_counts",
+    "type": "report",
+    "grain": "1 row per Device_ID"
+  },
+  "ctes": [
+    "stg_stock",
+    "stg_device"
+  ],
+  "joins": [
+    {
+      "left": "stg_stock",
+      "right": "stg_device",
+      "on": "stg_stock.Device_ID = stg_device.Device_ID"
+    }
+  ],
+  "tests": {
+    "Device_ID": [
+      "not_null",
+      "unique"
+    ],
+    "Carrier": [
+      "not_null"
+    ]
+  }
+}

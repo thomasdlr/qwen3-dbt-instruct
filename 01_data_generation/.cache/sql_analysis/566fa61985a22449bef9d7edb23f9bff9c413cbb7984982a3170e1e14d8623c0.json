@@ -1,0 +1,42 @@
+{
+  "tables": [
+    "Employee",
+    "Certificate",
+    "Aircraft"
+  ],
+  "joins": [
+    {
+      "left_table": "Employee AS T1",
+      "right_table": "Certificate AS T2",
+      "condition": "T1.eid = T2.eid"
+    },
+    {
+      "left_table": "Aircraft AS T3",
+      "right_table": null,
+      "condition": "T3.aid = T2.aid"
+    }
+  ],
+  "filters": [
+    "T3.distance > 5000"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": null
+    }
+  ],
+  "group_by": [
+    "T1.eid"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.eid",
+  "model_type": "report"
+}

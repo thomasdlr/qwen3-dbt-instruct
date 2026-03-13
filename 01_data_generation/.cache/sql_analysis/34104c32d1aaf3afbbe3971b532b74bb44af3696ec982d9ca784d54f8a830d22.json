@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "city",
+    "hosting_city"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.city_id = T2.host_city"
+    }
+  ],
+  "filters": [
+    "T2.year > 2010"
+  ],
+  "select_columns": [
+    "T1.city"
+  ],
+  "grain": "city.city_id",
+  "model_type": "report"
+}

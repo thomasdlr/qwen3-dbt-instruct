@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.country",
+    "raw.countrylanguage"
+  ],
+  "staging_models": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_afghanistan_official_languages",
+    "type": "report",
+    "grain": "1 row per official language in Afghanistan"
+  },
+  "ctes": [
+    "stg_country",
+    "stg_countrylanguage"
+  ],
+  "joins": [
+    {
+      "left": "stg_country",
+      "right": "stg_countrylanguage",
+      "on": "country.Code = countrylanguage.CountryCode"
+    }
+  ],
+  "tests": {
+    "<all_output_columns>": [
+      "not_null"
+    ]
+  }
+}

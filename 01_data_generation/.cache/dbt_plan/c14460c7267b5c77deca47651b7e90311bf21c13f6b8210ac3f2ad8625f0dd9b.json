@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.college",
+    "raw.tryout"
+  ],
+  "staging_models": [
+    "stg_college",
+    "stg_tryout"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_state_striker_tryouts",
+    "type": "report",
+    "grain": "1 row per state"
+  },
+  "ctes": [
+    "stg_college",
+    "stg_tryout"
+  ],
+  "joins": [
+    {
+      "left": "stg_college",
+      "right": "stg_tryout",
+      "on": "stg_college.cName = stg_tryout.cName"
+    }
+  ],
+  "tests": {
+    "state": [
+      "not_null"
+    ]
+  }
+}

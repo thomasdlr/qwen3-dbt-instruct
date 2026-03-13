@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.salary",
+    "raw.player",
+    "raw.team"
+  ],
+  "staging_models": [
+    "stg_salary",
+    "stg_player",
+    "stg_team"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_player_names_washington_nationals",
+    "type": "report",
+    "grain": "1 row per (player name_first, player name_last)"
+  },
+  "ctes": [
+    "stg_salary",
+    "stg_player",
+    "stg_team"
+  ],
+  "joins": [
+    {
+      "left": "stg_salary",
+      "right": "stg_player",
+      "on": "salary.player_id = player.player_id"
+    },
+    {
+      "left": "stg_team",
+      "right": "stg_salary",
+      "on": "team.team_id = salary.team_id"
+    }
+  ],
+  "tests": {
+    "name_first": [
+      "not_null"
+    ],
+    "name_last": [
+      "not_null"
+    ]
+  }
+}

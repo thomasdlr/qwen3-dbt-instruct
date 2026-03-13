@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.browser",
+    "raw.accelerator_compatible_browser"
+  ],
+  "staging_models": [
+    "stg_browser",
+    "stg_accelerator_compatible_browser"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_browser_accelerator_compatibility",
+    "type": "report",
+    "grain": "1 row per browser"
+  },
+  "ctes": [
+    "stg_browser",
+    "stg_accelerator_compatible_browser"
+  ],
+  "joins": [
+    {
+      "left": "stg_browser",
+      "right": "stg_accelerator_compatible_browser",
+      "on": "browser.id = accelerator_compatible_browser.browser_id"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null",
+      "unique"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

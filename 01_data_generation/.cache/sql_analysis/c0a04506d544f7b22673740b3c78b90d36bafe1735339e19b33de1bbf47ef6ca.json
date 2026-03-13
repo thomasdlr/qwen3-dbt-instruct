@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "Document_locations",
+    "Ref_locations"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.location_code = T2.location_code"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [
+    "T1.location_code"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.location_name",
+    "T1.location_code"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.location_code",
+  "model_type": "dimension"
+}

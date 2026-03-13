@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "singer",
+    "song"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Singer_ID = T2.Singer_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "SUM",
+      "column": "T2.Sales",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.Name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.Name",
+    "SUM(T2.Sales)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Name",
+  "model_type": "fact"
+}

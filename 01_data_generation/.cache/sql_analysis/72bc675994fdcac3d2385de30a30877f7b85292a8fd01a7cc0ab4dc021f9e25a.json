@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "entrepreneur",
+    "people"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.People_ID = T2.People_ID"
+    }
+  ],
+  "filters": [
+    "T1.Investor = \"Simon Woodroffe\"",
+    "T1.Investor = \"Peter Jones\""
+  ],
+  "select_columns": [
+    "T2.Date_of_Birth"
+  ],
+  "grain": "T2.People_ID",
+  "model_type": "report"
+}

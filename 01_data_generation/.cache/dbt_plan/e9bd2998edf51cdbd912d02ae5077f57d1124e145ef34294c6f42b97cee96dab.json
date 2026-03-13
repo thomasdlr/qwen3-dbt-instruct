@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.instruments",
+    "raw.songs"
+  ],
+  "staging_models": [
+    "stg_instruments",
+    "stg_songs"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_badlands_instruments",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_instruments",
+    "stg_songs"
+  ],
+  "joins": [
+    {
+      "left": "stg_instruments",
+      "right": "stg_songs",
+      "on": "stg_instruments.songid = stg_songs.songid"
+    }
+  ],
+  "tests": {
+    "count_distinct_instrument": [
+      "not_null"
+    ]
+  }
+}

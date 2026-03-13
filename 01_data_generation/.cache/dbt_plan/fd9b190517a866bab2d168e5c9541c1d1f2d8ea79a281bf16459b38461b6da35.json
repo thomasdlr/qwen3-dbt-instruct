@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.bookings"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_bookings"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_customer_bookings",
+    "type": "fact",
+    "grain": "1 row per customer_id"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_bookings"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_bookings",
+      "on": "stg_customers.customer_id = stg_bookings.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_id": [
+      "not_null",
+      "unique"
+    ],
+    "first_name": [
+      "not_null"
+    ]
+  }
+}

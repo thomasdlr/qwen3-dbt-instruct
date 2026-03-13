@@ -1,0 +1,26 @@
+{
+  "tables": [
+    "customers",
+    "customer_orders"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.customer_id = t2.customer_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t1.customer_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t1.customer_name",
+  "model_type": "dimension"
+}

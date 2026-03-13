@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.professor",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_professor",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accounting_professors_count",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_professor",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_professor",
+      "right": "stg_department",
+      "on": "stg_professor.dept_code = stg_department.dept_code"
+    }
+  ],
+  "tests": {
+    "count": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "sources": [
+    "raw.Maintenance_Engineers",
+    "raw.Engineer_Visits"
+  ],
+  "staging_models": [
+    "stg_Maintenance_Engineers",
+    "stg_Engineer_Visits"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_Engineer_Visits_Summary",
+    "type": "dimension",
+    "grain": "1 row per engineer_id"
+  },
+  "ctes": [
+    "stg_Maintenance_Engineers",
+    "stg_Engineer_Visits"
+  ],
+  "joins": [
+    {
+      "left": "stg_Maintenance_Engineers",
+      "right": "stg_Engineer_Visits",
+      "on": "T1.engineer_id = T2.engineer_id"
+    }
+  ],
+  "tests": {
+    "engineer_id": [
+      "not_null",
+      "unique"
+    ],
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

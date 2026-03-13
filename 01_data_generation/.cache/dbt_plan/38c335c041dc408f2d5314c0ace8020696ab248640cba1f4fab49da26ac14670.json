@@ -1,0 +1,33 @@
+{
+  "sources": [
+    "raw.policies",
+    "raw.customers"
+  ],
+  "staging_models": [
+    "stg_policies",
+    "stg_customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_customer_policy_count",
+    "type": "fact",
+    "grain": "1 row per customer_details"
+  },
+  "ctes": [
+    "stg_policies",
+    "stg_customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_policies",
+      "right": "stg_customers",
+      "on": "stg_policies.customer_id = stg_customers.customer_id"
+    }
+  ],
+  "tests": {
+    "customer_details": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

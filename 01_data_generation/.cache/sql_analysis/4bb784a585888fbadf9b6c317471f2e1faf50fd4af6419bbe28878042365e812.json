@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "Addresses",
+    "Student_Addresses"
+  ],
+  "joins": [
+    {
+      "left_table": "Addresses",
+      "right_table": "Student_Addresses",
+      "condition": "T1.address_id = T2.address_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "monthly_rental",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.address_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.address_id",
+    "T1.city"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.address_id",
+  "model_type": "fact"
+}

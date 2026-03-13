@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.Order_items"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_Order_items"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_unordered_products",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_products",
+    "stg_Order_items"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_Order_items",
+      "on": "NOT product_id IN (SELECT product_id FROM stg_Order_items)"
+    }
+  ],
+  "tests": {
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

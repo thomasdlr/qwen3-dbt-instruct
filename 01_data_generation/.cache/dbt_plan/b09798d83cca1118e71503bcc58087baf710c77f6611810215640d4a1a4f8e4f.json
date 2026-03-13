@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.body_builder",
+    "raw.people"
+  ],
+  "staging_models": [
+    "stg_body_builder",
+    "stg_people"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_people_with_high_total",
+    "type": "report",
+    "grain": "1 row per People_ID"
+  },
+  "ctes": [
+    "stg_body_builder",
+    "stg_people"
+  ],
+  "joins": [
+    {
+      "left": "stg_body_builder",
+      "right": "stg_people",
+      "on": "T1.People_ID = T2.People_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "course_arrange",
+    "teacher"
+  ],
+  "joins": [
+    {
+      "left_table": "course_arrange",
+      "right_table": "teacher",
+      "condition": "T1.Teacher_ID = T2.Teacher_ID"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.Name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T2.Name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.Name",
+  "model_type": "fact"
+}

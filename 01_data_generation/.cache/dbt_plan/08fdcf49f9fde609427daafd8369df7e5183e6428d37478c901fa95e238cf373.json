@@ -1,0 +1,27 @@
+{
+  "sources": [
+    "raw.Customers",
+    "raw.Staff"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_staff"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_last_name_intersect",
+    "type": "report",
+    "grain": "1 row per last_name"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_staff"
+  ],
+  "joins": [],
+  "tests": {
+    "last_name": [
+      "not_null",
+      "unique"
+    ]
+  }
+}

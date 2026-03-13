@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "employment",
+    "people",
+    "company"
+  ],
+  "joins": [
+    {
+      "left_table": "employment",
+      "right_table": "people",
+      "condition": "T1.People_ID = T2.People_ID"
+    },
+    {
+      "left_table": "employment",
+      "right_table": "company",
+      "condition": "T1.Company_ID = T3.Company_ID"
+    }
+  ],
+  "filters": [
+    "T3.Sales_in_Billion > 200"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.Name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.People_ID",
+  "model_type": "report"
+}

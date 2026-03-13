@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.problems",
+    "raw.staff"
+  ],
+  "staging_models": [
+    "stg_problems",
+    "stg_staff"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_problem_descriptions_by_christop",
+    "type": "report",
+    "grain": "1 row per problem_description"
+  },
+  "ctes": [
+    "stg_problems",
+    "stg_staff"
+  ],
+  "joins": [
+    {
+      "left": "stg_problems",
+      "right": "stg_staff",
+      "on": "problems.reported_by_staff_id = staff.staff_id"
+    }
+  ],
+  "tests": {
+    "problem_description": [
+      "not_null"
+    ]
+  }
+}

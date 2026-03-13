@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "elimination",
+    "wrestler"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Wrestler_ID = T2.Wrestler_ID"
+    }
+  ],
+  "filters": [
+    "T2.Days_held > 50"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.Time"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Time",
+  "model_type": "report"
+}

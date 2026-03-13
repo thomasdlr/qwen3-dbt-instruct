@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Catalog_Contents",
+    "Catalog_Contents_Additional_Attributes"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.catalog_entry_id = t2.catalog_entry_id"
+    }
+  ],
+  "filters": [
+    "t2.catalog_level_number = \"8\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "t1.catalog_entry_name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "Catalog_Contents.catalog_entry_id",
+  "model_type": "dimension"
+}

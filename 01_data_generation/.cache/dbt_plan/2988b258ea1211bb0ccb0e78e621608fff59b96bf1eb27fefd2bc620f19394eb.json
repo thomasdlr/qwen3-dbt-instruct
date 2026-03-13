@@ -1,0 +1,37 @@
+{
+  "sources": [
+    "raw.students",
+    "raw.courses",
+    "raw.student_course_registrations"
+  ],
+  "staging_models": [
+    "stg_students",
+    "stg_courses",
+    "stg_student_course_registrations"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_course_enrollments",
+    "type": "fact",
+    "grain": "1 row per course_id"
+  },
+  "ctes": [
+    "stg_student_course_registrations",
+    "stg_courses"
+  ],
+  "joins": [
+    {
+      "left": "stg_student_course_registrations",
+      "right": "stg_courses",
+      "on": "course_id = course_id"
+    }
+  ],
+  "tests": {
+    "course_name": [
+      "not_null"
+    ],
+    "COUNT(*)": [
+      "not_null"
+    ]
+  }
+}

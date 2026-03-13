@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.Tourist_Attractions",
+    "raw.Tourist_Attraction_Features",
+    "raw.Features"
+  ],
+  "staging_models": [
+    "stg_Tourist_Attractions",
+    "stg_Tourist_Attraction_Features",
+    "stg_Features"
+  ],
+  "intermediate_models": [
+    "int_park_shopping_attractions"
+  ],
+  "mart_model": {
+    "name": "rpt_park_shopping_attractions",
+    "type": "report",
+    "grain": "1 row per tourist attraction name"
+  },
+  "ctes": [
+    "stg_Tourist_Attractions",
+    "int_park_shopping_attractions"
+  ],
+  "joins": [
+    {
+      "left": "stg_Tourist_Attractions",
+      "right": "int_park_shopping_attractions",
+      "on": "stg_Tourist_Attractions.tourist_attraction_id = int_park_shopping_attractions.tourist_attraction_id"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

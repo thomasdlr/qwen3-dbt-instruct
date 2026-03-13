@@ -1,0 +1,38 @@
+{
+  "sources": [
+    "raw.airports",
+    "raw.routes"
+  ],
+  "staging_models": [
+    "stg_airports",
+    "stg_routes"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_routes_by_source",
+    "type": "report",
+    "grain": "1 row per T2.src_apid"
+  },
+  "ctes": [
+    "stg_airports",
+    "stg_routes"
+  ],
+  "joins": [
+    {
+      "left": "stg_airports",
+      "right": "stg_routes",
+      "on": "stg_airports.apid = stg_routes.src_apid"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ],
+    "city": [
+      "not_null"
+    ],
+    "src_apid": [
+      "not_null"
+    ]
+  }
+}

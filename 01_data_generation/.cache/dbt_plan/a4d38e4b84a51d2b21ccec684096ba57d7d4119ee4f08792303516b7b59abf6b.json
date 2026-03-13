@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Accounts",
+    "raw.Customers"
+  ],
+  "staging_models": [
+    "stg_Accounts",
+    "stg_Customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_Customer",
+    "type": "dimension",
+    "grain": "1 row per customer_first_name, customer_last_name"
+  },
+  "ctes": [
+    "stg_Accounts",
+    "stg_Customers"
+  ],
+  "joins": [
+    {
+      "left": "stg_Accounts",
+      "right": "stg_Customers",
+      "on": "customer_id"
+    }
+  ],
+  "tests": {
+    "customer_first_name": [
+      "not_null"
+    ],
+    "customer_last_name": [
+      "not_null"
+    ]
+  }
+}

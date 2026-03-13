@@ -1,0 +1,29 @@
+{
+  "tables": [
+    "Detention",
+    "Teachers"
+  ],
+  "joins": [
+    {
+      "left_table": "Detention",
+      "right_table": "Teachers",
+      "condition": "T1.teacher_id = T2.teacher_id"
+    }
+  ],
+  "filters": [
+    "T2.last_name = \"Schultz\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.datetime_detention_start",
+    "datetime_detention_end"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.datetime_detention_start, datetime_detention_end",
+  "model_type": "report"
+}

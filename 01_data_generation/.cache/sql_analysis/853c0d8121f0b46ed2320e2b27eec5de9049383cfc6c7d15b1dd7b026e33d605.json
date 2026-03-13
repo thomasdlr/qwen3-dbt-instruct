@@ -1,0 +1,21 @@
+{
+  "tables": [
+    "item",
+    "review"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.i_id = T2.i_id"
+    }
+  ],
+  "filters": [
+    "T2.rating = 10"
+  ],
+  "select_columns": [
+    "T1.title"
+  ],
+  "grain": "item.i_id",
+  "model_type": "report"
+}

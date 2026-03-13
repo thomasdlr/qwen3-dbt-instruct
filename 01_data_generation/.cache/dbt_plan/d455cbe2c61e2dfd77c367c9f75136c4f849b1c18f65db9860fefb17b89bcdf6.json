@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.organisations",
+    "raw.research_staff"
+  ],
+  "staging_models": [
+    "stg_organisations",
+    "stg_research_staff"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_organisation_type_counts",
+    "type": "report",
+    "grain": "1 row per organisation_type"
+  },
+  "ctes": [
+    "stg_organisations",
+    "stg_research_staff"
+  ],
+  "joins": [
+    {
+      "left": "stg_organisations",
+      "right": "stg_research_staff",
+      "on": "organisation_id = employer_organisation_id"
+    }
+  ],
+  "tests": {
+    "organisation_type": [
+      "not_null"
+    ]
+  }
+}

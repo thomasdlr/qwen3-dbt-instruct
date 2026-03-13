@@ -1,0 +1,51 @@
+{
+  "sources": [
+    "raw.student",
+    "raw.lives_in",
+    "raw.dorm",
+    "raw.has_amenity",
+    "raw.dorm_amenity"
+  ],
+  "staging_models": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm",
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_top_dorm_students",
+    "type": "report",
+    "grain": "1 row per student first name"
+  },
+  "ctes": [
+    "stg_student",
+    "stg_lives_in",
+    "stg_dorm",
+    "stg_has_amenity",
+    "stg_dorm_amenity"
+  ],
+  "joins": [
+    {
+      "left": "stg_student",
+      "right": "stg_lives_in",
+      "on": "stuid"
+    },
+    {
+      "left": "stg_dorm",
+      "right": "stg_has_amenity",
+      "on": "dormid"
+    },
+    {
+      "left": "stg_has_amenity",
+      "right": "stg_dorm_amenity",
+      "on": "amenid"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ]
+  }
+}

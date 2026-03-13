@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "airports",
+    "routes"
+  ],
+  "joins": [
+    {
+      "left_table": "airports",
+      "right_table": "routes",
+      "condition": "T1.apid = T2.src_apid"
+    }
+  ],
+  "filters": [
+    "T1.country = 'China'"
+  ],
+  "aggregations": [],
+  "group_by": [
+    "T1.name"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.name",
+  "model_type": "report"
+}

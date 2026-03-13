@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "railway",
+    "train"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT Railway_ID IN (SELECT Railway_ID FROM train)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "ObjectNumber"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "ObjectNumber",
+  "model_type": "dimension"
+}

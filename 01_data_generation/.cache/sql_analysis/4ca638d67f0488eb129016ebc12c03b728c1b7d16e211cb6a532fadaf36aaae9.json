@@ -1,0 +1,33 @@
+{
+  "tables": [
+    "mountain",
+    "photos",
+    "camera_lens"
+  ],
+  "joins": [
+    {
+      "left_table": "mountain",
+      "right_table": "photos",
+      "condition": "T1.id = T2.mountain_id"
+    },
+    {
+      "left_table": "photos",
+      "right_table": "camera_lens",
+      "condition": "T2.camera_lens_id = T3.id"
+    }
+  ],
+  "filters": [
+    "T1.range = 'Toubkal Atlas'"
+  ],
+  "select_columns": [
+    "T3.brand"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T3.brand",
+  "model_type": "report"
+}

@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "products",
+    "Order_items"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT product_id IN (SELECT product_id FROM Order_items)"
+  ],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

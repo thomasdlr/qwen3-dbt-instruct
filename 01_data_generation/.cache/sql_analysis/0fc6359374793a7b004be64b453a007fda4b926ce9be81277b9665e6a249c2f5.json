@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "customers",
+    "invoices"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T2.customer_id = T1.id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.first_name",
+    "T1.last_name",
+    "COUNT(*)"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.id",
+  "model_type": "fact"
+}

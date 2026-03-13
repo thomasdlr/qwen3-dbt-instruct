@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.vocals",
+    "raw.songs",
+    "raw.band"
+  ],
+  "staging_models": [
+    "stg_vocals",
+    "stg_songs",
+    "stg_band"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_solveig_amsterdam",
+    "type": "report",
+    "grain": "\"A Bar In Amsterdam\" song with Solveig bandmate"
+  },
+  "ctes": [
+    "stg_vocals",
+    "stg_songs",
+    "stg_band"
+  ],
+  "joins": [
+    {
+      "left": "stg_vocals",
+      "right": "stg_songs",
+      "on": "stg_vocals.songid = stg_songs.songid"
+    },
+    {
+      "left": "stg_vocals",
+      "right": "stg_band",
+      "on": "stg_vocals.bandmate = stg_band.id"
+    }
+  ],
+  "tests": {
+    "type": [
+      "not_null"
+    ]
+  }
+}

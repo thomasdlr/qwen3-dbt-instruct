@@ -1,0 +1,38 @@
+{
+  "tables": [
+    "COUNTRIES",
+    "CONTINENTS",
+    "CAR_MAKERS"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.Continent = T2.ContId"
+    },
+    {
+      "left_table": "T1",
+      "right_table": "T3",
+      "condition": "T1.CountryId = T3.Country"
+    }
+  ],
+  "filters": [
+    "T2.Continent = 'europe'"
+  ],
+  "aggregations": [],
+  "group_by": [
+    "T1.CountryName"
+  ],
+  "having": [
+    "COUNT(*) >= 3"
+  ],
+  "select_columns": [
+    "T1.CountryName"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.CountryName",
+  "model_type": "fact"
+}

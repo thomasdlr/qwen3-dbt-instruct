@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.ref_product_categories",
+    "raw.ref_colors"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_ref_product_categories",
+    "stg_ref_colors"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_white_products",
+    "type": "dimension",
+    "grain": "1 row per product_name"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_ref_product_categories",
+    "stg_ref_colors"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_ref_product_categories",
+      "on": "product_category_code = product_category_code"
+    },
+    {
+      "left": "stg_products",
+      "right": "stg_ref_colors",
+      "on": "color_code = color_code"
+    }
+  ],
+  "tests": {
+    "product_name": [
+      "not_null"
+    ]
+  }
+}

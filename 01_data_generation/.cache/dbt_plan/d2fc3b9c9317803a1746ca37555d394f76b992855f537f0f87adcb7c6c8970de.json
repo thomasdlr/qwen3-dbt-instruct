@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.customers"
+  ],
+  "staging_models": [
+    "stg_customers"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_customers_no_address_history",
+    "type": "report",
+    "grain": "1 row per customer_name, customer_phone"
+  },
+  "ctes": [
+    "stg_customers"
+  ],
+  "joins": [],
+  "tests": {
+    "customer_name": [
+      "not_null"
+    ],
+    "customer_phone": [
+      "not_null"
+    ]
+  }
+}

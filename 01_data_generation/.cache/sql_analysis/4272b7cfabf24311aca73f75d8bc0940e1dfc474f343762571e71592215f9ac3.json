@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "storm",
+    "affected_region"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.storm_id = T2.storm_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T1.storm_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "T1.max_speed"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.storm_id",
+  "model_type": "report"
+}

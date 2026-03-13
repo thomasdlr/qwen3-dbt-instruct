@@ -1,0 +1,36 @@
+{
+  "tables": [
+    "city",
+    "country"
+  ],
+  "joins": [
+    {
+      "left_table": "city",
+      "right_table": "country",
+      "condition": "T1.country_id = T2.country_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.country_id"
+  ],
+  "having": [
+    "COUNT(*) >= 3"
+  ],
+  "select_columns": [
+    "T2.country"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.country_id",
+  "model_type": "report"
+}

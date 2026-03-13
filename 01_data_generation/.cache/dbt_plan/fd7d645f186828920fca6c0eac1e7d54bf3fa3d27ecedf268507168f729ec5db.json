@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.battle",
+    "raw.ship"
+  ],
+  "staging_models": [
+    "stg_battle",
+    "stg_ship"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_battle_brig_losses",
+    "type": "report",
+    "grain": "1 row per battle"
+  },
+  "ctes": [
+    "stg_battle",
+    "stg_ship"
+  ],
+  "joins": [
+    {
+      "left": "stg_battle",
+      "right": "stg_ship",
+      "on": "T1.id = T2.lost_in_battle"
+    }
+  ],
+  "tests": {
+    "id": [
+      "not_null"
+    ],
+    "name": [
+      "not_null"
+    ]
+  }
+}

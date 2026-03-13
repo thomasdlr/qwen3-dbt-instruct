@@ -1,0 +1,43 @@
+{
+  "tables": [
+    "Student",
+    "Has_allergy",
+    "Allergy_Type"
+  ],
+  "joins": [
+    {
+      "left_table": "Has_allergy",
+      "right_table": "Allergy_Type",
+      "condition": "T1.Allergy = T2.Allergy"
+    },
+    {
+      "left_table": "Has_allergy",
+      "right_table": "Allergy_Type",
+      "condition": "T1.Allergy = T2.Allergy"
+    }
+  ],
+  "filters": [
+    "T2.allergytype = \"food\"",
+    "T2.allergytype = \"animal\""
+  ],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "age",
+      "alias": ""
+    }
+  ],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "AVG(age)"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "",
+  "model_type": "report"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.tracks",
+    "raw.playlist_tracks",
+    "raw.playlists"
+  ],
+  "staging_models": [
+    "stg_tracks",
+    "stg_playlist_tracks",
+    "stg_playlists"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_track_intersection",
+    "type": "report",
+    "grain": "1 row per track name"
+  },
+  "ctes": [
+    "stg_tracks",
+    "stg_playlist_tracks",
+    "stg_playlists"
+  ],
+  "joins": [
+    {
+      "left": "stg_tracks",
+      "right": "stg_playlist_tracks",
+      "on": "T1.id = T2.track_id"
+    },
+    {
+      "left": "stg_playlist_tracks",
+      "right": "stg_playlists",
+      "on": "T2.playlist_id = T3.id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "tables": [
+    "Locations",
+    "Tourist_Attractions"
+  ],
+  "joins": [
+    {
+      "left_table": "Locations",
+      "right_table": "Tourist_Attractions",
+      "condition": "T1.Location_ID = T2.Location_ID"
+    }
+  ],
+  "filters": [
+    "T1.Address = \"660 Shea Crescent\"",
+    "T2.How_to_Get_There = \"walk\""
+  ]
+}

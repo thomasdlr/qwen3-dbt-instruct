@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Customers",
+    "raw.Addresses"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_addresses"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_lockmanfurt_customers",
+    "type": "dimension",
+    "grain": "1 row per customer in Lockmanfurt"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_addresses"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_addresses",
+      "on": "stg_customers.customer_address_id = stg_addresses.address_id"
+    }
+  ],
+  "tests": {
+    "first_name": [
+      "not_null"
+    ],
+    "last_name": [
+      "not_null"
+    ]
+  }
+}

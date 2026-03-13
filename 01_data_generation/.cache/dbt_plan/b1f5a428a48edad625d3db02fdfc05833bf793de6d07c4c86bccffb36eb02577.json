@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.professor",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_professor",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_department_professor_count",
+    "type": "dimension",
+    "grain": "1 row per department"
+  },
+  "ctes": [
+    "stg_professor",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_professor",
+      "right": "stg_department",
+      "on": "stg_professor.dept_code = stg_department.dept_code"
+    }
+  ],
+  "tests": {
+    "dept_code": [
+      "not_null",
+      "unique"
+    ],
+    "dept_name": [
+      "not_null"
+    ]
+  }
+}

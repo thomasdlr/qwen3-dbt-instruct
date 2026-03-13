@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.Student",
+    "raw.Participates_in"
+  ],
+  "staging_models": [
+    "stg_Student",
+    "stg_Participates_in"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_student_participation",
+    "type": "fact",
+    "grain": "1 row per Student"
+  },
+  "ctes": [
+    "stg_Student",
+    "stg_Participates_in"
+  ],
+  "joins": [
+    {
+      "left": "stg_Student",
+      "right": "stg_Participates_in",
+      "on": "stg_Student.StuID = stg_Participates_in.StuID"
+    }
+  ],
+  "tests": {
+    "fname": [
+      "not_null"
+    ],
+    "lname": [
+      "not_null"
+    ]
+  }
+}

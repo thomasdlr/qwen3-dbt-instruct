@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "Player",
+    "Player_Attributes"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.player_api_id = T2.player_api_id"
+    }
+  ],
+  "filters": [
+    "T2.preferred_foot = \"left\"",
+    "T2.overall_rating >= 85",
+    "T2.overall_rating <= 90"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.player_name"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.player_name",
+  "model_type": "report"
+}

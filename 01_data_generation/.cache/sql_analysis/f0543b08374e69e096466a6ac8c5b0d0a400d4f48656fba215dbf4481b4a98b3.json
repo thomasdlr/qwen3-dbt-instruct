@@ -1,0 +1,27 @@
+{
+  "tables": [
+    "architect",
+    "mill"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "t2",
+      "condition": "T1.id = T2.architect_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name",
+    "T1.nationality"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.name, T1.nationality",
+  "model_type": "dimension"
+}

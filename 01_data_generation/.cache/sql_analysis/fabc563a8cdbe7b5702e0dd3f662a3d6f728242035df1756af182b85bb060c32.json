@@ -1,0 +1,37 @@
+{
+  "tables": [
+    "CAR_MAKERS",
+    "MODEL_LIST"
+  ],
+  "joins": [
+    {
+      "left_table": "CAR_MAKERS",
+      "right_table": "MODEL_LIST",
+      "condition": "T1.Id = T2.Maker"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": null
+    }
+  ],
+  "group_by": [
+    "T1.Id"
+  ],
+  "having": [
+    "COUNT(*) > 3"
+  ],
+  "select_columns": [
+    "T1.FullName",
+    "T1.Id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.Id",
+  "model_type": "fact"
+}

@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.customers",
+    "raw.customers_policies",
+    "raw.available_policies"
+  ],
+  "staging_models": [
+    "stg_customers",
+    "stg_customers_policies",
+    "stg_available_policies"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_dayana_robel_policies",
+    "type": "report",
+    "grain": "1 row per policy_type_code"
+  },
+  "ctes": [
+    "stg_customers",
+    "stg_customers_policies",
+    "stg_available_policies"
+  ],
+  "joins": [
+    {
+      "left": "stg_customers",
+      "right": "stg_customers_policies",
+      "on": "customer_id = customer_id"
+    },
+    {
+      "left": "stg_customers_policies",
+      "right": "stg_available_policies",
+      "on": "policy_id = policy_id"
+    }
+  ],
+  "tests": {
+    "policy_type_code": [
+      "not_null"
+    ]
+  }
+}

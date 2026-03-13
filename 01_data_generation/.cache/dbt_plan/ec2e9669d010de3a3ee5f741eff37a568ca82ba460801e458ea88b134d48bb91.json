@@ -1,0 +1,40 @@
+{
+  "sources": [
+    "raw.employee",
+    "raw.professor",
+    "raw.department"
+  ],
+  "staging_models": [
+    "stg_employee",
+    "stg_professor",
+    "stg_department"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_history_professors",
+    "type": "report",
+    "grain": "1 row per employee first name"
+  },
+  "ctes": [
+    "stg_employee",
+    "stg_professor",
+    "stg_department"
+  ],
+  "joins": [
+    {
+      "left": "stg_employee",
+      "right": "stg_professor",
+      "on": "emp_num = emp_num"
+    },
+    {
+      "left": "stg_professor",
+      "right": "stg_department",
+      "on": "dept_code = dept_code"
+    }
+  ],
+  "tests": {
+    "emp_fname": [
+      "not_null"
+    ]
+  }
+}

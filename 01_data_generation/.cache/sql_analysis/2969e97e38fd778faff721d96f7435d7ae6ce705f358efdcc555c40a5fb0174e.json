@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "problems",
+    "product"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.product_id = T2.product_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "COUNT",
+      "column": "*",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "T2.product_id"
+  ],
+  "having": [],
+  "select_columns": [
+    "COUNT(*)",
+    "T2.product_id"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.product_id",
+  "model_type": "fact"
+}

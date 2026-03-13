@@ -1,0 +1,43 @@
+{
+  "sources": [
+    "raw.products",
+    "raw.product_characteristics",
+    "raw.CHARACTERISTICS"
+  ],
+  "staging_models": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_CHARACTERISTICS"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_cumin_characteristics",
+    "type": "report",
+    "grain": "1 row per product_id, characteristic_id"
+  },
+  "ctes": [
+    "stg_products",
+    "stg_product_characteristics",
+    "stg_CHARACTERISTICS"
+  ],
+  "joins": [
+    {
+      "left": "stg_products",
+      "right": "stg_product_characteristics",
+      "on": "product_id = product_id"
+    },
+    {
+      "left": "stg_product_characteristics",
+      "right": "stg_CHARACTERISTICS",
+      "on": "characteristic_id = characteristic_id"
+    }
+  ],
+  "tests": {
+    "characteristic_name": [
+      "not_null"
+    ],
+    "characteristic_data_type": [
+      "not_null"
+    ]
+  }
+}

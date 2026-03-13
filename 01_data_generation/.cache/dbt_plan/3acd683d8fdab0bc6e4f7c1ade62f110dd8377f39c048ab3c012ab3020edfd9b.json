@@ -1,0 +1,26 @@
+{
+  "sources": [
+    "raw.web_client_accelerator",
+    "raw.accelerator_compatible_browser"
+  ],
+  "staging_models": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_accelerator_count",
+    "type": "report",
+    "grain": ""
+  },
+  "ctes": [
+    "stg_web_client_accelerator",
+    "stg_accelerator_compatible_browser"
+  ],
+  "joins": [],
+  "tests": {
+    "count_star": [
+      "not_null"
+    ]
+  }
+}

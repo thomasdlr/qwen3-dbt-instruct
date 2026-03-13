@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "station",
+    "status"
+  ],
+  "joins": [],
+  "filters": [
+    "lat > 37.4"
+  ],
+  "aggregations": [
+    {
+      "function": "MIN",
+      "column": "bikes_available",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "status.station_id"
+  ],
+  "having": [
+    "MIN(bikes_available) < 7"
+  ],
+  "select_columns": [
+    "station.id",
+    "status.station_id"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "station.id",
+  "model_type": "report"
+}

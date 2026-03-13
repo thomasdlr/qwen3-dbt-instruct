@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.museums",
+    "raw.tourist_attractions"
+  ],
+  "staging_models": [
+    "stg_museums",
+    "stg_tourist_attractions"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_museum_attraction",
+    "type": "dimension",
+    "grain": "1 row per museum_id = tourist_attraction_id"
+  },
+  "ctes": [
+    "stg_museums",
+    "stg_tourist_attractions"
+  ],
+  "joins": [
+    {
+      "left": "stg_museums",
+      "right": "stg_tourist_attractions",
+      "on": "museum_id = tourist_attraction_id"
+    }
+  ],
+  "tests": {
+    "museum_details": [
+      "not_null"
+    ],
+    "opening_hours": [
+      "not_null"
+    ]
+  }
+}

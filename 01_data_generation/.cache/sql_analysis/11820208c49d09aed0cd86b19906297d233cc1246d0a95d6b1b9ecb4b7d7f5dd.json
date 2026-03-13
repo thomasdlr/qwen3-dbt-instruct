@@ -1,0 +1,30 @@
+{
+  "tables": [
+    "drivers",
+    "driverstandings"
+  ],
+  "joins": [
+    {
+      "left_table": "T1",
+      "right_table": "T2",
+      "condition": "T1.driverid = T2.driverid"
+    }
+  ],
+  "filters": [
+    "T2.position = 1",
+    "T2.wins = 1",
+    "T2.points > 20"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.forename"
+  ],
+  "set_operations": [],
+  "has_distinct": true,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T1.forename",
+  "model_type": "report"
+}

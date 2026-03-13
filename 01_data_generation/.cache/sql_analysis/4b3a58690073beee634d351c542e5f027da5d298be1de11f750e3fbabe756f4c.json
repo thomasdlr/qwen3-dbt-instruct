@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "physician",
+    "trained_in",
+    "procedures"
+  ],
+  "joins": [
+    {
+      "left_table": "physician",
+      "right_table": "trained_in",
+      "condition": "T1.employeeid = T2.physician"
+    },
+    {
+      "left_table": "procedures",
+      "right_table": "trained_in",
+      "condition": "T3.code = T2.treatment"
+    }
+  ],
+  "filters": [],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T1.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "physician.name",
+  "model_type": "dimension"
+}

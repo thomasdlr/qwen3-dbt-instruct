@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.CAR_MAKERS",
+    "raw.COUNTRIES"
+  ],
+  "staging_models": [
+    "stg_car_makers",
+    "stg_countries"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_country_car_makers",
+    "type": "report",
+    "grain": "1 row per Country"
+  },
+  "ctes": [
+    "stg_car_makers",
+    "stg_countries"
+  ],
+  "joins": [
+    {
+      "left": "stg_car_makers",
+      "right": "stg_countries",
+      "on": "T1.Country = T2.CountryId"
+    }
+  ],
+  "tests": {
+    "CountryName": [
+      "not_null"
+    ]
+  }
+}

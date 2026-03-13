@@ -1,0 +1,48 @@
+{
+  "sources": [
+    "raw.swimmer",
+    "raw.record",
+    "raw.event",
+    "raw.stadium"
+  ],
+  "staging_models": [
+    "stg_swimmer",
+    "stg_record",
+    "stg_event",
+    "stg_stadium"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_australian_stadiums",
+    "type": "report",
+    "grain": "1 row per stadium"
+  },
+  "ctes": [
+    "stg_swimmer",
+    "stg_record",
+    "stg_event",
+    "stg_stadium"
+  ],
+  "joins": [
+    {
+      "left": "stg_swimmer",
+      "right": "stg_record",
+      "on": "swimmer.id = record.swimmer_id"
+    },
+    {
+      "left": "stg_record",
+      "right": "stg_event",
+      "on": "record.event_id = event.id"
+    },
+    {
+      "left": "stg_event",
+      "right": "stg_stadium",
+      "on": "event.stadium_id = stadium.id"
+    }
+  ],
+  "tests": {
+    "name": [
+      "not_null"
+    ]
+  }
+}

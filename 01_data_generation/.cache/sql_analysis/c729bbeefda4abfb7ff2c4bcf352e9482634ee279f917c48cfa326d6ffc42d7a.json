@@ -1,0 +1,32 @@
+{
+  "tables": [
+    "Documents",
+    "Ref_Shipping_Agents"
+  ],
+  "joins": [
+    {
+      "left_table": "Documents",
+      "right_table": "Ref_Shipping_Agents",
+      "condition": "Documents.shipping_agent_code = Ref_Shipping_Agents.shipping_agent_code"
+    }
+  ],
+  "filters": [
+    "document_status_code = \"done\"",
+    "document_type_code = \"Paper\"",
+    "Ref_Shipping_Agents.shipping_agent_name = \"USPS\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "document_id"
+  ],
+  "set_operations": [
+    "EXCEPT"
+  ],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "document_id",
+  "model_type": "report"
+}

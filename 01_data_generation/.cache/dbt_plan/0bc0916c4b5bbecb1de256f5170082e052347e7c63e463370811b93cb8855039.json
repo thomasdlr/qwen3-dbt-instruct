@@ -1,0 +1,32 @@
+{
+  "sources": [
+    "raw.editor",
+    "raw.journal_committee"
+  ],
+  "staging_models": [
+    "stg_editor",
+    "stg_journal_committee"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_editor_journal_counts",
+    "type": "fact",
+    "grain": "1 row per editor"
+  },
+  "ctes": [
+    "stg_editor",
+    "stg_journal_committee"
+  ],
+  "joins": [
+    {
+      "left": "stg_editor",
+      "right": "stg_journal_committee",
+      "on": "stg_editor.Editor_ID = stg_journal_committee.Editor_ID"
+    }
+  ],
+  "tests": {
+    "Name": [
+      "not_null"
+    ]
+  }
+}

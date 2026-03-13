@@ -1,0 +1,41 @@
+{
+  "tables": [
+    "journalist",
+    "news_report"
+  ],
+  "joins": [
+    {
+      "left_table": "t1",
+      "right_table": "t2",
+      "condition": "t1.journalist_id = t2.journalist_id"
+    }
+  ],
+  "filters": [],
+  "aggregations": [
+    {
+      "function": "AVG",
+      "column": "t1.age",
+      "alias": ""
+    },
+    {
+      "function": "AVG",
+      "column": "Years_working",
+      "alias": ""
+    }
+  ],
+  "group_by": [
+    "t2.work_type"
+  ],
+  "having": [],
+  "select_columns": [
+    "AVG(t1.age)",
+    "AVG(Years_working)",
+    "t2.work_type"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "t2.work_type",
+  "model_type": "report"
+}

@@ -1,0 +1,36 @@
+{
+  "sources": [
+    "raw.bookings",
+    "raw.payments"
+  ],
+  "staging_models": [
+    "stg_bookings",
+    "stg_payments"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "fct_booking_refunds",
+    "type": "fact",
+    "grain": "1 row per booking_id"
+  },
+  "ctes": [
+    "stg_bookings",
+    "stg_payments"
+  ],
+  "joins": [
+    {
+      "left": "stg_bookings",
+      "right": "stg_payments",
+      "on": "booking_id"
+    }
+  ],
+  "tests": {
+    "booking_id": [
+      "not_null",
+      "unique"
+    ],
+    "amount_of_refund": [
+      "not_null"
+    ]
+  }
+}

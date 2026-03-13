@@ -1,0 +1,35 @@
+{
+  "sources": [
+    "raw.staff",
+    "raw.problem_log"
+  ],
+  "staging_models": [
+    "stg_staff",
+    "stg_problem_log"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "dim_staff_problem",
+    "type": "dimension",
+    "grain": "1 row per staff_id"
+  },
+  "ctes": [
+    "stg_staff",
+    "stg_problem_log"
+  ],
+  "joins": [
+    {
+      "left": "stg_staff",
+      "right": "stg_problem_log",
+      "on": "staff.staff_id = problem_log.assigned_to_staff_id"
+    }
+  ],
+  "tests": {
+    "staff_first_name": [
+      "not_null"
+    ],
+    "staff_last_name": [
+      "not_null"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "tables": [
+    "customers"
+  ],
+  "joins": [],
+  "filters": [
+    "NOT customer_id IN (SELECT customer_id FROM customer_address_history)"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "customer_name",
+    "customer_phone"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": true,
+  "has_window_fn": false,
+  "grain": "customer_name, customer_phone",
+  "model_type": "report"
+}

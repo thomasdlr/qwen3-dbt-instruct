@@ -1,0 +1,28 @@
+{
+  "tables": [
+    "Person",
+    "PersonFriend"
+  ],
+  "joins": [
+    {
+      "left_table": "Person",
+      "right_table": "PersonFriend",
+      "condition": "T1.name = T2.friend"
+    }
+  ],
+  "filters": [
+    "T1.city = 'new york city'"
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.name"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name",
+  "model_type": "dimension"
+}

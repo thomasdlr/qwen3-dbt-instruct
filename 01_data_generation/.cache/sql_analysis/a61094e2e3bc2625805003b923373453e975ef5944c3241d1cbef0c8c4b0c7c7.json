@@ -1,0 +1,34 @@
+{
+  "tables": [
+    "Rating",
+    "Reviewer"
+  ],
+  "joins": [
+    {
+      "left_table": "Rating",
+      "right_table": "Reviewer",
+      "condition": "T1.rID = T2.rID"
+    },
+    {
+      "left_table": "Rating",
+      "right_table": "Reviewer",
+      "condition": "T1.rID = T2.rID"
+    }
+  ],
+  "filters": [
+    "T1.stars = 3",
+    "T1.stars = 4"
+  ],
+  "select_columns": [
+    "T2.name",
+    "T2.name"
+  ],
+  "set_operations": [
+    "INTERSECT"
+  ],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name",
+  "model_type": "report"
+}

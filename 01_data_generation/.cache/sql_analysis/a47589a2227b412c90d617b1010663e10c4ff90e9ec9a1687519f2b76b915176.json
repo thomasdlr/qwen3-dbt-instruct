@@ -1,0 +1,35 @@
+{
+  "tables": [
+    "results",
+    "races",
+    "drivers"
+  ],
+  "joins": [
+    {
+      "left_table": "results",
+      "right_table": "races",
+      "condition": "T1.raceid = T2.raceid"
+    },
+    {
+      "left_table": "results",
+      "right_table": "drivers",
+      "condition": "T1.driverid = T3.driverid"
+    }
+  ],
+  "filters": [
+    "T3.forename = \"Lewis\""
+  ],
+  "aggregations": [],
+  "group_by": [],
+  "having": [],
+  "select_columns": [
+    "T2.name",
+    "T2.year"
+  ],
+  "set_operations": [],
+  "has_distinct": false,
+  "has_subquery": false,
+  "has_window_fn": false,
+  "grain": "T2.name, T2.year",
+  "model_type": "report"
+}

@@ -1,0 +1,23 @@
+{
+  "sources": [
+    "raw.rooms"
+  ],
+  "staging_models": [
+    "stg_rooms"
+  ],
+  "intermediate_models": [],
+  "mart_model": {
+    "name": "rpt_unreserved_rooms",
+    "type": "report",
+    "grain": "N/A"
+  },
+  "ctes": [
+    "stg_rooms"
+  ],
+  "joins": [],
+  "tests": {
+    "count": [
+      "not_null"
+    ]
+  }
+}
