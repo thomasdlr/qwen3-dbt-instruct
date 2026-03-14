@@ -87,6 +87,7 @@ class ScoredQuery:
     complexity: str
     features: list[str]
     table_count: int
+    model_type: str  # fct | dim | rpt | int_needed
 
     def to_jsonl_record(self) -> dict:
         return {
@@ -97,7 +98,53 @@ class ScoredQuery:
             "complexity_score": self.score,
             "features": self.features,
             "table_count": self.table_count,
+            "model_type": self.model_type,
         }
+
+
+def classify_model_type(sql: str, table_count: int) -> str:
+    """
+    Classify each SQL query into the dbt model type it should produce.
+
+      int_needed : 2+ JOINs, window function, or subquery with a JOIN
+                   → must generate an intermediate layer
+      fct        : GROUP BY + aggregate function (no set ops, no bare LIMIT)
+                   → fct_ mart
+      dim        : single-table SELECT, no aggregation, no LIMIT
+                   → dim_ mart
+      rpt        : INTERSECT/EXCEPT/UNION, top-N with LIMIT, or filtered subsets
+                   → rpt_ mart
+    """
+    has_groupby   = bool(re.search(r"\bGROUP\s+BY\b", sql, re.I))
+    has_agg       = bool(re.search(r"\b(SUM|COUNT|AVG|MIN|MAX)\s*\(", sql, re.I))
+    has_intersect = bool(re.search(r"\bINTERSECT\b", sql, re.I))
+    has_except    = bool(re.search(r"\bEXCEPT\b", sql, re.I))
+    has_union     = bool(re.search(r"\bUNION\b", sql, re.I))
+    has_limit     = bool(re.search(r"\bLIMIT\b", sql, re.I))
+    has_window    = bool(re.search(r"\bOVER\s*\(", sql, re.I))
+    has_subq      = bool(re.search(r"\(\s*SELECT\b", sql, re.I))
+    num_joins     = len(re.findall(r"\bJOIN\b", sql, re.I))
+
+    # int_needed: complex joins, window functions, or nested subqueries
+    if num_joins >= 2 or has_window or (has_subq and num_joins >= 1):
+        return "int_needed"
+
+    # fct_: aggregated metrics
+    if has_groupby and has_agg and not has_intersect and not has_except and not has_union:
+        return "fct"
+
+    # rpt_: set operations or top-N filters
+    if has_intersect or has_except or has_union:
+        return "rpt"
+    if has_limit and not has_agg:
+        return "rpt"
+
+    # dim_: single entity table, no aggregation or limit
+    if table_count == 1 and not has_agg and not has_limit:
+        return "dim"
+
+    # default: ad-hoc report
+    return "rpt"
 
 
 def score_query(question: str, context: str, sql: str) -> ScoredQuery:
@@ -130,6 +177,8 @@ def score_query(question: str, context: str, sql: str) -> ScoredQuery:
             complexity = level
             break
 
+    model_type = classify_model_type(sql, table_count)
+
     return ScoredQuery(
         question=question,
         context=context,
@@ -138,6 +187,7 @@ def score_query(question: str, context: str, sql: str) -> ScoredQuery:
         complexity=complexity,
         features=features,
         table_count=table_count,
+        model_type=model_type,
     )
 
 
@@ -150,58 +200,53 @@ def select_balanced_sample(
     seed: int = 42,
 ) -> list[ScoredQuery]:
     """
-    Select a balanced sample biased toward complex queries.
+    Select a balanced sample by model_type to ensure dbt training diversity.
 
-    Target distribution (approximate):
-        simple:   10%
-        moderate: 25%
-        complex:  40%
-        advanced: 25%
+    Target distribution:
+        fct:        35%  aggregated metrics (GROUP BY + agg) → fct_ marts
+        rpt:        40%  ad-hoc reports, set ops, top-N    → rpt_ marts
+        dim:        15%  entity tables (1 table, no agg)   → dim_ marts
+        int_needed: 10%  3+ joins / window / subquery      → intermediate layer
     """
     rng = random.Random(seed)
 
-    by_level: dict[str, list[ScoredQuery]] = {k: [] for k in COMPLEXITY_LEVELS}
+    MODEL_TYPES = ["fct", "rpt", "dim", "int_needed"]
+    by_type: dict[str, list[ScoredQuery]] = {t: [] for t in MODEL_TYPES}
     for q in scored:
-        by_level[q.complexity].append(q)
+        by_type.setdefault(q.model_type, []).append(q)
 
-    # Shuffle each bucket
-    for items in by_level.values():
+    for items in by_type.values():
         rng.shuffle(items)
 
-    # Desired proportions — heavy on complex
     proportions = {
-        "simple": 0.10,
-        "moderate": 0.25,
-        "complex": 0.40,
-        "advanced": 0.25,
+        "fct":        0.35,
+        "rpt":        0.40,
+        "dim":        0.15,
+        "int_needed": 0.10,
     }
 
     selected: list[ScoredQuery] = []
     remaining_budget = target
 
-    # First pass: take up to the proportion from each bucket
-    for level, prop in proportions.items():
+    # First pass: fill each model_type bucket to its target proportion
+    for mtype, prop in proportions.items():
         want = int(target * prop)
-        available = by_level[level]
+        available = by_type[mtype]
         take = min(want, len(available))
         selected.extend(available[:take])
-        by_level[level] = available[take:]
+        by_type[mtype] = available[take:]
         remaining_budget -= take
 
-    # Second pass: fill remaining budget from any bucket with leftovers,
-    # prioritizing complex > advanced > moderate > simple
-    priority_order = ["complex", "advanced", "moderate", "simple"]
-    for level in priority_order:
+    # Second pass: fill remainder prioritising fct > int_needed > rpt > dim
+    for mtype in ["fct", "int_needed", "rpt", "dim"]:
         if remaining_budget <= 0:
             break
-        available = by_level[level]
+        available = by_type[mtype]
         take = min(remaining_budget, len(available))
         selected.extend(available[:take])
         remaining_budget -= take
 
-    # Final shuffle so the output isn't grouped by complexity
     rng.shuffle(selected)
-
     return selected
 
 
@@ -298,7 +343,8 @@ def main() -> None:
     scored: list[ScoredQuery] = []
     for row in dataset:
         q = score_query(row["question"], row["context"], row["answer"])
-        if q.table_count >= args.min_tables:
+        # Allow single-table dim_ candidates through even below min_tables
+        if q.table_count >= args.min_tables or q.model_type == "dim":
             scored.append(q)
     log.info(f"Scored {len(scored)} queries (min {args.min_tables} table(s))")
 
@@ -309,9 +355,13 @@ def main() -> None:
 
     # Distribution before selection
     dist = Counter(q.complexity for q in scored)
-    log.info("Full dataset distribution:")
+    log.info("Full dataset distribution (by complexity):")
     for level in COMPLEXITY_LEVELS:
         log.info(f"  {level:>10s}: {dist.get(level, 0):>6d}")
+    mtype_dist = Counter(q.model_type for q in scored)
+    log.info("Full dataset distribution (by model_type):")
+    for mtype in ["fct", "rpt", "dim", "int_needed"]:
+        log.info(f"  {mtype:>12s}: {mtype_dist.get(mtype, 0):>6d}")
 
     # Select balanced sample
     selected = select_balanced_sample(scored, target=args.target, seed=args.seed)
@@ -319,11 +369,17 @@ def main() -> None:
 
     # Distribution after selection
     sel_dist = Counter(q.complexity for q in selected)
-    log.info("Selected distribution:")
+    log.info("Selected distribution (by complexity):")
     for level in COMPLEXITY_LEVELS:
         count = sel_dist.get(level, 0)
         pct = 100 * count / len(selected) if selected else 0
         log.info(f"  {level:>10s}: {count:>4d} ({pct:.0f}%)")
+    sel_mtype = Counter(q.model_type for q in selected)
+    log.info("Selected distribution (by model_type):")
+    for mtype in ["fct", "rpt", "dim", "int_needed"]:
+        count = sel_mtype.get(mtype, 0)
+        pct = 100 * count / len(selected) if selected else 0
+        log.info(f"  {mtype:>12s}: {count:>4d} ({pct:.0f}%)")
 
     # Write output
     args.output.parent.mkdir(parents=True, exist_ok=True)
